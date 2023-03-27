@@ -1,194 +1,343 @@
-<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+<div id="sidebar" class="sidebar responsive  ace-save-state">
     <script type="text/javascript">
-        try {
-            ace.settings.loadState('sidebar')
-        } catch (e) {}
+        try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
 
-
-
-    {{-- <ul class="nav nav-list">
+    <ul class="nav nav-list">
         <li class="active">
-            <a href="{{ url('/dashboard') }}">
+            <a href="{{ route('dashboard') }}">
                 <i class="menu-icon fa fa-tachometer"></i>
-                <span class="menu-text"> Home </span>
+                <span class="menu-text"> Dashboard </span>
             </a>
 
             <b class="arrow"></b>
         </li>
 
         <li class="">
-            <a href="{{ route('admin.bnews') }}">
+            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-desktop"></i>
                 <span class="menu-text">
-                    Business News
+                    UI &amp; Elements
                 </span>
+
+                <b class="arrow fa fa-angle-down"></b>
             </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.allnews') }}">
-                <i class="menu-icon fa fa-newspaper-o"></i>
-                <span class="menu-text">
-                    News
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.allnotice') }}">
-                <i class="menu-icon fa fa-sticky-note"></i>
-                <span class="menu-text">
-                    Notice
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.alltourist') }}">
-                <i class="menu-icon fa fa-map-marker"></i>
-                <span class="menu-text">
-                    Tourist Spots
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.allhotels') }}">
-                <i class="menu-icon fa fa-hospital-o"></i>
-                <span class="menu-text">
-                    Hotels
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.allactivity') }}">
-                <i class="menu-icon fa fa-history"></i>
-                <span class="menu-text">
-                    Activity
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.district.index') }}">
-                <i class="menu-icon fa fa-map"></i>
-                <span class="menu-text">
-                    District Details
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.conference.index') }}">
-                <i class="menu-icon fa fa-sitemap"></i>
-                <span class="menu-text">
-                    Conferences
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.messages.index') }}">
-                <i class="menu-icon fa fa-commenting-o"></i>
-                <span class="menu-text">
-                    Message
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.post.index') }}">
-                <i class="menu-icon fa fa-rss"></i>
-                <span class="menu-text">
-                    Blog
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.publication.index') }}">
-                <i class="menu-icon fa fa-pencil"></i>
-                <span class="menu-text">
-                    Publications
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ route('admin.vacancie.index') }}">
-                <i class="menu-icon fa fa-gamepad"></i>
-                <span class="menu-text">
-                    Vacancy
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/pagemenu') }}">
-                <i class="menu-icon fa fa-columns"></i>
-                <span class="menu-text">
-                    Pages
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/slider') }}">
-                <i class="menu-icon fa fa-sliders"></i>
-                <span class="menu-text">
-                    Slider
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/faq') }}">
-                <i class="menu-icon fa fa-question-circle"></i>
-                <span class="menu-text">
-                    FAQ
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/director') }}">
-                <i class="menu-icon fa fa-fort-awesome"></i>
-                <span class="menu-text">
-                    Former Board
-                </span>
-            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Layouts
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="top-menu.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Top Menu
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="two-menu-1.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Two Menus 1
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="two-menu-2.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Two Menus 2
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="mobile-menu-1.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Default Mobile Menu
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="mobile-menu-2.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Mobile Menu 2
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="mobile-menu-3.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Mobile Menu 3
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="typography.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Typography
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="elements.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Elements
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="buttons.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Buttons &amp; Icons
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="content-slider.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Content Sliders
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="treeview.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Treeview
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="jquery-ui.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        jQuery UI
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="nestable-list.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Nestable Lists
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Three Level Menu
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-leaf green"></i>
+                                Item #1
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-pencil orange"></i>
+
+                                4th level
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+
+                            <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a href="#">
+                                        <i class="menu-icon fa fa-plus purple"></i>
+                                        Add Product
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="#">
+                                        <i class="menu-icon fa fa-eye pink"></i>
+                                        View Products
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </li>
 
         <li class="">
             <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text"> Tables </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="tables.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Simple &amp; Dynamic
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="jqgrid.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        jqGrid plugin
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-pencil-square-o"></i>
+                <span class="menu-text"> Forms </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="form-elements.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Form Elements
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="form-elements-2.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Form Elements 2
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="form-wizard.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Wizard &amp; Validation
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="wysiwyg.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Wysiwyg &amp; Markdown
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="dropzone.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Dropzone File Upload
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="widgets.html">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text"> Widgets </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="calendar.html">
+                <i class="menu-icon fa fa-calendar"></i>
+
+                <span class="menu-text">
+                    Calendar
+
+                    <span class="badge badge-transparent tooltip-error" title="2 Important Events">
+                        <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                    </span>
+                </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="gallery.html">
                 <i class="menu-icon fa fa-picture-o"></i>
                 <span class="menu-text"> Gallery </span>
-
-                <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="{{ url('admin/photo/gallery') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Photo Gallery
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ url('admin/photo/category') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Photo Category
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ url('admin/gallery/video') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Video
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
         </li>
+
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-users"></i>
-                <span class="menu-text"> Chamber Member </span>
+                <i class="menu-icon fa fa-tag"></i>
+                <span class="menu-text"> More Pages </span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -197,28 +346,88 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="{{ url('admin/MemberList') }}">
+                    <a href="profile.html">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Member List
+                        User Profile
                     </a>
 
                     <b class="arrow"></b>
                 </li>
 
                 <li class="">
-                    <a href="{{ url('admin/MemberCategory') }}">
+                    <a href="inbox.html">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Member Category
+                        Inbox
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="pricing.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Pricing Tables
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="invoice.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Invoice
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="timeline.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Timeline
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="search.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Search Results
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="email.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Email Templates
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="login.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Login &amp; Register
                     </a>
 
                     <b class="arrow"></b>
                 </li>
             </ul>
         </li>
+
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-handshake-o"></i>
-                <span class="menu-text">Our Team </span>
+                <i class="menu-icon fa fa-file-o"></i>
+
+                <span class="menu-text">
+                    Other Pages
+
+                    <span class="badge badge-primary">5</span>
+                </span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -227,148 +436,54 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="{{ route('admin.secretariat.index') }}">
+                    <a href="faq.html">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Secretariat
+                        FAQ
                     </a>
 
                     <b class="arrow"></b>
                 </li>
 
                 <li class="">
-                    <a href="{{ route('admin.boardDirectors.index') }}">
+                    <a href="error-404.html">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Board of Directors
+                        Error 404
                     </a>
 
                     <b class="arrow"></b>
                 </li>
 
                 <li class="">
-                    <a href="{{ route('admin.boardDirectors.index') }}">
+                    <a href="error-500.html">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Workers
+                        Error 500
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="grid.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Grid
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="blank.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Blank Page
                     </a>
 
                     <b class="arrow"></b>
                 </li>
             </ul>
         </li>
+    </ul><!-- /.nav-list -->
 
-        <li class="">
-            <a href="{{ url('admin/socialinfo') }}">
-                <i class="menu-icon fa fa-share-square"></i>
-                <span class="menu-text">
-                    Social Links
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-shield"></i>
-                <span class="menu-text"> Organization Info </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="{{ url('admin/org/primary') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Primary Info
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ url('admin/org/about') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        About
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/testimonial') }}">
-                <i class="menu-icon fa fa-id-card-o"></i>
-                <span class="menu-text">
-                    Testimonials
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/partner') }}">
-                <i class="menu-icon fa fa-globe"></i>
-                <span class="menu-text">
-                    Partner
-                </span>
-            </a>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-handshake-o"></i>
-                <span class="menu-text">Menu Setup </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="{{ route('admin.menu') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Menu
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ route('admin.submenu') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Sub Menu
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ route('admin.pagemenu') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Page Menu
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                {{-- <li class="">
-                    <a href="{{ route('admin.sub_sub') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Mutlti Sub
-                    </a>
-
-                    <b class="arrow"></b>
-                </li> --}}
-            </ul>
-        </li>
-        <li class="">
-            <a href="{{ url('admin/All') }}"">
-                <i class="menu-icon fa fa-user"></i>
-                <span class="menu-text">
-                    Users Panel
-                </span>
-            </a>
-        </li>
-    </ul> --}}
-    <!-- /.nav-list -->
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
-            data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
     </div>
 </div>

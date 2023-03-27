@@ -11,10 +11,10 @@
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="{{ url('/dashboard') }}" class="navbar-brand">
+            <a href="{{ route('dashboard') }}" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    CHAMBER
+                    RED-USD
                 </small>
             </a>
         </div>
@@ -51,14 +51,14 @@
                         <li class="divider"></li>
 
                         <li>
-                            {{-- <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a href="" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="" method="POST" style="display: none;">
                                 @csrf
-                            </form> --}}
+                            </form>
                         </li>
                     </ul>
                 </li>
