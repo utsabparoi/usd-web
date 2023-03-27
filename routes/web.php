@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DepositsController;
+use App\Http\Controllers\Admin\InvestorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::resource('deposits', DepositsController::class);
+
+Route::resource('investor', InvestorController::class);
