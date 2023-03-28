@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\DepositsController;
+use App\Http\Controllers\Admin\InvestorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +27,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::group(['middleware'=>['auth','admin']], function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
+Route::resource('deposits', DepositsController::class);
+
