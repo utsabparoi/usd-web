@@ -12,7 +12,6 @@
             </li>
             <li class="active">Dashboard</li>
         </ul><!-- /.breadcrumb -->
-
     </div>
 
     <div class="page-content">
@@ -20,7 +19,7 @@
         <div class="page-header">
             <h1>
                 Dashboard
-                
+
             </h1>
         </div><!-- /.page-header -->
 

@@ -61,7 +61,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <script>
         @if ($errors->any())
             @foreach ($errors->all() as $error)

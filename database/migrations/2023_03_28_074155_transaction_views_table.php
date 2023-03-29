@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvestorsTable extends Migration
+class TransactionViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateInvestorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('investors', function (Blueprint $table) {
+        Schema::create('transaction_view', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('wallet_type');
+            $table->decimal('balance', 16, 6);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateInvestorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('investors');
+        Schema::dropIfExists('transaction_view');
     }
 }

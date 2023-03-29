@@ -189,7 +189,8 @@
                                     <div class="space-6"></div>
                                     <p> Enter your details to begin: </p>
 
-                                    <form>
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -207,14 +208,14 @@
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" id="password" placeholder="Password" />
+															<input type="password" class="form-control" name="password" id="password" placeholder="Password" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" id="repeatPassword" placeholder="Repeat password" />
+															<input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Repeat password" />
 															<i class="ace-icon fa fa-retweet"></i>
 														</span>
                                             </label>
@@ -235,7 +236,7 @@
                                                     <span class="bigger-110">Reset</span>
                                                 </button>
 
-                                                <button type="button" class="width-65 pull-right btn btn-sm btn-success" onclick="registerSuperAdmin()">
+                                                <button type="submit" class="width-65 pull-right btn btn-sm btn-success">
                                                     <span class="bigger-110">Register</span>
 
                                                     <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
@@ -304,7 +305,6 @@
 <script src="{{asset('assets/js/jquery.flot.resize.min.js')}}"></script>
 
 <!-- ace scripts -->
-<script src="{{asset('assets/js/ace-elements.min.js')}}/"></script>
 <script src="{{asset('assets/js/ace.min.js')}}"></script>
 
 <!-- axios scripts -->

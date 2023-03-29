@@ -16,17 +16,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Auth::routes();
-Route::group(['middleware'=>['auth','admin']], function(){
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 });
 Route::resource('deposits', DepositsController::class);
-
