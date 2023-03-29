@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Deposit;
+use App\Models\Admin\DirectBonus;
 use Illuminate\Http\Request;
 
-class DepositsController extends Controller
+class DirectBonusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $data['deposits_info'] = Deposit::latest()->get();
-        return view('admin.deposits_package.index', $data);
+        $data['directbonus_info'] = DirectBonus::latest()->get();
+        return view('admin.direct_bonus.index',$data);
     }
 
     /**
@@ -26,7 +26,8 @@ class DepositsController extends Controller
      */
     public function create()
     {
-        return view('admin.deposits_package.create');
+        
+        return view('admin.direct_bonus.create');
     }
 
     /**
@@ -38,21 +39,17 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
+            'generation' => 'required',
+            'percentage' => 'required',
             'status' => 'required',
         ]);
-        Deposit::insert([
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
+        DirectBonus::insert([
+            'generation' => $request->generation,
+            'percentage' => $request->percentage,
             'status' => $request->status,
             'created_at' => now(),
-         ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Added Successfully!');
+            ]);
+     return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Added Successfully!');
     }
 
     /**
@@ -74,8 +71,8 @@ class DepositsController extends Controller
      */
     public function edit($id)
     {
-        $data['deposit_edit'] = Deposit::findOrFail($id);
-        return view('admin.deposits_package.edit',$data);
+        $data['directbonus_edit'] = DirectBonus::findOrFail($id);
+        return view('admin.direct_bonus.edit',$data);
     }
 
     /**
@@ -88,21 +85,18 @@ class DepositsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
+            'generation' => 'required',
+            'percentage' => 'required',
             'status' => 'required',
         ]);
-        Deposit::findOrFail($id)->update([
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
+        DirectBonus::findOrFail($id)->update([
+            'generation' => $request->generation,
+            'percentage' => $request->percentage,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Updated Successfully!');
+     return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Updated Successfully!');
+    
     }
 
     /**
@@ -113,7 +107,7 @@ class DepositsController extends Controller
      */
     public function destroy($id)
     {
-        Deposit::destroy($id);
-        return redirect()->route("deposits.index")->with('message', 'Deposits Package Deleted Successfully!');
+        DirectBonus::destroy($id);
+        return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Deleted Successfully!');
     }
 }

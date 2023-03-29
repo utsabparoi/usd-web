@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Deposit;
+use App\Models\Admin\Rank;
 use Illuminate\Http\Request;
 
-class DepositsController extends Controller
+class RankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $data['deposits_info'] = Deposit::latest()->get();
-        return view('admin.deposits_package.index', $data);
+        $data['rank_info'] = Rank::latest()->get();
+        return view('admin.rank.index',$data);
     }
 
     /**
@@ -26,7 +26,7 @@ class DepositsController extends Controller
      */
     public function create()
     {
-        return view('admin.deposits_package.create');
+        return view('admin.rank.create');
     }
 
     /**
@@ -38,21 +38,20 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
+            'rank_name' => 'required',
+            'target' => 'required',
+            'reward' => 'required',
             'status' => 'required',
         ]);
-        Deposit::insert([
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
+
+        Rank::insert([
+            'rank_name' => $request->rank_name,
+            'target' => $request->target,
+            'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Added Successfully!');
+     return redirect()->route("rank.index")->with('message', 'Rank Added Successfully!');
     }
 
     /**
@@ -74,8 +73,8 @@ class DepositsController extends Controller
      */
     public function edit($id)
     {
-        $data['deposit_edit'] = Deposit::findOrFail($id);
-        return view('admin.deposits_package.edit',$data);
+        $data['rank_edit'] = Rank::findOrFail($id);
+        return view('admin.rank.edit',$data);
     }
 
     /**
@@ -88,21 +87,19 @@ class DepositsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
+            'rank_name' => 'required',
+            'target' => 'required',
+            'reward' => 'required',
             'status' => 'required',
         ]);
-        Deposit::findOrFail($id)->update([
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
+        Rank::findOrFail($id)->update([
+            'rank_name' => $request->rank_name,
+            'target' => $request->target,
+            'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Updated Successfully!');
+     return redirect()->route("rank.index")->with('message', 'Rank Updated Successfully!');
     }
 
     /**
@@ -113,7 +110,7 @@ class DepositsController extends Controller
      */
     public function destroy($id)
     {
-        Deposit::destroy($id);
-        return redirect()->route("deposits.index")->with('message', 'Deposits Package Deleted Successfully!');
+        Rank::destroy($id);
+        return redirect()->route("rank.index")->with('message', 'Rank Deleted Successfully!');
     }
 }

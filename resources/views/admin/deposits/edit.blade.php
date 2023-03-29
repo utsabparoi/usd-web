@@ -11,7 +11,7 @@
                 Tables
                 <small>
                     <i class="ace-icon fa fa-angle-double-right"></i>
-                    Add Deposits Package
+                    Update Deposits Package
                 </small>
             </h1>
         </div><!-- /.page-header -->
@@ -19,36 +19,40 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
-                <form method="POST" action="{{ route('deposits.store') }}" class="form-horizontal" >
+                <form method="POST" action="{{ route('deposits.update', $deposit_edit->id) }}" class="form-horizontal" >
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="name" class="col-md-3 control-label">Name</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Name" name="name" id="name" value="{{ old('name') }}" >
+                            <input class="form-control " value="{{ $deposit_edit->name }}" name="name" type="text" id="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="package_price" class="col-md-3 control-label">Package Price $</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Package Price $" name="package_price" id="package_price" value="{{ old('package_price') }}">
+                            <input class="form-control" value="{{ $deposit_edit->package_price }}" name="package_price" type="text" id="package_price">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Deposit Amount" name="deposit_amount" id="deposit_amount" value="{{ old('deposit_amount') }}">
+                            <input class="form-control" value="{{ $deposit_edit->deposit_amount }}" name="deposit_amount" type="text" id="deposit_amount">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Monthly Profit" name="monthly_profit" id="monthly_profit" value="{{ old('monthly_profit') }}">
+                            <input class="form-control" value="{{ $deposit_edit->monthly_profit }}" name="monthly_profit" type="text" id="monthly_profit">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="status" class="col-md-3 control-label">Status</label>
                         <div class="col-md-5">
-                            <select class="form-control" id="status" name="status"><option value="1" selected="selected">Active</option><option value="2">Inactive</option></select>
+                            <select class="form-control" id="status" name="status">
+                                <option value="1" {{ $deposit_edit->status == '1' ? 'selected' : '' }}>Active</option>
+                                <option value="2" {{ $deposit_edit->status == '2' ? 'selected' : '' }}>Inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

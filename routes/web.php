@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DepositsController;
+use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\InvestorController;
+use App\Http\Controllers\Admin\RankController;
+use App\Http\Controllers\Admin\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +32,10 @@ Route::get('/dashboard', function () {
 
 Route::resource('deposits', DepositsController::class);
 
+Route::resource('directbonus', DirectBonusController::class);
+
+Route::resource('rank', RankController::class);
+
 Route::resource('investor', InvestorController::class);
+
+Route::resource('transaction', TransactionController::class);

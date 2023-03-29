@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Deposits Package')
+@section('title', 'Direct Bonus')
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 Tables
                 <small>
                     <i class="ace-icon fa fa-angle-double-right"></i>
-                    Add Deposits Package
+                    Add Direct Bonus
                 </small>
             </h1>
         </div><!-- /.page-header -->
@@ -19,30 +19,18 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
-                <form method="POST" action="{{ route('deposits.store') }}" class="form-horizontal" >
+                <form method="POST" action="{{ route('directbonus.store') }}" class="form-horizontal" >
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-md-3 control-label">Name</label>
+                        <label for="generation" class="col-md-3 control-label">Generation</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Name" name="name" id="name" value="{{ old('name') }}" >
+                            <input class="form-control" type="text" placeholder="Generation" name="generation" id="generation" value="{{ old('generation') }}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="package_price" class="col-md-3 control-label">Package Price $</label>
+                        <label for="percentage" class="col-md-3 control-label">Percentage</label>
                         <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Package Price $" name="package_price" id="package_price" value="{{ old('package_price') }}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount</label>
-                        <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Deposit Amount" name="deposit_amount" id="deposit_amount" value="{{ old('deposit_amount') }}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit</label>
-                        <div class="col-md-5">
-                            <input class="form-control" type="text" placeholder="Monthly Profit" name="monthly_profit" id="monthly_profit" value="{{ old('monthly_profit') }}">
+                            <input class="form-control" type="text" placeholder="Percentage %" name="percentage" id="percentage" value="{{ old('percentage') }}">
                         </div>
                     </div>
                     <div class="form-group">

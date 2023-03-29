@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Deposits Information')
+@section('title', 'Direct Bonus Information')
 
 @section('content')
 
@@ -11,19 +11,24 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Home</a>
                 </li>
-                <li>Deposit Packages</li>
+                <li>Direct Bonus</li>
             </ul><!-- /.breadcrumb -->  
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <h3 class="header smaller lighter blue">All Deposit Packages Information
+                <h3 class="header smaller lighter blue">All Direct Bonus Information
                 </h3>
                 <div class="clearfix">
+                    @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                    @endif
                     <div class="pull-right tableTools-container">
-                        <a href="{{ route('deposits.create') }}">
+                        <a href="{{ route('directbonus.create') }}">
                             <button class="btn btn-white btn-default btn-round">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
-                                Add New Deposit Packages
+                                Add New Direct Bonus
                             </button>
                         </a>
                     </div>
@@ -41,32 +46,28 @@
                         <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Name</th>
-                                <th>Package Price $</th>
-                                <th>Deposit Amount</th>
-                                <th>Monthly Profit</th>
+                                <th>Generation</th>
+                                <th>Percentage %</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                          <tbody>
-                            @foreach ($deposits_info as $item)
+                            @foreach ($directbonus_info as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->package_price }}</td>
-                                <td>{{ $item->deposit_amount }}</td>
-                                <td>{{ $item->monthly_profit }}</td>
+                                <td>{{ $item->generation }}</td>
+                                <td>{{ $item->percentage }}</td>
                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                 </td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('deposits.edit', $item->id) }}">
+                                        <a class="green" href="{{ route('directbonus.edit',$item->id) }}">
                                             <button class="btn btn-xs btn-success">
                                                 <i class="ace-icon fa fa-pencil bigger-120"></i>
                                             </button>
                                         </a>
-                                        <a class="red" href="{{ route('deposits.destroy', $item->id ) }}
+                                        <a class="red" href="{{ route('directbonus.destroy', $item->id ) }}
                                             " onclick="event.preventDefault();
                                             document.getElementById('delete-form').submit();
                                             ">
@@ -74,7 +75,7 @@
                                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                             </button>
                                         </a>
-                                         <form id="delete-form" action="{{ route('deposits.destroy', $item->id ) }}" method="post">
+                                         <form id="delete-form" action="{{ route('directbonus.destroy', $item->id ) }}" method="post">
                                             @csrf
                                             @method('DELETE')  
                                         </form>     
@@ -117,7 +118,7 @@
                                     </div>
 
                                 </td>
-                            </tr>     
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

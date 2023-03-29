@@ -12,32 +12,31 @@
 
             <b class="arrow"></b>
         </li>
-
         <li class="">
-            <a href="#" class="dropdown-toggle">
+            <a href="{{ Route('deposits.index') }}">
                 <i class="menu-icon fa fa-desktop"></i>
-                <span class="menu-text">
-                    Deposit Packages
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
+                All Deposit Packages
             </a>
 
             <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('deposits.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        All Deposit Packages
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
         </li>
         <li class="">
+            <a href="{{ route('directbonus.index') }}">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text">Direct Bouns</span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="">
+            <a href="{{ route('rank.index') }}">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text">Rank</span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        {{-- <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text">
@@ -82,6 +81,7 @@
                 </li>
             </ul>
         </li>
+
         <li class="">
             <a href="{{ route('investor.index') }}">
                 <i class="menu-icon fa fa-list-alt"></i>
@@ -90,7 +90,7 @@
 
             <b class="arrow"></b>
         </li>
-
+       
         <li class="">
             <a href="calendar.html">
                 <i class="menu-icon fa fa-calendar"></i>
@@ -262,7 +262,7 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
+        </li> --}}
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

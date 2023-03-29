@@ -5,8 +5,11 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Deposit extends Model
+class Rank extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'package_price','deposit_amount','monthly_profit','status'];
+    protected $fillable =['rank_name','target','reward','status'];
 }
+
+
+
