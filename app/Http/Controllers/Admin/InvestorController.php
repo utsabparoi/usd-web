@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Deposit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,8 @@ class InvestorController extends Controller
      */
     public function index()
     {
-        return view('admin.investor.index');
+        $data['investors'] = User::where('type', 2)->paginate(20);
+        return view('admin.investor.index', $data);
     }
 
     /**
@@ -26,7 +28,8 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        return  view('admin.investor.create');
+        $data['refers'] = User::where('type', 2)->get();
+        return  view('admin.investor.create', $data);
     }
 
     /**
@@ -100,7 +103,10 @@ class InvestorController extends Controller
                 'type'                 =>2,
                 'status'               =>$request->status ? 1: 0,
             ]);
-            //User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
+            if (!isset($request->refer_by)){
+                User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
+            }
+
         } catch (\Throwable $th) {
             throw $th;
         }

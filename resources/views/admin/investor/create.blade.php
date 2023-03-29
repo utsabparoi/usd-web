@@ -44,7 +44,11 @@
                     <div class="form-group">
                         <label for="invest_package" class="col-md-3 control-label">Invest Package</label>
                         <div class="col-md-5">
-                            <input class="form-control " placeholder="Invest Package" required="required" name="invest_package" type="text" id="invest_package">
+                            <select class="form-control">
+                                <option value="1">$110 Deposit Package</option>
+                                <option value="2">$250 Deposit Package</option>
+                                <option value="3">$500 Deposit Package</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,21 +76,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="status" class="col-md-3 control-label">Status</label>
+                        <label for="status" class="col-md-3 control-label">Payment Method</label>
                         <div class="col-md-5">
-                                <div class="input-group">
-                                    <label style="margin: 5px 0 0 0">
-                                        <input name="status"
-                                               class="ace ace-switch ace-switch-6"
-                                               type="checkbox" checked>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="form-field-radio" type="radio" class="ace" />
+                                    <span class="lbl"> Refer</span>
+                                </label>
+                                <label>
+                                    <input name="form-field-radio" type="radio" class="ace" />
+                                    <span class="lbl"> Wallet</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <input type="text" name="type" value="2" hidden>
-                    </div>
+
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
