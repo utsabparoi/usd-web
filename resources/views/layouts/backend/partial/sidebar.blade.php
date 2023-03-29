@@ -83,7 +83,7 @@
             </ul>
         </li>
         <li class="">
-            <a href="">
+            <a href="{{ route('investors.index') }}">
                 <i class="menu-icon fa fa-list-alt"></i>
                 <span class="menu-text">Investor</span>
             </a>

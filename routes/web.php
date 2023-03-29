@@ -19,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+    Route::resource('investors', InvestorController::class);
 });
 Route::resource('deposits', DepositsController::class);

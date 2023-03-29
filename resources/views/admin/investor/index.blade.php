@@ -12,7 +12,7 @@
                     <a href="#">Home</a>
                 </li>
                 <li>Investor</li>
-            </ul><!-- /.breadcrumb -->  
+            </ul><!-- /.breadcrumb -->
         </div>
         <div class="row">
             <div class="col-xs-12">
@@ -20,7 +20,7 @@
                 </h3>
                 <div class="clearfix">
                     <div class="pull-right tableTools-container">
-                        <a href="{{ route('investor.create') }}">
+                        <a href="{{ route('investors.create') }}">
                             <button class="btn btn-white btn-default btn-round">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
                                 Add New investor
@@ -65,8 +65,10 @@
                                         </button>
                                         <button class="btn btn-xs btn-danger">
                                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                       
+                                        </button>
+
                                     </div>
+
                                     <div class="hidden-md hidden-lg">
                                         <div class="inline pos-rel">
                                             <button class="btn btn-minier btn-yellow dropdown-toggle"
