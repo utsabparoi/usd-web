@@ -207,6 +207,16 @@
                 </li>
             </ul>
         </li>
+
+        <li class="">
+            <a href="{{ route('investors.index') }}">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text">Investor</span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
         {{-- <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
@@ -253,15 +263,8 @@
             </ul>
         </li>
 
-        <li class="">
-            <a href="{{ route('investors.index') }}">
-                <i class="menu-icon fa fa-list-alt"></i>
-                <span class="menu-text">Investor</span>
-            </a>
 
-            <b class="arrow"></b>
-        </li>
-       
+
         <li class="">
             <a href="calendar.html">
                 <i class="menu-icon fa fa-calendar"></i>
