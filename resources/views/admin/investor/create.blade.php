@@ -101,8 +101,4 @@
         </div><!-- /.row -->
     </div><!-- /.page-content -->
 </div>
-
-
-
-
 @endsection
