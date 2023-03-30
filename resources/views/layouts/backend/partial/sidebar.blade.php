@@ -4,6 +4,7 @@
     </script>
 
     <ul class="nav nav-list">
+         
         <li class="active">
             <a href="{{ route('dashboard') }}">
                 <i class="menu-icon fa fa-tachometer"></i>
@@ -13,28 +14,198 @@
             <b class="arrow"></b>
         </li>
         <li class="">
-            <a href="{{ Route('deposits.index') }}">
-                <i class="menu-icon fa fa-desktop"></i>
-                All Deposit Packages
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text">
+                    All Deposit Packages
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('deposits.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Deposit Packages
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="{{ Route('deposits.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Deposit Packages
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+            <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fas fa-gift"></i>
+                <span class="menu-text">
+                    Direct Bouns
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('directbonus.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Direct Bouns
+                    </a>
+                    <b class="arrow"></b>
+                </li>     
+                <li class="">
+                    <a href="{{ Route('directbonus.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Direct Bouns
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
         </li>
         <li class="">
-            <a href="{{ route('directbonus.index') }}">
-                <i class="menu-icon fa fa-list-alt"></i>
-                <span class="menu-text">Direct Bouns</span>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-trophy"></i>
+                <span class="menu-text">
+                    Rank
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('rank.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Rank
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                
+                <li class="">
+                    <a href="{{ Route('rank.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Rank
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
         </li>
         <li class="">
-            <a href="{{ route('rank.index') }}">
-                <i class="menu-icon fa fa-list-alt"></i>
-                <span class="menu-text">Rank</span>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-trophy"></i>
+                <span class="menu-text">
+                    Tranzaction
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('rank.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Tranzaction
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                
+                <li class="">
+                    <a href="{{ Route('rank.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Tranzaction
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-trophy"></i>
+                <span class="menu-text">
+                    Positions
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('rank.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Positions
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                
+                <li class="">
+                    <a href="{{ Route('rank.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Positions
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-trophy"></i>
+                <span class="menu-text">
+                    Designation
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('rank.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List Designation
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                
+                <li class="">
+                    <a href="{{ Route('rank.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create Designation
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
         </li>
         {{-- <li class="">
             <a href="#" class="dropdown-toggle">

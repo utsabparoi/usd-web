@@ -29,11 +29,11 @@
                                                 <th>SL</th>
                                                 <th>Name</th>
                                                 <th>image</th>
-                                                <th>Package Price</th>
-                                                <th>Deposit Amount</th>
-                                                <th>Monthly Profit</th>
-                                                <th>Converted Amount</th>
-                                                <th>Distribut Amount</th>
+                                                <th>Package Price($)</th>
+                                                <th>Deposit Amount($)</th>
+                                                <th>Monthly Profit($)</th>
+                                                <th>Total Payable($)</th>
+                                                <th>Distribute Amount($)</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -44,11 +44,11 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>.....</td>
-                                                <td>{{ $item->package_price }}</td>
-                                                <td>{{ $item->deposit_amount }}</td>
-                                                <td>{{ $item->monthly_profit }}</td>
-                                                <td>{{ $item->converted_amount }}</td>
-                                                <td>{{ $item->distribut_amount }}</td>
+                                                <td>{{ $item->package_price }}$</td>
+                                                <td>{{ $item->deposit_amount }}$</td>
+                                                <td>{{ $item->monthly_profit }}$</td>
+                                                <td>{{ $item->total_payable }}$</td>
+                                                <td>{{ $item->distribute_amount }}$</td>
                                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                 </td>
                                                 <td>

@@ -16,7 +16,7 @@ class CreateDirectBonusesTable extends Migration
         Schema::create('direct_bonuses', function (Blueprint $table) {
             $table->id();
             $table->string('generation');
-            $table->string('percentage');
+            $table->decimal('percentage');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

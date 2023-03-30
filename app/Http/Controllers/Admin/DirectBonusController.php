@@ -49,7 +49,7 @@ class DirectBonusController extends Controller
             'status' => $request->status,
             'created_at' => now(),
             ]);
-     return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Added Successfully!');
+     return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Added Successfully!');
     }
 
     /**
@@ -95,7 +95,7 @@ class DirectBonusController extends Controller
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Updated Successfully!');
+     return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Updated Successfully!');
     
     }
 
@@ -108,6 +108,6 @@ class DirectBonusController extends Controller
     public function destroy($id)
     {
         DirectBonus::destroy($id);
-        return redirect()->route("directbonus.index")->with('message', 'Direct Bonus Deleted Successfully!');
+        return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Deleted Successfully!');
     }
 }

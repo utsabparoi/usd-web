@@ -8,7 +8,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="widget-box">
                     <div class="widget-header header-color">
-                        <h4 class="widget-title">Deposits Package Input</h4>
+                        <h4 class="widget-title">Create Deposits Package</h4>
                     </div>
                     <div class="widget-body">
                         <div class="widget-main">
@@ -24,39 +24,39 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="image" class="col-md-3 control-label">Image</label>
-                                            <div class="col-md-5">
-                                                <input class="form-control" type="file" placeholder="Image" name="image" id="image" value="{{ old('image') }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="package_price" class="col-md-3 control-label">Package Price</label>
+                                            <label for="package_price" class="col-md-3 control-label">Package Price ($)</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" type="number" placeholder="Package Price" name="package_price" id="package_price" value="{{ old('package_price') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount</label>
+                                            <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount ($)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Deposit Amount" name="deposit_amount" id="deposit_amount" value="{{ old('deposit_amount') }}">
+                                                <input class="form-control" type="number" placeholder="Deposit Amount" name="deposit_amount"  id="deposit_amount" value="{{ old('deposit_amount') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit</label>
+                                            <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit ($)</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" type="number" placeholder="Monthly Profit" name="monthly_profit" id="monthly_profit" value="{{ old('monthly_profit') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="converted_amount" class="col-md-3 control-label">Converted Amount</label>
+                                            <label for="total_payable" class="col-md-3 control-label">Total Payable ($)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Converted Amount" name="converted_amount" id="converted_amount" value="{{ old('converted_amount') }}">
+                                                <input class="form-control" type="number" placeholder="Total Payable" name="total_payable" id="total_payable" value="{{ old('total_payable') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="distribut_amount" class="col-md-3 control-label">Distribut Amount</label>
+                                            <label for="distribute_amount" class="col-md-3 control-label">Distribute Amount ($)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Distribut Amount" name="distribut_amount" id="distribut_amount" value="{{ old('distribut_amount') }}">
+                                                <input class="form-control" type="number" placeholder="Distribute Amount" name="distribute_amount" id="distribute_amount" value="{{ old('distribute_amount') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image" class="col-md-3 control-label">Image</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="file" placeholder="Image" name="image" id="image" value="{{ old('image') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -80,8 +80,5 @@
         </div>
     </div><!-- /.page-content -->
 </div>
-
-
-
 
 @endsection

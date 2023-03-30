@@ -27,40 +27,40 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="image" class="col-md-3 control-label">Image</label>
-                                            <div class="col-md-5">
-                                                <input class="form-control" type="file"  name="image" id="image" value="{{ $deposit_edit->image }}">
-                                                <img src="{{ asset($deposit_edit->image) }}" height="50">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="package_price" class="col-md-3 control-label">Package Price</label>
+                                            <label for="package_price" class="col-md-3 control-label">Package Price ($)</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" value="{{ $deposit_edit->package_price }}" name="package_price" type="text" id="package_price">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount</label>
+                                            <label for="deposit_amount" class="col-md-3 control-label">Deposit Amount ($)</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" value="{{ $deposit_edit->deposit_amount }}" name="deposit_amount" type="text" id="deposit_amount">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit</label>
+                                            <label for="monthly_profit" class="col-md-3 control-label">Monthly Profit ($)</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" value="{{ $deposit_edit->monthly_profit }}" name="monthly_profit" type="text" id="monthly_profit">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="converted_amount" class="col-md-3 control-label">Converted Amount</label>
+                                            <label for="total_payable" class="col-md-3 control-label">Total Payable ($)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" name="converted_amount" id="converted_amount" value="{{ $deposit_edit->converted_amount }}">
+                                                <input class="form-control" type="number" name="total_payable" id="total_payable" value="{{ $deposit_edit->total_payable }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="distribut_amount" class="col-md-3 control-label">Distribut Amount</label>
+                                            <label for="distribute_amount" class="col-md-3 control-label">Distribute Amount ($)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" name="distribut_amount" id="distribut_amount" value="{{ $deposit_edit->distribut_amount }}">
+                                                <input class="form-control" type="number" name="distribute_amount" id="distribute_amount" value="{{ $deposit_edit->distribute_amount }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image" class="col-md-3 control-label">Image</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="file"  name="image" id="image" value="{{ $deposit_edit->image }}">
+                                                <img src="{{ asset($deposit_edit->image) }}" height="50">
                                             </div>
                                         </div>
                                         <div class="form-group">

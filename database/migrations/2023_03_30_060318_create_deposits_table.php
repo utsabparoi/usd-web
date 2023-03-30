@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DepositPlansTable extends Migration
+class CreateDepositsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class DepositPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('deposit_plans', function (Blueprint $table) {
+        Schema::create('deposits', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
             $table->decimal('package_price');
-            $table->decimal('deposit_amount', 16, 6);
-            $table->decimal('monthly_profit', 16, 6);
-            $table->decimal('converted_amount', 16, 6);
-            $table->decimal('distribut_amount', 16, 6);
+            $table->decimal('deposit_amount');
+            $table->decimal('monthly_profit');
+            $table->decimal('total_payable');
+            $table->decimal('distribute_amount');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ class DepositPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deposit_plans');
+        Schema::dropIfExists('deposits');
     }
 }

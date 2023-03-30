@@ -38,7 +38,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->generation }}</td>
-                                                <td>{{ $item->percentage }}</td>
+                                                <td>{{ $item->percentage }}%</td>
                                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                 </td>
                                                 <td>

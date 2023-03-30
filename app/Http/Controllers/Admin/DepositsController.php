@@ -42,8 +42,8 @@ class DepositsController extends Controller
             'package_price' => 'required',
             'deposit_amount' => 'required',
             'monthly_profit' => 'required',
-            'converted_amount' => 'required',
-            'distribut_amount' => 'required',
+            'total_payable' => 'required',
+            'distribute_amount' => 'required',
             'status' => 'required',
         ]);
         Deposit::insert([
@@ -51,8 +51,8 @@ class DepositsController extends Controller
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
             'monthly_profit' => $request->monthly_profit,
-            'converted_amount' => $request->converted_amount,
-            'distribut_amount' => $request->distribut_amount,
+            'total_payable' => $request->total_payable,
+            'distribute_amount' => $request->distribute_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);
@@ -96,8 +96,8 @@ class DepositsController extends Controller
             'package_price' => 'required',
             'deposit_amount' => 'required',
             'monthly_profit' => 'required',
-            'converted_amount' => 'required',
-            'distribut_amount' => 'required',
+            'total_payable' => 'required',
+            'distribute_amount' => 'required',
             'status' => 'required',
         ]);
         Deposit::findOrFail($id)->update([
@@ -105,8 +105,8 @@ class DepositsController extends Controller
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
             'monthly_profit' => $request->monthly_profit,
-            'converted_amount' => $request->converted_amount,
-            'distribut_amount' => $request->distribut_amount,
+            'total_payable' => $request->total_payable,
+            'distribute_amount' => $request->distribute_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);

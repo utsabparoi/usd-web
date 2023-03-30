@@ -8,7 +8,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="widget-box">
                     <div class="widget-header header-color">
-                        <h4 class="widget-title">Rank Input</h4>
+                        <h4 class="widget-title">Create Rank</h4>
                     </div>
                     <div class="widget-body">
                         <div class="widget-main">
