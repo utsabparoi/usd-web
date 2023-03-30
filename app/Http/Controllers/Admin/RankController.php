@@ -46,19 +46,19 @@ class RankController extends Controller
             'reward' => 'required',
             'status' => 'required',
         ]);
-        $images = $request->file('image');
-        $new_image = hexdec(uniqid()) . '.' . $images->getClientOriginalExtension();
-        $request->image->move(public_path('upload'),$new_image);
-        $img_url = 'upload/' . $new_image;
 
-        Rank::insert([
+        $rank = Rank::updateOrCreate(
+            [
+                'id' => null
+            ],
+            [
             'name' => $request->name,
-            'image' => $img_url,
             'target' => $request->target,
             'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
+        $this->upload_file($request->image, $rank, 'image', 'upload/rank/image');
         //  $this->upload_file($request->image );
      return redirect()->route("rank.index")->with('success', 'Rank Added Successfully!');
     }
@@ -110,7 +110,7 @@ class RankController extends Controller
             if (file_exists($NewsImage)) { // unlink or remove previous image from folder
                 unlink($NewsImage);
             }
-    
+
             $file = $request->file('image');
             $new_image = hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
             $request->image->move(public_path('upload'),$new_image);
@@ -135,7 +135,16 @@ class RankController extends Controller
      */
     public function destroy($id)
     {
-        Rank::destroy($id);
-        return redirect()->route("rank.index")->with('success', 'Rank Deleted Successfully!');
+        try {
+            $rank = Rank::find($id);
+            if(file_exists($rank->image)){
+                unlink($rank->image);
+            }
+            $rank->delete();
+
+            return redirect()->back()->with('success','Rank Deleted Success');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error',$th->getMessage());
+        }
     }
 }
