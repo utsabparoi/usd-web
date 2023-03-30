@@ -31,7 +31,7 @@
                                     <i class="ace-icon fa fa-check" id="checkMark"></i>
                                 </span>
 
-                                <input type="text" name="refer_by" id="refer_by" class="form-control search-query" placeholder="Search Refer ID">
+                                <input type="text" name="refer_by" id="refer_by" value="" class="form-control search-query" placeholder="Search Refer ID">
                                 <span class="input-group-btn">
                                     <button type="button" onclick="searchReferId()" class="btn btn-purple btn-sm">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -39,7 +39,7 @@
                                     </button>
                                 </span>
                             </div>
-                            <span id="checkReferId" style="color: red;"></span>
+                            <span id="invalidReferMsg" style="color: red;"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,14 +81,21 @@
                         <div class="col-md-5">
                             <div class="radio">
                                 <label>
-                                    <input name="form-field-radio" type="radio" class="ace" checked />
-                                    <span class="lbl"> Refer</span>
+                                    <input name="form-field-radio" type="radio" class="ace" onchange="payment1()"/>
+                                    <span class="lbl"> bKash</span>
                                 </label>
                                 <label>
-                                    <input name="form-field-radio" type="radio" class="ace" />
+                                    <input name="form-field-radio" type="radio" class="ace" onchange="wallet()" checked/>
                                     <span class="lbl"> Wallet</span>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="paymentAttachment" style="display: none;">
+                        <label for="paymentAttachment" class="col-md-3 control-label">Payment Attachment</label>
+                        <div class="col-md-3">
+                            <input class="form-control" name="paymentAttachment" type="file">
                         </div>
                     </div>
 
@@ -111,20 +118,28 @@
                 axios.post(url, allData).then(
                     function (response) {
                         if (response.data.id){
-                            document.getElementById('checkReferId').innerHTML = "" ;
+                            document.getElementById('invalidReferMsg').innerHTML = "" ;
                             document.getElementById('checkMark').style.color = "#00BE67" ;
                         }
                         else{
                             document.getElementById('checkMark').style.color = "" ;
-                            document.getElementById('checkReferId').innerHTML = "Refer-id invalid" ;
+                            document.getElementById('invalidReferMsg').innerHTML = "Refer-id invalid" ;
                         }
 
                     }
                 ).catch(
                     function (error) {
-                        alert('not ok')
+                        alert('Error try again!')
                     }
                 )
+        }
+
+
+        function payment1() {
+            document.getElementById('paymentAttachment').style.display = 'inline';
+        }
+        function wallet() {
+            document.getElementById('paymentAttachment').style.display = 'none';
         }
     </script>
 @endsection

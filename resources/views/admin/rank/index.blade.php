@@ -58,9 +58,6 @@
                                                             " onclick="event.preventDefault();
                                                             document.getElementById('delete-form').submit();
                                                             ">
-                                                            {{-- <button class="btn btn-xs btn-danger">
-                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            </button> --}}
                                                             <button class="btn btn-xs btn-danger">
                                                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
 

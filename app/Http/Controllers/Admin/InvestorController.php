@@ -28,9 +28,6 @@ class InvestorController extends Controller
      */
     public function create()
     {
-//        $data['referBy'] = User::query()
-//            ->when(request()->filled('refer_by'), fn ($q) => $q->where('id', request('refer_by')))
-//            ->get();
         return  view('admin.investor.create');
     }
 
