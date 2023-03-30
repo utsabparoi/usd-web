@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRanksTable extends Migration
+class RanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,11 @@ class CreateRanksTable extends Migration
     {
         Schema::create('ranks', function (Blueprint $table) {
             $table->id();
-            $table->string('rank_name');
-            $table->string('target');
-            $table->string('reward');
-            $table->tinyInteger('status')->default(1);
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->decimal('target', 16, 6);
+            $table->decimal('reward', 16, 6);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

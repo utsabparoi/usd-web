@@ -16,25 +16,33 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <!-- PAGE CONTENT BEGINS -->
-                                    <form method="POST" action="{{ route('rank.update', $rank_edit->id) }}" class="form-horizontal" >
+                                    <form method="POST" action="{{ route('rank.update', $rank_edit->id) }}" class="form-horizontal" enctype='multipart/form-data'>
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group">
-                                            <label for="rank_name" class="col-md-3 control-label">Rank Name</label>
+                                            <label for="name" class="col-md-3 control-label">Rank Name</label>
                                             <div class="col-md-5">
-                                                <input class="form-control " placeholder="Rank Name" value="{{ $rank_edit->rank_name }}" name="rank_name" type="text" id="rank_name">
+                                                <input class="form-control " placeholder="Rank Name" value="{{ $rank_edit->name }}" name="name" type="text" id="name">
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="image" class="col-md-3 control-label">Image</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="file"  name="image" id="image" value="{{ $rank_edit->image }}">
+                                                <img src="{{ asset($rank_edit->image) }}" height="50">
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group">
                                             <label for="target" class="col-md-3 control-label">Target</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" value="{{ $rank_edit->target }}" name="target" type="text" id="target">
+                                                <input class="form-control" value="{{ $rank_edit->target }}" name="target" type="number" id="target">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="reward" class="col-md-3 control-label">Reward</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" value="{{ $rank_edit->reward }}" name="reward" type="text" id="reward">
+                                                <input class="form-control" value="{{ $rank_edit->reward }}" name="reward" type="number" id="reward">
                                             </div>
                                         </div>
                                         <div class="form-group">

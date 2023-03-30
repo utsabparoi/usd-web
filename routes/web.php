@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DepositsController;
 use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\InvestorController;
@@ -17,25 +19,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::resource('deposits', DepositsController::class);
+
+    Route::resource('directbonus', DirectBonusController::class);
+
+    
+
+    Route::resource('investor', InvestorController::class);
+
+    Route::resource('transaction', TransactionController::class);
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::resource('deposits', DepositsController::class);
-
-Route::resource('directbonus', DirectBonusController::class);
-
 Route::resource('rank', RankController::class);
-
-Route::resource('investor', InvestorController::class);
-
-Route::resource('transaction', TransactionController::class);

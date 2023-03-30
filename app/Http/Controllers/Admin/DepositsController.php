@@ -42,6 +42,8 @@ class DepositsController extends Controller
             'package_price' => 'required',
             'deposit_amount' => 'required',
             'monthly_profit' => 'required',
+            'converted_amount' => 'required',
+            'distribut_amount' => 'required',
             'status' => 'required',
         ]);
         Deposit::insert([
@@ -49,6 +51,8 @@ class DepositsController extends Controller
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
             'monthly_profit' => $request->monthly_profit,
+            'converted_amount' => $request->converted_amount,
+            'distribut_amount' => $request->distribut_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);
@@ -92,6 +96,8 @@ class DepositsController extends Controller
             'package_price' => 'required',
             'deposit_amount' => 'required',
             'monthly_profit' => 'required',
+            'converted_amount' => 'required',
+            'distribut_amount' => 'required',
             'status' => 'required',
         ]);
         Deposit::findOrFail($id)->update([
@@ -99,10 +105,12 @@ class DepositsController extends Controller
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
             'monthly_profit' => $request->monthly_profit,
+            'converted_amount' => $request->converted_amount,
+            'distribut_amount' => $request->distribut_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Updated Successfully!');
+     return redirect()->route("deposits.index")->with('success', 'Deposits Package Updated Successfully!');
     }
 
     /**

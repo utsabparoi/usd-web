@@ -14,24 +14,30 @@
                         <div class="widget-main">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <form method="POST" action="{{ route('rank.store') }}" class="form-horizontal" >
+                                    <form method="POST" action="{{ route('rank.store') }}" class="form-horizontal" enctype='multipart/form-data'>
                                         @csrf
                                         <div class="form-group">
-                                            <label for="rank_name" class="col-md-3 control-label">Rank Name</label>
+                                            <label for="name" class="col-md-3 control-label">Rank Name</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" placeholder="Rank Name" required="required" name="rank_name" type="text" id="rank_name" value="{{ old('percentage') }}">
+                                                <input class="form-control" placeholder="Rank Name" required="required" name="name" type="text" id="name" value="{{ old('percentage') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image" class="col-md-3 control-label">Image</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="file"  name="image" id="image">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="target" class="col-md-3 control-label">Target</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="text" placeholder="Target" name="target" id="target" value="{{ old('percentage') }}">
+                                                <input class="form-control" type="number" placeholder="Target" name="target" id="target" value="{{ old('percentage') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="reward" class="col-md-3 control-label">Reward</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="text" placeholder="Reward" name="reward" id="reward" value="{{ old('percentage') }}">
+                                                <input class="form-control" type="number" placeholder="Reward" name="reward" id="reward" value="{{ old('percentage') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Rank;
 use Illuminate\Http\Request;
+use App\Traits\FileSaver;
 
 class RankController extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *
@@ -38,20 +40,27 @@ class RankController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'rank_name' => 'required',
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'name' => 'required',
             'target' => 'required',
             'reward' => 'required',
             'status' => 'required',
         ]);
+        $images = $request->file('image');
+        $new_image = hexdec(uniqid()) . '.' . $images->getClientOriginalExtension();
+        $request->image->move(public_path('upload'),$new_image);
+        $img_url = 'upload/' . $new_image;
 
         Rank::insert([
-            'rank_name' => $request->rank_name,
+            'name' => $request->name,
+            'image' => $img_url,
             'target' => $request->target,
             'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("rank.index")->with('message', 'Rank Added Successfully!');
+        //  $this->upload_file($request->image );
+     return redirect()->route("rank.index")->with('success', 'Rank Added Successfully!');
     }
 
     /**
@@ -86,20 +95,36 @@ class RankController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $old = Rank::findOrFail($id);
+        $img_url = $old->image;
         $request->validate([
-            'rank_name' => 'required',
+            'name' => 'required',
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
             'target' => 'required',
             'reward' => 'required',
             'status' => 'required',
         ]);
+
+        if($request->hasFile('image')){
+            $NewsImage = public_path($old->image);
+            if (file_exists($NewsImage)) { // unlink or remove previous image from folder
+                unlink($NewsImage);
+            }
+    
+            $file = $request->file('image');
+            $new_image = hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
+            $request->image->move(public_path('upload'),$new_image);
+            $img_url = 'upload/' . $new_image;
+        }
         Rank::findOrFail($id)->update([
-            'rank_name' => $request->rank_name,
+            'name' => $request->name,
+            'image' => $img_url,
             'target' => $request->target,
             'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("rank.index")->with('message', 'Rank Updated Successfully!');
+     return redirect()->route("rank.index")->with('success', 'Rank Updated Successfully!');
     }
 
     /**
@@ -111,6 +136,6 @@ class RankController extends Controller
     public function destroy($id)
     {
         Rank::destroy($id);
-        return redirect()->route("rank.index")->with('message', 'Rank Deleted Successfully!');
+        return redirect()->route("rank.index")->with('success', 'Rank Deleted Successfully!');
     }
 }

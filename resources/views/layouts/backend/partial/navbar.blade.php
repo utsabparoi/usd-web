@@ -51,12 +51,11 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="ace-icon fa fa-sign-out"></i> <span>Logout</span>
                             </a>
-                            <form id="logout-form" action="" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </li>

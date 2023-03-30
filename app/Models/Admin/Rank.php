@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rank extends Model
 {
     use HasFactory;
-    protected $fillable =['rank_name','target','reward','status'];
+    protected $fillable =['name','image','target','reward','status'];
 }
 
 
