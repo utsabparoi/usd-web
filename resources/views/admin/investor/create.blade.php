@@ -28,17 +28,18 @@
                         <div class="col-md-5">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="ace-icon fa fa-check"></i>
+                                    <i class="ace-icon fa fa-check" id="checkMark"></i>
                                 </span>
 
-                                <input type="text" name="refer_by" class="form-control search-query" placeholder="Search Refer ID">
+                                <input type="text" name="refer_by" id="refer_by" class="form-control search-query" placeholder="Search Refer ID">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-purple btn-sm">
+                                    <button type="button" onclick="searchReferId()" class="btn btn-purple btn-sm">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
                                         Search
                                     </button>
                                 </span>
                             </div>
+                            <span id="checkReferId" style="color: red;"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,7 +81,7 @@
                         <div class="col-md-5">
                             <div class="radio">
                                 <label>
-                                    <input name="form-field-radio" type="radio" class="ace" />
+                                    <input name="form-field-radio" type="radio" class="ace" checked />
                                     <span class="lbl"> Refer</span>
                                 </label>
                                 <label>
@@ -101,4 +102,29 @@
         </div><!-- /.row -->
     </div><!-- /.page-content -->
 </div>
+
+    <script>
+        function searchReferId() {
+                let refer_by = document.getElementById('refer_by').value;
+                let url = "/referCheck";
+                let allData = {Refer_by:refer_by};
+                axios.post(url, allData).then(
+                    function (response) {
+                        if (response.data.id){
+                            document.getElementById('checkReferId').innerHTML = "" ;
+                            document.getElementById('checkMark').style.color = "#00BE67" ;
+                        }
+                        else{
+                            document.getElementById('checkMark').style.color = "" ;
+                            document.getElementById('checkReferId').innerHTML = "Refer-id invalid" ;
+                        }
+
+                    }
+                ).catch(
+                    function (error) {
+                        alert('not ok')
+                    }
+                )
+        }
+    </script>
 @endsection

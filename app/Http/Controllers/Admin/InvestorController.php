@@ -28,8 +28,10 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        $data['refers'] = User::where('type', 2)->get();
-        return  view('admin.investor.create', $data);
+//        $data['referBy'] = User::query()
+//            ->when(request()->filled('refer_by'), fn ($q) => $q->where('id', request('refer_by')))
+//            ->get();
+        return  view('admin.investor.create');
     }
 
     /**
@@ -110,5 +112,10 @@ class InvestorController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function referCheck(Request $request){
+        $refer_check = User::find($request->input('Refer_by'));
+        return response()->json($refer_check);
     }
 }

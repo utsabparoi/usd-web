@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('directbonus', DirectBonusController::class);
 
-    
+
 
     Route::resource('investor', InvestorController::class);
 
@@ -35,3 +35,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('investors', InvestorController::class);
 });
 Route::resource('rank', RankController::class);
+Route::post('/referCheck', [InvestorController::class, 'referCheck']);
