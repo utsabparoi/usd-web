@@ -194,14 +194,14 @@
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" id="email" placeholder="Email" />
+															<input type="email" class="form-control" name="email" id="email" placeholder="Email" />
 															<i class="ace-icon fa fa-envelope"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" id="username" placeholder="Username" />
+															<input type="text" class="form-control" name="name" id="name" placeholder="Name" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>

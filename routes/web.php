@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+<<<<<<< HEAD
 
     Route::resource('deposits', DepositsController::class);
 
@@ -32,5 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('investor', InvestorController::class);
 
     Route::resource('transaction', TransactionController::class);
+=======
+    Route::resource('investors', InvestorController::class);
+>>>>>>> dbdc4896ed38424475080686c9d127eb5c0b2613
 });
 Route::resource('rank', RankController::class);

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Deposit;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvestorController extends Controller
 {
@@ -14,7 +17,8 @@ class InvestorController extends Controller
      */
     public function index()
     {
-        return view('admin.investor.index');
+        $data['investors'] = User::where('type', 2)->paginate(20);
+        return view('admin.investor.index', $data);
     }
 
     /**
@@ -24,7 +28,8 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        return view('admin.investor.create');
+        $data['refers'] = User::where('type', 2)->get();
+        return  view('admin.investor.create', $data);
     }
 
     /**
@@ -35,7 +40,8 @@ class InvestorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->storeOrUpdate($request);
+        return redirect(route('investors.index'));
     }
 
     /**
@@ -81,5 +87,28 @@ class InvestorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeOrUpdate($request, $id = null)
+    {
+        try {
+            $investors = User::updateOrCreate([
+                'id'                   =>$id,
+            ],[
+                'name'                 =>$request->name,
+                'email'                =>$request->email,
+                'mobile'               =>$request->phone,
+                'password'             =>$request->password,
+                'refer_by'             =>$request->refer_by,
+                'type'                 =>2,
+                'status'               =>$request->status ? 1: 0,
+            ]);
+            if (!isset($request->refer_by)){
+                User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
