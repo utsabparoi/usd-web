@@ -95,35 +95,27 @@ class RankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $old = Rank::findOrFail($id);
-        $img_url = $old->image;
         $request->validate([
-            'name' => 'required',
             'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'name' => 'required',
             'target' => 'required',
             'reward' => 'required',
             'status' => 'required',
         ]);
-
-        if($request->hasFile('image')){
-            $NewsImage = public_path($old->image);
-            if (file_exists($NewsImage)) { // unlink or remove previous image from folder
-                unlink($NewsImage);
-            }
-
-            $file = $request->file('image');
-            $new_image = hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
-            $request->image->move(public_path('upload'),$new_image);
-            $img_url = 'upload/' . $new_image;
-        }
-        Rank::findOrFail($id)->update([
+         
+        $rank = Rank::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
             'name' => $request->name,
-            'image' => $img_url,
             'target' => $request->target,
             'reward' => $request->reward,
             'status' => $request->status,
             'created_at' => now(),
          ]);
+        $this->upload_file($request->image, $rank, 'image', 'upload/rank/image');
+        //  $this->upload_file($request->image );
      return redirect()->route("rank.index")->with('success', 'Rank Updated Successfully!');
     }
 

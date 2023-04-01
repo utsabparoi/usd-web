@@ -17,11 +17,11 @@ class CreateDepositsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->decimal('package_price');
-            $table->decimal('deposit_amount');
-            $table->decimal('monthly_profit');
-            $table->decimal('total_payable');
-            $table->decimal('distribute_amount');
+            $table->decimal('package_price',16, 6);
+            $table->decimal('deposit_amount',16, 6);
+            $table->decimal('monthly_profit',16, 6);
+            $table->decimal('total_payable',16, 6);
+            $table->decimal('distribute_amount',16, 6);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

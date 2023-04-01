@@ -41,7 +41,6 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td><img src="{{ asset($item->image) }}" height="50px">
-                                                    
                                                 </td>
                                                 <td>{{ $item->target }}</td>
                                                 <td>{{ $item->reward }}</td>
@@ -54,21 +53,15 @@
                                                                 <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                             </button>
                                                         </a>
-                                                        <a class="red" href="{{ route('rank.destroy', $item->id ) }}
-                                                            " onclick="event.preventDefault();
-                                                            document.getElementById('delete-form').submit();
-                                                            ">
-                                                            {{-- <button class="btn btn-xs btn-danger">
-                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            </button> --}}
-                                                            <button class="btn btn-xs btn-danger">
-                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                           
-                                                            </button>
-                                                        </a>
+                                                       
                                                          <form id="delete-form" action="{{ route('rank.destroy', $item->id ) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')  
+                                                            <a class="red" href="{{ route('rank.destroy', $item->id ) }}">
+                                                                <button class="btn btn-xs btn-danger">
+                                                                    <i class="fa fa-trash bigger-130"></i>
+                                                                    </button>
+                                                            </a>
                                                         </form>     
                                                     </div>
                                                     <div class="hidden-md hidden-lg">

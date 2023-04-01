@@ -17,7 +17,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text">
-                    All Deposit Packages
+                    Deposit Packages
                 </span>
 
                 <b class="arrow fa fa-angle-down"></b>
@@ -214,6 +214,14 @@
                 <span class="menu-text">Investor</span>
             </a>
 
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="{{ route('configuration.index') }}">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text">Configration</span>
+            </a>
             <b class="arrow"></b>
         </li>
 

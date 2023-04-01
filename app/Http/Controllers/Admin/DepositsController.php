@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Deposit;
 use Illuminate\Http\Request;
-
+use App\Traits\FileSaver;
 class DepositsController extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +39,7 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
             'name' => 'required',
             'package_price' => 'required',
             'deposit_amount' => 'required',
@@ -46,7 +48,12 @@ class DepositsController extends Controller
             'distribute_amount' => 'required',
             'status' => 'required',
         ]);
-        Deposit::insert([
+
+        $deposit = Deposit::updateOrCreate(
+            [
+                'id' => null
+            ],
+            [
             'name' => $request->name,
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
@@ -56,7 +63,8 @@ class DepositsController extends Controller
             'status' => $request->status,
             'created_at' => now(),
          ]);
-     return redirect()->route("deposits.index")->with('message', 'Deposits Package Added Successfully!');
+        $this->upload_file($request->image, $deposit, 'image', 'upload/deposit/image');
+        return redirect()->route("deposits.index")->with('success', 'Deposits Package Added Successfully!');
     }
 
     /**
@@ -91,16 +99,11 @@ class DepositsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
-            'total_payable' => 'required',
-            'distribute_amount' => 'required',
-            'status' => 'required',
-        ]);
-        Deposit::findOrFail($id)->update([
+        $deposit = Deposit::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
             'name' => $request->name,
             'package_price' => $request->package_price,
             'deposit_amount' => $request->deposit_amount,
@@ -110,6 +113,7 @@ class DepositsController extends Controller
             'status' => $request->status,
             'created_at' => now(),
          ]);
+        $this->upload_file($request->image, $deposit, 'image', 'upload/deposit/image');
      return redirect()->route("deposits.index")->with('success', 'Deposits Package Updated Successfully!');
     }
 
@@ -121,7 +125,18 @@ class DepositsController extends Controller
      */
     public function destroy($id)
     {
-        Deposit::destroy($id);
-        return redirect()->route("deposits.index")->with('message', 'Deposits Package Deleted Successfully!');
+
+        try {
+            $deposit = Deposit::find($id);
+            if(file_exists($deposit->image)){
+                unlink($deposit->image);
+            }
+            $deposit->delete();
+
+            return redirect()->route("deposits.index")->with('success','Deposits Package Deleted Success');
+        } catch (\Throwable $th) {
+            return redirect()->route("deposits.index")->with('error',$th->getMessage());
+        }
+      
     }
 }

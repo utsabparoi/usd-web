@@ -43,7 +43,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>.....</td>
+                                                <td><img src="{{ asset($item->image) }}" height="50px">     
+                                                </td>
                                                 <td>{{ $item->package_price }}$</td>
                                                 <td>{{ $item->deposit_amount }}$</td>
                                                 <td>{{ $item->monthly_profit }}$</td>
