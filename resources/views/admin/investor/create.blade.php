@@ -21,7 +21,7 @@
                 <h3 class="header smaller lighter blue">Add New Investor
                 </h3>
                 <!-- PAGE CONTENT BEGINS -->
-                <form method="POST" action="{{ route('investors.store') }}" class="form-horizontal" >
+                <form method="POST" action="{{ route('investors.store') }}" class="form-horizontal" enctype="multipart/form-data" >
                     @csrf
                     <div class="form-group">
                         <label for="invest_package" class="col-md-3 control-label">Refer ID</label>
@@ -45,10 +45,11 @@
                     <div class="form-group">
                         <label for="invest_package" class="col-md-3 control-label">Invest Package</label>
                         <div class="col-md-5">
-                            <select class="form-control">
-                                <option value="1">$110 Deposit Package</option>
-                                <option value="2">$250 Deposit Package</option>
-                                <option value="3">$500 Deposit Package</option>
+                            <select class="form-control" name="deposit_plan" required>
+                                <option value="">-Select-</option>
+                                @foreach($deposit_plans as $deposit_plan)
+                                <option value="{{ $deposit_plan->id }}">{{ $deposit_plan->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -92,11 +93,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="paymentAttachment" style="display: none;">
+                    <div id="paymentMethod" style="display: none;">
+                    <div class="form-group" id="transactionId">
+                        <label for="transaction_id" class="col-md-3 control-label">Transaction No.</label>
+                        <div class="col-md-5">
+                            <input class="form-control" name="transaction_id" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group" id="paymentAttachment">
                         <label for="paymentAttachment" class="col-md-3 control-label">Payment Attachment</label>
                         <div class="col-md-3">
-                            <input class="form-control" name="paymentAttachment" type="file">
+                            <input class="form-control" name="payment_image" type="file">
                         </div>
+                    </div>
                     </div>
 
                     <div class="form-group">
@@ -136,10 +145,11 @@
 
 
         function payment1() {
-            document.getElementById('paymentAttachment').style.display = 'inline';
+            document.getElementById('paymentMethod').style.display = 'inline';
         }
         function wallet() {
-            document.getElementById('paymentAttachment').style.display = 'none';
+            document.getElementById('paymentMethod').style.display = 'none';
+            //document.getElementById('payment_image').src = '-';
         }
     </script>
 @endsection

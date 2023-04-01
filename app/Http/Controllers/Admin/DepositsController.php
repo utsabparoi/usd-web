@@ -52,7 +52,7 @@ class DepositsController extends Controller
             'deposit_amount' => $request->deposit_amount,
             'monthly_profit' => $request->monthly_profit,
             'converted_amount' => $request->converted_amount,
-            'distribut_amount' => $request->distribut_amount,
+            'distribute_amount' => $request->distribut_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);

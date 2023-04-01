@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DepositPlansTable extends Migration
+class UserDepositPlans extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class DepositPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('deposit_plans', function (Blueprint $table) {
+        Schema::create('user_deposit_plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('image')->nullable();
             $table->decimal('package_price');
@@ -34,6 +35,6 @@ class DepositPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deposit_plans');
+        Schema::dropIfExists('user_deposit_plans');
     }
 }
