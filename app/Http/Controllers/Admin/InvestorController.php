@@ -22,6 +22,7 @@ class InvestorController extends Controller
     public function index()
     {
         $data['investors'] = User::where('type', 2)->paginate(20);
+        $data['table'] = 'users';
         return view('admin.investor.index', $data);
     }
 
@@ -90,7 +91,13 @@ class InvestorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $investor = User::find($id);
+        if(file_exists($investor->payment_image))
+        {
+            unlink($investor->payment_image);
+        }
+        $investor->delete();
+        return redirect()->route('investors.index')->withMessage('Investor Successfully Deleted!');
     }
 
     public function storeOrUpdate($request, $id = null)
