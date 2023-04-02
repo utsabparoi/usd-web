@@ -14,7 +14,7 @@
                         <span class="widget-toolbar">
                             <a class="header-text" href="{{ route('rank.create') }}">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
-                                <strong>Add New Rank</strong> 
+                                <strong>Add New Rank</strong>
                             </a>
                         </span>
                     </div>
@@ -98,7 +98,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>                                              
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

@@ -21,33 +21,35 @@
                 <h3 class="header smaller lighter blue">Add New Investor
                 </h3>
                 <!-- PAGE CONTENT BEGINS -->
-                <form method="POST" action="{{ route('investors.store') }}" class="form-horizontal" >
+                <form method="POST" action="{{ route('investors.store') }}" class="form-horizontal" enctype="multipart/form-data" >
                     @csrf
                     <div class="form-group">
                         <label for="invest_package" class="col-md-3 control-label">Refer ID</label>
                         <div class="col-md-5">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="ace-icon fa fa-check"></i>
+                                    <i class="ace-icon fa fa-check" id="checkMark"></i>
                                 </span>
 
-                                <input type="text" name="refer_by" class="form-control search-query" placeholder="Search Refer ID">
+                                <input type="text" name="refer_by" id="refer_by" value="" class="form-control search-query" placeholder="Search Refer ID">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-purple btn-sm">
+                                    <button type="button" onclick="searchReferId()" class="btn btn-purple btn-sm">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
                                         Search
                                     </button>
                                 </span>
                             </div>
+                            <span id="invalidReferMsg" style="color: red;"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="invest_package" class="col-md-3 control-label">Invest Package</label>
                         <div class="col-md-5">
-                            <select class="form-control">
-                                <option value="1">$110 Deposit Package</option>
-                                <option value="2">$250 Deposit Package</option>
-                                <option value="3">$500 Deposit Package</option>
+                            <select class="form-control" name="deposit_plan" required>
+                                <option value="">-Select-</option>
+                                @foreach($deposit_plans as $deposit_plan)
+                                <option value="{{ $deposit_plan->id }}">{{ $deposit_plan->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -80,15 +82,30 @@
                         <div class="col-md-5">
                             <div class="radio">
                                 <label>
-                                    <input name="form-field-radio" type="radio" class="ace" />
-                                    <span class="lbl"> Refer</span>
+                                    <input name="form-field-radio" type="radio" class="ace" onchange="payment1()"/>
+                                    <span class="lbl"> bKash</span>
                                 </label>
                                 <label>
-                                    <input name="form-field-radio" type="radio" class="ace" />
+                                    <input name="form-field-radio" type="radio" class="ace" onchange="wallet()" checked/>
                                     <span class="lbl"> Wallet</span>
                                 </label>
                             </div>
                         </div>
+                    </div>
+
+                    <div id="paymentMethod" style="display: none;">
+                    <div class="form-group" id="transactionId">
+                        <label for="transaction_id" class="col-md-3 control-label">Transaction No.</label>
+                        <div class="col-md-5">
+                            <input class="form-control" name="transaction_id" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group" id="paymentAttachment">
+                        <label for="paymentAttachment" class="col-md-3 control-label">Payment Attachment</label>
+                        <div class="col-md-3">
+                            <input class="form-control" name="payment_image" type="file">
+                        </div>
+                    </div>
                     </div>
 
                     <div class="form-group">
@@ -101,4 +118,38 @@
         </div><!-- /.row -->
     </div><!-- /.page-content -->
 </div>
+
+    <script>
+        function searchReferId() {
+                let refer_by = document.getElementById('refer_by').value;
+                let url = "/referCheck";
+                let allData = {Refer_by:refer_by};
+                axios.post(url, allData).then(
+                    function (response) {
+                        if (response.data.id){
+                            document.getElementById('invalidReferMsg').innerHTML = "" ;
+                            document.getElementById('checkMark').style.color = "#00BE67" ;
+                        }
+                        else{
+                            document.getElementById('checkMark').style.color = "" ;
+                            document.getElementById('invalidReferMsg').innerHTML = "Refer-id invalid" ;
+                        }
+
+                    }
+                ).catch(
+                    function (error) {
+                        alert('Error try again!')
+                    }
+                )
+        }
+
+
+        function payment1() {
+            document.getElementById('paymentMethod').style.display = 'inline';
+        }
+        function wallet() {
+            document.getElementById('paymentMethod').style.display = 'none';
+            //document.getElementById('payment_image').src = '-';
+        }
+    </script>
 @endsection

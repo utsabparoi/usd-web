@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Spatie\DbDumper\Databases\MySql;
 
+
 trait FileSaver
 {
     public function upload_file_base64($file, $base_directory, $model, $database_field_name)

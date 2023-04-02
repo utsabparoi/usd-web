@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Traits\FileSaver;
 use App\Models\Admin\Deposit;
+use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class InvestorController extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +22,7 @@ class InvestorController extends Controller
     public function index()
     {
         $data['investors'] = User::where('type', 2)->paginate(20);
+        $data['table'] = 'users';
         return view('admin.investor.index', $data);
     }
 
@@ -28,7 +33,7 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        $data['refers'] = User::where('type', 2)->get();
+        $data['deposit_plans'] = Deposit::all();
         return  view('admin.investor.create', $data);
     }
 
@@ -86,7 +91,13 @@ class InvestorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $investor = User::find($id);
+        if(file_exists($investor->payment_image))
+        {
+            unlink($investor->payment_image);
+        }
+        $investor->delete();
+        return redirect()->route('investors.index')->withMessage('Investor Successfully Deleted!');
     }
 
     public function storeOrUpdate($request, $id = null)
@@ -100,15 +111,37 @@ class InvestorController extends Controller
                 'mobile'               =>$request->phone,
                 'password'             =>$request->password,
                 'refer_by'             =>$request->refer_by,
+                'transaction_id'       =>$request->transaction_id,
                 'type'                 =>2,
                 'status'               =>$request->status ? 1: 0,
             ]);
+            if (isset($request->payment_image)){
+                $this->upload_file($request->payment_image, $investors, 'payment_image', 'user/payment_image');
+            }
             if (!isset($request->refer_by)){
                 User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
             }
+            $deposit_plan = Deposit::find($request->deposit_plan);
+            $user_deposit_plan = UserDeposit::updateOrCreate([
+                'id'                    =>$id,
+            ],[
+                'user_id'               =>$investors->id,
+                'name'                  =>$deposit_plan->name,
+                'image'                 =>$deposit_plan->image,
+                'package_price'         =>$deposit_plan->package_price,
+                'deposit_amount'        =>$deposit_plan->deposit_amount,
+                'monthly_profit'        =>$deposit_plan->monthly_profit,
+                'converted_amount'      =>$deposit_plan->converted_amount,
+                'distribute_amount'     =>$deposit_plan->distribute_amount,
+            ]);
 
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function referCheck(Request $request){
+        $refer_check = User::find($request->input('Refer_by'));
+        return response()->json($refer_check);
     }
 }

@@ -57,6 +57,8 @@
     <script src="{{ asset('assets/js/jquery.flot.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.pie.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.resize.min.js') }}"></script>
+    <script src="{{ asset('assets/js/axios.min.js') }}"></script>
+    <script src="{{ asset('assets/custom_js/confirm_delete_dialog.js') }}"></script>
     <!-- ace scripts -->
     <script src="{{ asset('assets/js/ace.min.js') }}"></script>
     <script src="{{ asset('assets/js/ace-elements.min.js') }}"></script>
