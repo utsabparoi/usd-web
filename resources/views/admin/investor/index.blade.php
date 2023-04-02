@@ -5,128 +5,124 @@
 
 <div class="main-content-inner">
     <div class="page-content">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
-                </li>
-                <li>Investor</li>
-            </ul><!-- /.breadcrumb -->
-        </div>
         <div class="row">
-            <div class="col-xs-12">
-                <h3 class="header smaller lighter blue">All Investor Information
-                </h3>
-                <div class="clearfix">
-                    <div class="pull-right tableTools-container">
-                        <a href="{{ route('investors.create') }}">
-                            <button class="btn btn-white btn-default btn-round">
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <div class="widget-box">
+                    <div class="widget-header header-color">
+                        <h4 class="widget-title">Investor Information</h4>
+
+                        <span class="widget-toolbar">
+                            <a class="header-text" href="{{ route('investors.create') }}">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
-                                Add New investor
-                            </button>
-                        </a>
+                                <strong>Add New Investor</strong> 
+                            </a>
+                        </span>
                     </div>
-                </div>
-
-                <div class="table-header">
-
-                </div>
-
-                <!-- div.table-responsive -->
-
-                <!-- div.dataTables_borderWrap -->
-                <div>
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>SL</th>
-                                <th>ReferID </th>
-                                <th>Invest Package</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Payment By</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                         <tbody>
-                         @foreach($investors as $investor)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $investor->refer_by }}</td>
-                                <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
-                                <td>{{ $investor->name }}</td>
-                                <td>{{ $investor->mobile }}</td>
-                                <td>
-                                    @if($investor->payment_image)
-                                        <button class="btn btn-success" style="border: none !important;"
-                                                id="paymentView"
-                                                data-id="{{ $investor->id }}"
-                                                data-name="{{ $investor->name }}"
-                                                onclick="viewPayment(this)">bkash</button>
-                                    @else
-                                        <button class="btn btn-warning" style="border: none !important;">Wallet</button>
-                                    @endif
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                                            <!-- Modal content -->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <span class="close">&times;</span>
-                                                    <div class="campName" id="campName">Payment Information</div>
-                                                </div>
-                                                <br>
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-10">
-                                                            <table id="storeList">
-
-                                                            </table>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>SL</th>
+                                                <th>ReferID </th>
+                                                <th>Invest Package</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Payment By</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                         @foreach($investors as $investor)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $investor->refer_by }}</td>
+                                                <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
+                                                <td>{{ $investor->name }}</td>
+                                                <td>{{ $investor->mobile }}</td>
+                                                <td>
+                                                    @if($investor->payment_image)
+                                                        <button class="btn btn-success" style="border: none !important;"
+                                                                id="paymentView"
+                                                                data-id="{{ $investor->id }}"
+                                                                data-name="{{ $investor->name }}"
+                                                                onclick="viewPayment(this)">bkash</button>
+                                                    @else
+                                                        <button class="btn btn-warning" style="border: none !important;">Wallet</button>
+                                                    @endif
+                                                        <!-- The Modal -->
+                                                        <div id="myModal" class="modal">
+                                                            <!-- Modal content -->
+                                                            <div class="modal-content" style="width:30%; margin-left:350px">
+                                                                <div class="modal-header">
+                                                                    <span class="close">&times;</span>
+                                                                    <div class="campName" id="campName"><h3>Payment Information</h3></div>
+                                                                </div>
+                                                                <br>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <table id="storeList">
+                                                                                <div class="cardmodel">
+                                                                                    <img src="{{ asset("assets\images\customer.png") }}" alt="John" style="width:30%">
+                                                                                   <div class="title">
+                                                                                    <h2>{{ $investor->name }}</h2>
+                                                                                    <p><i class="fa fa-envelope" aria-hidden="true"></i>         {{ $investor->email }}</p>
+                                                                                   
+                                                                                    <p> <i class="fa fa-phone-square" aria-hidden="true"></i>          {{ $investor->mobile }}</p>
+                                                                                    <p><i class="fa fa-credit-card" aria-hidden="true"></i>       {{ $investor->transaction_id }}</p>
+                                                                                   </div>
+                                                                                   
+                                                                                  </div>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class="modal-footer">
+                                                                    <div align="center">
+                                                                        <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">OK</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                        <!-- Modal work end-->
+                                                </td>
+                                                <td>
+                                                        <label>
+                                                            <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
+                                                                   {{ status($investor->status) }} />
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                </td>
+                                                <td>
+                                                    <div class="hidden-sm hidden-xs action-buttons">
+                                                        <button class="btn btn-xs btn-success">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                        </button>
+                                                        <a type="button"
+                                                                href="{{ route('investors.destroy', $investor->id) }}"
+                                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                
                                                     </div>
-                                                </div>
-                                                <br>
-                                                <div class="modal-footer">
-                                                    <div align="center">
-                                                        Payment
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Modal work end-->
-                                </td>
-                                <td>
-                                        <label>
-                                            <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
-                                                   {{ status($investor->status) }} />
-                                            <span class="lbl"></span>
-                                        </label>
-                                </td>
-                                <td>
-                                    <div class="hidden-sm hidden-xs action-buttons">
-                                        <button class="btn btn-xs btn-success">
-                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                        </button>
-                                        <a type="button"
-                                                href="{{ route('investors.destroy', $investor->id) }}"
-                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-
-                                    </div>
-                                </td>
-                            </tr>
-                         @endforeach
-
-                        </tbody>
-                    </table>
+                                                </td>
+                                            </tr>
+                                         @endforeach
+                
+                                        </tbody>
+                                    </table>
+                                </div><!-- /.span -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
     </div><!-- /.page-content -->
 </div>
 

@@ -43,6 +43,31 @@
     margin-top: -11px;
 
   }
+
+
+.cardmodel {
+  box-shadow: 0 4px 8px 0 rgba(118, 117, 117, 0.888);
+  width: 100%;
+  text-align: center;
+  font-family: arial;
+  height: 300px;
+  margin-top: -34px;
+  margin-bottom: -30px;
+}
+
+.cardmodel img{
+  padding: 8px;
+}
+.cardmodel .title {
+
+  font-size: 15px;
+  background-color: #bc73cb;
+  height: 196px;
+  padding: 1px;
+  color: #fffbfb;
+  text-shadow: 0px 11px 6px #827474;
+}
+
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
     .card {

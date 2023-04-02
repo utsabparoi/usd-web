@@ -30,8 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('rank', RankController::class);
 
-    Route::resource('investor', InvestorController::class);
-
     Route::resource('transaction', TransactionController::class);
 
     Route::resource('investors', InvestorController::class);

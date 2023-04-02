@@ -21,9 +21,9 @@ class InvestorController extends Controller
      */
     public function index()
     {
+       
         $data['investors'] = User::where('type', 2)->paginate(20);
-        $data['table'] = 'users';
-        return view('admin.investor.index', $data);
+        return view('admin.investor.index',$data);
     }
 
     /**
