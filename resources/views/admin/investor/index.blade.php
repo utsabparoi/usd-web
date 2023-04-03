@@ -14,7 +14,7 @@
                         <span class="widget-toolbar">
                             <a class="header-text" href="{{ route('investors.create') }}">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
-                                <strong>Add New Investor</strong> 
+                                <strong>Add New Investor</strong>
                             </a>
                         </span>
                     </div>
@@ -71,11 +71,11 @@
                                                                                    <div class="title">
                                                                                     <h2>{{ $investor->name }}</h2>
                                                                                     <p><i class="fa fa-envelope" aria-hidden="true"></i>         {{ $investor->email }}</p>
-                                                                                   
+
                                                                                     <p> <i class="fa fa-phone-square" aria-hidden="true"></i>          {{ $investor->mobile }}</p>
                                                                                     <p><i class="fa fa-credit-card" aria-hidden="true"></i>       {{ $investor->transaction_id }}</p>
                                                                                    </div>
-                                                                                   
+
                                                                                   </div>
                                                                             </table>
                                                                         </div>
@@ -100,20 +100,21 @@
                                                 </td>
                                                 <td>
                                                     <div class="hidden-sm hidden-xs action-buttons">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
+                                                        <a type="button"
+                                                           class="btn btn-xs btn-primary bs-tooltip" title="edit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
                                                         <a type="button"
                                                                 href="{{ route('investors.destroy', $investor->id) }}"
                                                                 class="btn btn-xs btn-danger bs-tooltip" title="Delete">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
-                
+
                                                     </div>
                                                 </td>
                                             </tr>
                                          @endforeach
-                
+
                                         </tbody>
                                     </table>
                                 </div><!-- /.span -->

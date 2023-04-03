@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('payment_image')->nullable();
             $table->string('transaction_id')->nullable();
             $table->tinyInteger('type')->default(1)->comment('1=admin, 2=app user');
+            $table->tinyInteger('approval')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
