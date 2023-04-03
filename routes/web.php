@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\InvestController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DepositsController;
@@ -23,17 +24,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-
     Route::resource('deposits', DepositsController::class);
-
     Route::resource('directbonus', DirectBonusController::class);
-
     Route::resource('rank', RankController::class);
-
     Route::resource('transaction', TransactionController::class);
-
     Route::resource('investors', InvestorController::class);
-
+    Route::resource('invest', InvestController::class);
     Route::resource('configuration', ConfigurationController::class);
 
 });
+Route::resource('rank', RankController::class);
+Route::post('/referCheck', [InvestorController::class, 'referCheck']);
+Route::post('/investApprovalChange', [InvestController::class, "InvestApprovalChange"]);

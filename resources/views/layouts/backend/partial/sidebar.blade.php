@@ -4,11 +4,19 @@
     </script>
 
     <ul class="nav nav-list">
-         
+
         <li class="active">
             <a href="{{ route('dashboard') }}">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="">
+            <a href="{{ route('invest.index') }}">
+                <i class="menu-icon fa fa-list-alt"></i>
+                <span class="menu-text">Invest</span>
             </a>
 
             <b class="arrow"></b>
@@ -65,7 +73,7 @@
                         List Direct Bouns
                     </a>
                     <b class="arrow"></b>
-                </li>     
+                </li>
                 <li class="">
                     <a href="{{ Route('directbonus.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
@@ -97,7 +105,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="{{ Route('rank.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
@@ -130,7 +138,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="{{ Route('rank.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
@@ -163,7 +171,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="{{ Route('rank.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
@@ -196,7 +204,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="{{ Route('rank.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>

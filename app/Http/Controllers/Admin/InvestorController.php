@@ -21,7 +21,6 @@ class InvestorController extends Controller
      */
     public function index()
     {
-       
         $data['investors'] = User::where('type', 2)->paginate(20);
         return view('admin.investor.index',$data);
     }
@@ -131,17 +130,16 @@ class InvestorController extends Controller
                 'package_price'         =>$deposit_plan->package_price,
                 'deposit_amount'        =>$deposit_plan->deposit_amount,
                 'monthly_profit'        =>$deposit_plan->monthly_profit,
-                'converted_amount'      =>$deposit_plan->converted_amount,
+                'converted_amount'      =>$deposit_plan->total_payable,
                 'distribute_amount'     =>$deposit_plan->distribute_amount,
             ]);
-
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
     public function referCheck(Request $request){
-        $refer_check = User::find($request->input('Refer_by'));
+        $refer_check = User::where('type', 2)->find($request->input('Refer_by'));
         return response()->json($refer_check);
     }
 }
