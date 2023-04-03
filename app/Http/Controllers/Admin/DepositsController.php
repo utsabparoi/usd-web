@@ -114,7 +114,7 @@ class DepositsController extends Controller
             'created_at' => now(),
          ]);
         $this->upload_file($request->image, $deposit, 'image', 'upload/deposit/image');
-     return redirect()->route("deposits.index")->with('success', 'Deposits Package Updated Successfully!');
+        return redirect()->route("deposits.index")->with('success', 'Deposits Package Updated Successfully!');
     }
 
     /**
@@ -137,6 +137,6 @@ class DepositsController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route("deposits.index")->with('error',$th->getMessage());
         }
-      
+
     }
 }

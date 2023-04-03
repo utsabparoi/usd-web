@@ -31,9 +31,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="status" class="col-md-3 control-label">Status</label>
-                                            <div class="col-md-5">
-                                                <select class="form-control" id="status" name="status"><option value="1" selected="selected">Active</option><option value="2">Inactive</option></select>
-                                            </div>
+                                            <input name="status" class="ace ace-switch ace-switch-6" type="checkbox">
+                                            <span class="lbl" style="margin:8px 0 0 8px"></span>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-9 col-md-offset-3">
