@@ -23,6 +23,8 @@ class UserDepositPlans extends Migration
             $table->decimal('monthly_profit', 16, 6);
             $table->decimal('converted_amount', 16, 6);
             $table->decimal('distribute_amount', 16, 6);
+            $table->integer('total_installment')->nullable();
+            $table->integer('paid_installment')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
