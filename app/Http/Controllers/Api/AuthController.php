@@ -8,60 +8,61 @@ use App\Http\Controllers\Controller;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Hash;
+// use Auth;
+// use Validator;
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
-
-
-        $validator = Validator::Make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'mobile' => 'required|string|min:11|unique:users',
+            
         ]);
-   
+
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return response()->json($validator->errors());       
         }
-   
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
-   
-         $response = [
-            'success' => true,
-            'data' => $success,
-            'message' => 'Registration Successfully'
-         ];
-         return response()->json($response,200);
-        // return $this->sendResponse($success, 'User register successfully.');
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'mobile' => $request->mobile,
+         ]);
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()
+            ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
     }
     public function login(Request $request)
     {
+        if (!Auth::attempt($request->only('email', 'password','mobile')))
+        {
+            return response()
+                ->json(['message' => 'Unauthorized'], 401);
+        }
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
-            $success['name'] =  $user->name;
-   
-            $response = [
-                'success' => true,
-                'data' => $success,
-                'message' => 'login Successfully'
-             ];
-             return response()->json($response,200);
-        } 
-        else{ 
-            $response = [
-                'success' => false,
-                'message' => 'login Unsuccessfully'
-             ];
-             return response()->json($response);
-        } 
+        $user = User::where('email', $request['email'])->orwhere('mobile', $request['mobile'])->firstOrFail();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()
+            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+    }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'You have successfully logged out and the token was successfully deleted'
+        ];
     }
 
 }
