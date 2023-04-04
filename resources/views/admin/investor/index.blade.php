@@ -31,6 +31,7 @@
                                                 <th>Name</th>
                                                 <th>Phone</th>
                                                 <th>Payment By</th>
+                                                <th>Balance</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -67,15 +68,13 @@
                                                                         <div class="col-lg-12">
                                                                             <table id="storeList">
                                                                                 <div class="cardmodel">
-                                                                                    <img src="{{ asset("assets\images\customer.png") }}" alt="John" style="width:30%">
+                                                                                    <img src="{{ asset($investor->payment_image) }}" alt="Payment-image" style="width:30%">
                                                                                    <div class="title">
                                                                                     <h2>{{ $investor->name }}</h2>
-                                                                                    <p><i class="fa fa-envelope" aria-hidden="true"></i>         {{ $investor->email }}</p>
-
-                                                                                    <p> <i class="fa fa-phone-square" aria-hidden="true"></i>          {{ $investor->mobile }}</p>
-                                                                                    <p><i class="fa fa-credit-card" aria-hidden="true"></i>       {{ $investor->transaction_id }}</p>
+                                                                                    <p><i class="fa fa-credit-card" aria-hidden="true"></i>Transaction No: {{ $investor->transaction_id }}</p>
+                                                                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ $investor->email }}</p>
+                                                                                    <p> <i class="fa fa-phone-square" aria-hidden="true"></i> {{ $investor->mobile }}</p>
                                                                                    </div>
-
                                                                                   </div>
                                                                             </table>
                                                                         </div>
@@ -83,14 +82,15 @@
                                                                 </div>
                                                                 <br>
                                                                 <div class="modal-footer">
-                                                                    <div align="center">
-                                                                        <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">OK</button>
-                                                                    </div>
+{{--                                                                    <div align="center">--}}
+{{--                                                                        <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">OK</button>--}}
+{{--                                                                    </div>--}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Modal work end-->
                                                 </td>
+                                                <td>{{ $investor->balance }}</td>
                                                 <td>
                                                         <label>
                                                             <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"

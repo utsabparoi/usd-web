@@ -9,3 +9,8 @@ function status($status){
     }
     return $status;
 }
+
+//investor account credit
+function creditBalance($amount){
+    return $amount;
+}
