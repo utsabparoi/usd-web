@@ -16,7 +16,7 @@ class TransactionViewsTable extends Migration
         Schema::create('transaction_view', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('wallet_type');
+            $table->string('wallet_id')->constrained();
             $table->decimal('balance', 16, 6);
             $table->timestamps();
         });

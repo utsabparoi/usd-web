@@ -15,11 +15,12 @@ class TransactionTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('source_type');
             $table->bigInteger('source_id');
             $table->decimal('amount', 16, 6);
             $table->string('balance_type');
-            $table->string('wallet_type')->nullable();
+            $table->string('date');
             $table->foreignId('wallet_id')->constrained();
             $table->foreignId('rank_id')->constrained();
             $table->timestamps();

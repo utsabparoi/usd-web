@@ -26,13 +26,17 @@
                                         <div class="form-group">
                                             <label for="percentage" class="col-md-3 control-label">Percentage (%)</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Percentage %" name="percentage" id="percentage" value="{{ old('percentage') }}">
+                                                <input class="form-control" type="decimal" placeholder="Percentage %" name="percentage" id="percentage" value="{{ old('percentage') }}">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group hidden">
                                             <label for="status" class="col-md-3 control-label">Status</label>
-                                            <input name="status" class="ace ace-switch ace-switch-6" type="checkbox">
-                                            <span class="lbl" style="margin:8px 0 0 8px"></span>
+                                            <div class="col-md-5">
+                                                <select class="form-control" id="status" name="status">
+                                                    <option value="1" selected="selected">Active</option>
+                                                    <option value="2">Inactive</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-9 col-md-offset-3">
