@@ -15,8 +15,13 @@ class DirectBonusController extends Controller
      */
     public function index()
     {
-        $data['directbonus_info'] = DirectBonus::latest()->get();
-        return view('admin.direct_bonus.index',$data);
+        try {
+            $data['directbonus_info'] = DirectBonus::latest()->get();
+            return view('admin.direct_bonus.index',$data);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errors', $th);
+        }
+
     }
 
     /**
@@ -26,7 +31,7 @@ class DirectBonusController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.direct_bonus.create');
     }
 
@@ -38,18 +43,23 @@ class DirectBonusController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'generation' => 'required',
             'percentage' => 'required',
             'status' => 'required',
         ]);
-        DirectBonus::insert([
-            'generation' => $request->generation,
-            'percentage' => $request->percentage,
-            'status' => $request->status,
-            'created_at' => now(),
-            ]);
-     return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Added Successfully!');
+        try {
+            DirectBonus::insert([
+                'generation' => $request->generation,
+                'percentage' => $request->percentage,
+                'status' => $request->status ? 1 : 0,
+                'created_at' => now(),
+                ]);
+            return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Added Successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errors', $th);
+        }
     }
 
     /**
@@ -89,14 +99,16 @@ class DirectBonusController extends Controller
             'percentage' => 'required',
             'status' => 'required',
         ]);
+
         DirectBonus::findOrFail($id)->update([
             'generation' => $request->generation,
             'percentage' => $request->percentage,
-            'status' => $request->status,
+            'status' => $request->status ? 1 : 0,
             'created_at' => now(),
-         ]);
-     return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Updated Successfully!');
-    
+        ]);
+
+        return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Updated Successfully!');
+
     }
 
     /**
