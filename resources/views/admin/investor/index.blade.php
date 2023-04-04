@@ -31,7 +31,8 @@
                                                 <th>Name</th>
                                                 <th>Phone</th>
                                                 <th>Payment By</th>
-                                                <th>Balance</th>
+                                                <th>Income Balance</th>
+                                                <th>Invest Balance</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -90,7 +91,8 @@
                                                         </div>
                                                         <!-- Modal work end-->
                                                 </td>
-                                                <td>{{ $investor->balance }}</td>
+                                                <td>0</td>
+                                                <td>0</td>
                                                 <td>
                                                         <label>
                                                             <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"

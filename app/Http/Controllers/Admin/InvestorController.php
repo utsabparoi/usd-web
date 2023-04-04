@@ -112,7 +112,6 @@ class InvestorController extends Controller
                 'password'             =>$request->password,
                 'refer_by'             =>$request->refer_by,
                 'transaction_id'       =>$request->transaction_id,
-                'balance'              =>creditBalance($deposit_plan->deposit_amount),
                 'type'                 =>2,
                 'status'               =>$request->status ? 1: 0,
             ]);

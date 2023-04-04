@@ -14,3 +14,8 @@ function status($status){
 function creditBalance($amount){
     return $amount;
 }
+//generation detect
+function generation($id){
+    $refer1 = User::find($id)->first()->refer_id;
+    return $refer1;
+}
