@@ -100,6 +100,7 @@ class InvestorController extends Controller
     public function storeOrUpdate($request, $id = null)
     {
         try {
+            $deposit_plan = Deposit::find($request->deposit_plan);
             $investors = User::updateOrCreate([
                 'id'                   =>$id,
             ],[
@@ -118,7 +119,6 @@ class InvestorController extends Controller
             if (!isset($request->refer_by)){
                 User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
             }
-            $deposit_plan = Deposit::find($request->deposit_plan);
             $user_deposit_plan = UserDeposit::updateOrCreate([
                 'id'                    =>$id,
             ],[
