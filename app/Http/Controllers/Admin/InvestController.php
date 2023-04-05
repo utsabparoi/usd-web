@@ -90,18 +90,13 @@ class InvestController extends Controller
     function InvestApprovalChange(Request $request){
         $id = $request->input("ID");
         $invest_approval = User::where("id", "=", $id )->first()->approval;
-        $earning = UserDeposit::where("user_id", "=", $id)->first()->deposit_amount;
-        if($invest_approval == 1){
+        $amount = UserDeposit::where("user_id", "=", $id)->first()->deposit_amount;
+        if ($invest_approval == 1){
             User::where("id", "=", $id)->update(["approval"=>"0"]);
         }
         elseif ($invest_approval == 0){
             User::where("id", "=", $id)->update(["approval"=>"1"]);
-            DB::table('transaction_view')->insert([
-                'user_id'     => $id,
-                'wallet_type' => 'invest',
-                'balance'     => $earning,
-            ]);
-            refersCommission($id);
+            //refersCommission($id);
         }
         return $invest_approval;
     }

@@ -30,9 +30,9 @@
                                                 <th> Invest Package </th>
                                                 <th> Name </th>
                                                 <th> Phone </th>
-                                                <th> Payment By </th>
                                                 <th> Income Balance($) </th>
                                                 <th> Invest Balance ($)</th>
+                                                <th> Payment By </th>
                                                 <th> Status </th>
                                             </tr>
                                         </thead>
@@ -40,10 +40,12 @@
                                          @foreach($investors as $investor)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
-                                                <td> {{ referMobileNumber($investor->refer_by) }} </td>
+                                                <td> 0 </td>
                                                 <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                                 <td> {{ $investor->name }} </td>
                                                 <td> {{ $investor->mobile }} </td>
+                                                <td> 0 </td>
+                                                <td> 0 </td>
                                                 <td>
                                                     @if($investor->payment_image)
                                                         <button class="btn btn-success" style="border: none !important;"
@@ -90,8 +92,6 @@
                                                         </div>
                                                         <!-- Modal work end-->
                                                 </td>
-                                                <td>{{ walletIncomeBalance($investor->id) }}</td>
-                                                <td>{{ walletInvestBalance($investor->id) }}</td>
                                                 <td>
                                                         <label>
                                                             <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
@@ -99,20 +99,6 @@
                                                             <span class="lbl"></span>
                                                         </label>
                                                 </td>
-{{--                                                <td>--}}
-{{--                                                    <div class="hidden-sm hidden-xs action-buttons">--}}
-{{--                                                        <a type="button"--}}
-{{--                                                           class="btn btn-xs btn-primary bs-tooltip" title="edit">--}}
-{{--                                                            <i class="fa fa-edit"></i>--}}
-{{--                                                        </a>--}}
-{{--                                                        <a type="button"--}}
-{{--                                                                href="{{ route('investors.destroy', $investor->id) }}"--}}
-{{--                                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">--}}
-{{--                                                            <i class="fa fa-trash"></i>--}}
-{{--                                                        </a>--}}
-
-{{--                                                    </div>--}}
-{{--                                                </td>--}}
                                             </tr>
                                          @endforeach
 
