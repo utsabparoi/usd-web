@@ -91,8 +91,8 @@
                                                         </div>
                                                         <!-- Modal work end-->
                                                 </td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{ walletIncomeBalance($investor->id) }}</td>
+                                                <td>{{ walletInvestBalance($investor->id) }}</td>
                                                 <td>
                                                         <label>
                                                             <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
