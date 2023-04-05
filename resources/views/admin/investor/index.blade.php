@@ -25,26 +25,25 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>SL</th>
-                                                <th>Refer By </th>
-                                                <th>Invest Package</th>
-                                                <th>Name</th>
-                                                <th>Phone</th>
-                                                <th>Payment By</th>
-                                                <th>Income Balance($)</th>
-                                                <th>Invest Balance($)</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th> SL </th>
+                                                <th> Refer By </th>
+                                                <th> Invest Package </th>
+                                                <th> Name </th>
+                                                <th> Phone </th>
+                                                <th> Payment By </th>
+                                                <th> Income Balance($) </th>
+                                                <th> Invest Balance ($)</th>
+                                                <th> Status </th>
                                             </tr>
                                         </thead>
                                          <tbody>
                                          @foreach($investors as $investor)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ referMobileNumber($investor->refer_by) }}</td>
+                                                <td> {{ $loop->iteration }} </td>
+                                                <td> {{ referMobileNumber($investor->refer_by) }} </td>
                                                 <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
-                                                <td>{{ $investor->name }}</td>
-                                                <td>{{ $investor->mobile }}</td>
+                                                <td> {{ $investor->name }} </td>
+                                                <td> {{ $investor->mobile }} </td>
                                                 <td>
                                                     @if($investor->payment_image)
                                                         <button class="btn btn-success" style="border: none !important;"
@@ -100,20 +99,20 @@
                                                             <span class="lbl"></span>
                                                         </label>
                                                 </td>
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs action-buttons">
-                                                        <a type="button"
-                                                           class="btn btn-xs btn-primary bs-tooltip" title="edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                        <a type="button"
-                                                                href="{{ route('investors.destroy', $investor->id) }}"
-                                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">
-                                                            <i class="fa fa-trash"></i>
-                                                        </a>
+{{--                                                <td>--}}
+{{--                                                    <div class="hidden-sm hidden-xs action-buttons">--}}
+{{--                                                        <a type="button"--}}
+{{--                                                           class="btn btn-xs btn-primary bs-tooltip" title="edit">--}}
+{{--                                                            <i class="fa fa-edit"></i>--}}
+{{--                                                        </a>--}}
+{{--                                                        <a type="button"--}}
+{{--                                                                href="{{ route('investors.destroy', $investor->id) }}"--}}
+{{--                                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">--}}
+{{--                                                            <i class="fa fa-trash"></i>--}}
+{{--                                                        </a>--}}
 
-                                                    </div>
-                                                </td>
+{{--                                                    </div>--}}
+{{--                                                </td>--}}
                                             </tr>
                                          @endforeach
 
