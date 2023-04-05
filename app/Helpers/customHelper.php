@@ -1,4 +1,8 @@
 <?php
+
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 //status show
 function status($status){
     if ($status == 1){
@@ -14,8 +18,46 @@ function status($status){
 function creditBalance($amount){
     return $amount;
 }
-//generation detect
-function generation($id){
-    $refer1 = User::find($id)->first()->refer_id;
-    return $refer1;
+
+//refer by: mobile number
+function referMobileNumber($id){
+    $referMobileNo = User::find($id)->mobile;
+    return $referMobileNo;
+}
+
+//investor wallet: income balance
+function walletIncomeBalance($id){
+    if (DB::table('transaction_view')->where('wallet_type', '=', 'income')->where('user_id', $id)->exists()){
+        $balance = DB::table('transaction_view')->where('wallet_type', '=', 'income')->where('user_id', $id)->pluck('balance')->sum();
+    }
+    else{
+        $balance = 0;
+    }
+    return $balance;
+}
+
+//investor wallet: invest balance
+function walletInvestBalance($id){
+    if (DB::table('transaction_view')->where('wallet_type', '=', 'invest')->where('user_id', $id)->exists()){
+        $balance = DB::table('transaction_view')->where('wallet_type', '=', 'invest')->where('user_id', $id)->first()->balance;
+    }
+    else{
+        $balance = 0;
+    }
+    return $balance;
+}
+
+
+//refer commission
+function refersCommission($id){
+    $refer= \App\Models\User::find($id)->refer_by;
+    $percentage = \App\Models\Admin\DirectBonus::find(1)->percentage;
+    $amount = \App\Models\Admin\UserDeposit::find($id)->deposit_amount;
+    $income = ($percentage/$amount)*100;
+    DB::table('transaction_view')->insert([
+        'user_id'     => $refer,
+        'wallet_type' => 'income',
+        'balance'     => $income,
+    ]);
+    return;
 }

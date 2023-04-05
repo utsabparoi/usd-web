@@ -26,13 +26,13 @@
                                         <thead>
                                             <tr>
                                                 <th>SL</th>
-                                                <th>ReferID </th>
+                                                <th>Refer By </th>
                                                 <th>Invest Package</th>
                                                 <th>Name</th>
                                                 <th>Phone</th>
                                                 <th>Payment By</th>
-                                                <th>Income Balance</th>
-                                                <th>Invest Balance</th>
+                                                <th>Income Balance($)</th>
+                                                <th>Invest Balance($)</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -41,7 +41,7 @@
                                          @foreach($investors as $investor)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $investor->refer_by }}</td>
+                                                <td>{{ referMobileNumber($investor->refer_by) }}</td>
                                                 <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                                 <td>{{ $investor->name }}</td>
                                                 <td>{{ $investor->mobile }}</td>
@@ -91,8 +91,8 @@
                                                         </div>
                                                         <!-- Modal work end-->
                                                 </td>
-                                                <td>0</td>
-                                                <td>0</td>
+                                                <td>{{ walletIncomeBalance($investor->id) }}</td>
+                                                <td>{{ walletInvestBalance($investor->id) }}</td>
                                                 <td>
                                                         <label>
                                                             <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
