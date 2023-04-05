@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DepositsController;
 use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\InvestorController;
+use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\RankController;
 use App\Http\Controllers\Admin\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('deposits', DepositsController::class);
     Route::resource('directbonus', DirectBonusController::class);
     Route::resource('rank', RankController::class);
+    Route::resource('positions', PositionController::class);
     Route::resource('transaction', TransactionController::class);
     Route::resource('investors', InvestorController::class);
     Route::resource('invest', InvestController::class);

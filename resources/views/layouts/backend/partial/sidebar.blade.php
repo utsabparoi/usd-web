@@ -13,7 +13,7 @@
 
             <b class="arrow"></b>
         </li>
-        <li class="">
+        <li class="{{ request()->routeIs('investors*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-user-alt"></i>
                 <span class="menu-text">Investor</span>
@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </li>
-        <li class="">
+        <li class="{{ request()->routeIs('deposits*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-archive"></i>
                 <span class="menu-text">
@@ -74,7 +74,7 @@
                 </li>
             </ul>
         </li>
-            <li class="">
+            <li class="{{ request()->routeIs('directbonus*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fas fa-gift"></i>
                 <span class="menu-text">
@@ -104,11 +104,11 @@
                 </li>
             </ul>
         </li>
-        <li class="">
+        <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
                 <span class="menu-text">
-                    Rank
+                    Target Bonus
                 </span>
 
                 <b class="arrow fa fa-angle-down"></b>
@@ -138,7 +138,7 @@
             </ul>
         </li>
 
-        <li class="">
+        <li class="{{ request()->routeIs('positions*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
                 <span class="menu-text">
@@ -153,7 +153,7 @@
             <ul class="submenu">
 
                 <li class="">
-                    <a href="{{ Route('rank.index') }}">
+                    <a href="{{ Route('positions.index') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         List
                     </a>
@@ -162,7 +162,7 @@
                 </li>
 
                 <li class="">
-                    <a href="{{ Route('rank.create') }}">
+                    <a href="{{ Route('positions.create') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Add
                     </a>
@@ -171,7 +171,7 @@
                 </li>
             </ul>
         </li>
-        <li class="">
+        {{-- <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
                 <span class="menu-text">
@@ -203,8 +203,8 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
-        <li class="">
+        </li> --}}
+        <li class="{{ request()->routeIs('invest*') ? 'active' : '' }}">
             <a href="{{ route('invest.index') }}">
                 <i class="menu-icon fa fa-dollar"></i>
                 <span class="menu-text">Invest</span>
@@ -213,7 +213,7 @@
             <b class="arrow"></b>
         </li>
 
-        <li class="">
+        <li class="{{ request()->routeIs('transaction*') ? 'active' : '' }}">
             <a href="{{ route('transaction.index') }}">
                 <i class="menu-icon fa fa-exchange"></i>
                 <span class="menu-text">
@@ -222,7 +222,7 @@
             </a>
         </li>
 
-        <li class="">
+        <li class="{{ request()->routeIs('configuration*') ? 'active' : ''}}">
             <a href="{{ route('configuration.index') }}">
                 <i class="menu-icon fa fa-list-alt"></i>
                 <span class="menu-text">Configuration</span>
