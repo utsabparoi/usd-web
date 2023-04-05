@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 //status show
@@ -17,10 +19,16 @@ function creditBalance($amount){
     return $amount;
 }
 
+//refer by: mobile number
+function referMobileNumber($id){
+    $referMobileNo = User::find($id)->mobile;
+    return $referMobileNo;
+}
+
 //investor wallet: income balance
 function walletIncomeBalance($id){
     if (DB::table('transaction_view')->where('wallet_type', '=', 'income')->where('user_id', $id)->exists()){
-        $balance = DB::table('transaction_view')->where('wallet_type', '=', 'income')->where('user_id', $id)->first()->balance;
+        $balance = DB::table('transaction_view')->where('wallet_type', '=', 'income')->where('user_id', $id)->pluck('balance')->sum();
     }
     else{
         $balance = 0;
@@ -38,6 +46,7 @@ function walletInvestBalance($id){
     }
     return $balance;
 }
+
 
 //refer commission
 function refersCommission($id){
