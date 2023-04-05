@@ -14,7 +14,7 @@
                         <span class="widget-toolbar">
                             <a class="header-text" href="{{ route('deposits.create') }}">
                                 <i class="ace-icon glyphicon glyphicon-plus"></i>
-                                <strong>Add New Deposit</strong> 
+                                <strong>Add New Deposit</strong>
                             </a>
                         </span>
                     </div>
@@ -43,7 +43,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset($item->image) }}" height="50px">     
+                                                <td><img src="{{ asset($item->image) }}" height="50px">
                                                 </td>
                                                 <td>{{ $item->package_price }}$</td>
                                                 <td>{{ $item->deposit_amount }}$</td>
@@ -69,8 +69,8 @@
                                                         </a>
                                                          <form id="delete-form" action="{{ route('deposits.destroy', $item->id ) }}" method="post">
                                                             @csrf
-                                                            @method('DELETE')  
-                                                        </form>     
+                                                            @method('DELETE')
+                                                        </form>
                                                     </div>
                                                     <div class="hidden-md hidden-lg">
                                                         <div class="inline pos-rel">
@@ -108,9 +108,9 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                
+
                                                 </td>
-                                            </tr>     
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
