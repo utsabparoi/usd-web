@@ -10,6 +10,13 @@
                 <div class="widget-box">
                     <div class="widget-header header-color">
                         <h4 class="widget-title">Create Investor</h4>
+
+                        <span class="widget-toolbar">
+                            <a class="header-text" href="{{ route('investors.index') }}">
+                                <i class="ace-icon glyphicon glyphicon-list"></i>
+                                <strong>Investors List</strong>
+                            </a>
+                        </span>
                     </div>
                     <div class="widget-body">
                         <div class="widget-main">
@@ -24,7 +31,7 @@
                                                     <span class="input-group-addon">
                                                         <i class="ace-icon fa fa-check" id="checkMark"></i>
                                                     </span>
-                    
+
                                                     <input type="text" name="refer_by" id="refer_by" value="" class="form-control search-query" placeholder="Search Refer ID">
                                                     <span class="input-group-btn">
                                                         <button type="button" onclick="searchReferId()" class="btn btn-purple btn-sm">
@@ -86,7 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                    
+
                                         <div id="paymentMethod" style="display: none;">
                                         <div class="form-group" id="transactionId">
                                             <label for="transaction_id" class="col-md-3 control-label">Transaction No.</label>
@@ -101,7 +108,7 @@
                                             </div>
                                         </div>
                                         </div>
-                    
+
                                         <div class="form-group">
                                             <div class="col-md-9 col-md-offset-3">
                                                 <button type="submit" class="btn btn-primary">Submit</button>

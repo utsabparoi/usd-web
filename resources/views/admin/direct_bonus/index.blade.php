@@ -48,11 +48,11 @@
                                                             </label>
                                                         </td>
                                                         <td>
-                                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                            <div class="btn-group btn-corner  action-span ">
                                                                 <a class="green"
                                                                     href="{{ route('directbonus.edit', $item->id) }}">
-                                                                    <button class="btn btn-xs btn-success">
-                                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                                    <button class="btn btn-xs btn-success bs-tooltip">
+                                                                        <i class="fa fa-pencil"></i>
                                                                     </button>
                                                                 </a>
                                                                 <a class="red"
@@ -61,8 +61,8 @@
                                                                     onclick="event.preventDefault();
                                                             document.getElementById('delete-form').submit();
                                                             ">
-                                                                    <button class="btn btn-xs btn-danger">
-                                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                    <button class="btn btn-xs btn-danger bs-tooltip">
+                                                                        <i class="fa fa-trash"></i>
                                                                     </button>
                                                                 </a>
                                                                 <form id="delete-form"
@@ -72,7 +72,7 @@
                                                                     @method('DELETE')
                                                                 </form>
                                                             </div>
-                                                            <div class="hidden-md hidden-lg">
+                                                            {{-- <div class="hidden-md hidden-lg">
                                                                 <div class="inline pos-rel">
                                                                     <button
                                                                         class="btn btn-minier btn-yellow dropdown-toggle"
@@ -110,8 +110,7 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                            </div>
-
+                                                            </div> --}}
                                                         </td>
                                                     </tr>
                                                 @endforeach

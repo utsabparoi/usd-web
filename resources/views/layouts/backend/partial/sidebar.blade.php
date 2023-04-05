@@ -115,39 +115,7 @@
                 </li>
             </ul>
         </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-trophy"></i>
-                <span class="menu-text">
-                    Transaction
-                </span>
 
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('rank.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ Route('rank.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Create
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
@@ -213,6 +181,39 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
+        </li>
+        <li class="">
+            <a href="{{ route('transaction.index') }}">
+                <i class="menu-icon fa fa-exchange"></i>
+                <span class="menu-text">
+                    Transaction
+                </span>
+
+                {{-- <b class="arrow fa fa-angle-down"></b> --}}
+            </a>
+
+            {{-- <b class="arrow"></b> --}}
+
+            {{-- <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('rank.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="{{ Route('rank.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Create
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul> --}}
         </li>
 
         <li class="">

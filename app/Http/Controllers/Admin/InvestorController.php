@@ -8,8 +8,6 @@ use App\Models\Admin\Deposit;
 use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class InvestorController extends Controller
 {

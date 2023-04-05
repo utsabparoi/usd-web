@@ -21,7 +21,6 @@ class DirectBonusController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('errors', $th);
         }
-
     }
 
     /**
@@ -43,7 +42,7 @@ class DirectBonusController extends Controller
      */
     public function store(Request $request)
     {
-
+        // ddd($request);
         $request->validate([
             'generation' => 'required',
             'percentage' => 'required',
