@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PositionsTable extends Migration
+class WalletTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class PositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('wallet_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('rank_id')->constrained();
-            $table->bigInteger('designation_id')->constrained();
-            $table->tinyInteger('status')->default(1);
+            $table->string('name')->comment('Income or Invest');
+            // $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class PositionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('wallet_types');
     }
 }

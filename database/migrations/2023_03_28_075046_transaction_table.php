@@ -15,14 +15,19 @@ class TransactionTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('transaction_no')->nullable()->comment('Transaction Source');
             $table->foreignId('user_id')->constrained();
-            $table->string('source_type');
+            $table->string('source_type')->comment('morphic relation with multiple models');
             $table->bigInteger('source_id');
             $table->decimal('amount', 16, 6);
-            $table->string('balance_type');
+            $table->string('balance_type')->comment('in/out');
+            $table->foreignId('wallet_type_id')->constrained();
+            $table->foreignId('position_id')->constrained();
             $table->string('date');
-            $table->foreignId('wallet_id')->constrained();
-            $table->foreignId('rank_id')->constrained();
+            $table->tinyInteger('is_approved');
+            $table->string('approved_at')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('users', 'id');
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }

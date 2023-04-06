@@ -16,9 +16,9 @@ class RanksTable extends Migration
         Schema::create('ranks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable();
-            $table->decimal('target', 16, 6);
-            $table->decimal('reward', 16, 6);
+            // $table->string('image')->nullable();
+            $table->decimal('target_amount', 16, 6);
+            $table->decimal('reward_amount', 16, 6);
             $table->tinyInteger('status');
             $table->timestamps();
         });

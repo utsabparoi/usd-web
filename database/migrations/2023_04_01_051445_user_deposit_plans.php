@@ -23,6 +23,9 @@ class UserDepositPlans extends Migration
             $table->decimal('monthly_profit', 16, 6);
             $table->decimal('distribute_amount', 16, 6);
             $table->integer('total_installment')->nullable();
+            $table->string('attachment')->nullable();
+            $table->string('payment_mode')->nullable();
+            $table->string('transaction_id')->nullable()->comment('bkash,nagad etc.');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
