@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="card">
-      
+
                 <div class="container">
                   <span><i class="fa fa-users" aria-hidden="true"></i></span>
                   <b>Active Investor</b>
@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div class="card">
-             
+
                 <div class="container">
                   <span> <i class="fas fa-hand-holding-usd"></i></span>
                   <b>Total Deposited</b>
@@ -40,9 +40,9 @@
                 </div>
               </div>
             </div>
-   
+
           </div>
-        
+
           <div class="page-content">
             <div class="row">
               <div class="card">
@@ -53,7 +53,7 @@
                 </div>
               </div>
               <div class="card">
-              
+
                 <div class="container">
                   <span><i class="fa fa-credit-card" aria-hidden="true"></i></span>
                   <b>Total Withdrawan</b>
@@ -61,7 +61,7 @@
                 </div>
               </div>
               <div class="card">
-             
+
                 <div class="container">
                   <span><i class="fa fa-spinner" aria-hidden="true"></i></span>
                   <b>Pending Withdraw</b>
@@ -69,7 +69,7 @@
                 </div>
               </div>
             </div>
-   
+
           </div>
         @push('js')
         @endpush
@@ -92,7 +92,7 @@
                           </span>
                           <p style="padding:10px; margin-left:200px; font-size:20px">50</p>
                         </div>
-                      
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-4 active-investor">

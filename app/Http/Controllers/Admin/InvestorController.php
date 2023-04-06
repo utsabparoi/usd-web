@@ -8,6 +8,7 @@ use App\Models\Admin\Deposit;
 use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class InvestorController extends Controller
 {
@@ -107,7 +108,7 @@ class InvestorController extends Controller
                 'name'                 =>$request->name,
                 'email'                =>$request->email,
                 'mobile'               =>$request->phone,
-                'password'             =>$request->password,
+                'password'             =>Hash::make($request->password),
                 'refer_by'             =>$request->refer_by,
                 'transaction_id'       =>$request->transaction_id,
                 'type'                 =>2,
