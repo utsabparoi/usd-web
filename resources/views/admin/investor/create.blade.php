@@ -25,7 +25,7 @@
                                     <form method="POST" action="{{ route('investors.store') }}" class="form-horizontal" enctype="multipart/form-data" >
                                         @csrf
                                         <div class="form-group">
-                                            <label for="invest_package" class="col-md-3 control-label">Refer ID</label>
+                                            <label for="invest_package" class="col-md-3 control-label">Refer By</label>
                                             <div class="col-md-5">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
@@ -41,6 +41,12 @@
                                                     </span>
                                                 </div>
                                                 <span id="invalidReferMsg" style="color: red;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-md-3 control-label">Refer Code</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control " placeholder="code" name="refer_code" type="text" id="refer_code">
                                             </div>
                                         </div>
                                         <div class="form-group">

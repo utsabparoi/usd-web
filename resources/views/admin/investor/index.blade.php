@@ -40,7 +40,7 @@
                                          @foreach($investors as $investor)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
-                                                <td> 0 </td>
+                                                <td> {{ $investor->refer_by }} </td>
                                                 <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                                 <td> {{ $investor->name }} </td>
                                                 <td> {{ $investor->mobile }} </td>
@@ -84,9 +84,7 @@
                                                                 </div>
                                                                 <br>
                                                                 <div class="modal-footer">
-{{--                                                                    <div align="center">--}}
-{{--                                                                        <button data-bb-handler="success" type="button" class="btn btn-sm btn-primary">OK</button>--}}
-{{--                                                                    </div>--}}
+
                                                                 </div>
                                                             </div>
                                                         </div>
