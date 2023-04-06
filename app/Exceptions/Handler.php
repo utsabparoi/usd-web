@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -38,4 +39,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render($request, Throwable $e)
+    // {
+    //     if($e instanceof ModelNotFoundException){
+    //         return response()->view('errors.404', [], 404);
+    //     }
+
+    //     parent::render($request, $e);
+    // }
 }

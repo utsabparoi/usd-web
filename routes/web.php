@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\ConfigurationController;
-use App\Http\Controllers\Admin\InvestController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\Admin\RankController;
+// use App\Http\Controllers\Admin\InvestController;
 use App\Http\Controllers\Admin\DepositsController;
-use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\PositionController;
-use App\Http\Controllers\Admin\RankController;
+use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\TransactionController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('positions', PositionController::class);
     Route::resource('transaction', TransactionController::class);
     Route::resource('investors', InvestorController::class);
-    Route::resource('invest', InvestController::class);
+    // Route::resource('invests', InvestController::class);
+    // Route::resource('incomes', IncomeController::class);
+    Route::resource('wallets', WalletController::class);
     Route::resource('configuration', ConfigurationController::class);
-
 });
 Route::resource('rank', RankController::class);
 Route::post('/referCheck', [InvestorController::class, 'referCheck']);

@@ -119,6 +119,7 @@ class InvestorController extends Controller
             if (!isset($request->refer_by)){
                 User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
             }
+
             $user_deposit_plan = UserDeposit::updateOrCreate([
                 'id'                    =>$id,
             ],[
@@ -128,7 +129,6 @@ class InvestorController extends Controller
                 'package_price'         =>$deposit_plan->package_price,
                 'deposit_amount'        =>$deposit_plan->deposit_amount,
                 'monthly_profit'        =>$deposit_plan->monthly_profit,
-                'total_payable'         =>$deposit_plan->total_payable,
                 'distribute_amount'     =>$deposit_plan->distribute_amount,
             ]);
         } catch (\Throwable $th) {
