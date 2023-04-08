@@ -1,9 +1,9 @@
-   /* The Modal (background) */
+/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 280px; /* Location of the box */
+    padding-top: 80px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -13,8 +13,10 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 h3 {color: #0592E9;}
-   .contuctUs { padding-left: 40px;
-   }
+.campName { padding-left: 20px;
+    font-size: 18px;
+    margin-top: 2px;
+}
 /* Modal Content */
 .modal-content {
     position: relative;
@@ -23,7 +25,7 @@ h3 {color: #0592E9;}
     padding: 0;
     border: 1px solid #888;
     border-radius: 8px;
-    width: 300px;
+    width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -61,6 +63,7 @@ h3 {color: #0592E9;}
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
+    border-radius: 8px 8px 0 0;
 }
 
 .modal-body {padding: 2px 16px;}
@@ -68,4 +71,34 @@ h3 {color: #0592E9;}
 .modal-footer {
     padding: 2px 16px;
     background-color: #fefefe;
+}
+
+
+
+/*table css*/
+#storeList {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#storeList td, #storeList th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#storeList tr:nth-child(even){background-color: #f2f2f2;}
+
+#storeList tr:hover {background-color: #ddd;}
+
+#storeList th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+@font-face {
+    font-family: raleway-reguler;
+    src: url("../assets/fonts/Raleway-Regular.ttf");
 }
