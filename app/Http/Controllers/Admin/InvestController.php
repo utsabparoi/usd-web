@@ -17,7 +17,7 @@ class InvestController extends Controller
      */
     public function index()
     {
-        $data['investors'] = User::where('type', 2)->paginate(20);
+        $data['investors'] = User::where('is_admin', 2)->paginate(20);
         return view('admin.invest.index', $data);
     }
 
@@ -93,10 +93,11 @@ class InvestController extends Controller
         $amount = UserDeposit::where("user_id", "=", $id)->first()->deposit_amount;
         if ($invest_approval == 1){
             User::where("id", "=", $id)->update(["approval"=>"0"]);
+            onTransaction($id, $amount, 'out', '1');
         }
         elseif ($invest_approval == 0){
             User::where("id", "=", $id)->update(["approval"=>"1"]);
-            //refersCommission($id);
+            onTransaction($id, $amount, 'in', '1');
         }
         return $invest_approval;
     }

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Transaction;
+use App\Traits\FileSaver;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *

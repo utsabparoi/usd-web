@@ -253,6 +253,15 @@
             </a>
         </li>
 
+        <li class="">
+            <a href="{{ route('invest.index') }}">
+                <i class="menu-icon fa fa-dollar"></i>
+                <span class="menu-text">
+                    Invest
+                </span>
+            </a>
+        </li>
+
         <li class="{{ request()->routeIs('configuration*') ? 'active' : ''}}">
             <a href="{{ route('configuration.index') }}">
                 <i class="menu-icon fa fa-list-alt"></i>

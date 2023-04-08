@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InvestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('positions', PositionController::class);
     Route::resource('transaction', TransactionController::class);
     Route::resource('investors', InvestorController::class);
+    Route::resource('invest', InvestController::class);
     // Route::resource('invests', InvestController::class);
     // Route::resource('incomes', IncomeController::class);
     Route::resource('wallets', WalletController::class);

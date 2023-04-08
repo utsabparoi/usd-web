@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DepositPlanModel;
 use App\Traits\FileSaver;
 use App\Models\Admin\Deposit;
 use App\Models\Admin\UserDeposit;
@@ -20,7 +21,7 @@ class InvestorController extends Controller
      */
     public function index()
     {
-        $data['investors'] = User::where('type', 2)->paginate(20);
+        $data['investors'] = User::where('is_admin', 2)->paginate(20);
         return view('admin.investor.index',$data);
     }
 
@@ -31,7 +32,7 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        $data['deposit_plans'] = Deposit::all();
+        $data['deposit_plans'] = DepositPlanModel::all();
         return  view('admin.investor.create', $data);
     }
 
@@ -101,7 +102,7 @@ class InvestorController extends Controller
     public function storeOrUpdate($request, $id = null)
     {
         try {
-            $deposit_plan = Deposit::find($request->deposit_plan);
+            $deposit_plan = DepositPlanModel::find($request->deposit_plan);
             $investors = User::updateOrCreate([
                 'id'                   =>$id,
             ],[
@@ -111,7 +112,7 @@ class InvestorController extends Controller
                 'password'             =>Hash::make($request->password),
                 'refer_by'             =>$request->refer_by,
                 'transaction_id'       =>$request->transaction_id,
-                'type'                 =>2,
+                'is_admin'             =>2,
                 'status'               =>$request->status ? 1: 0,
             ]);
             if (isset($request->payment_image)){
@@ -138,7 +139,7 @@ class InvestorController extends Controller
     }
 
     public function referCheck(Request $request){
-        $refer_check = User::where('type', 2)->find($request->input('Refer_by'));
+        $refer_check = User::where('is_admin', 2)->find($request->input('Refer_by'));
         return response()->json($refer_check);
     }
 }

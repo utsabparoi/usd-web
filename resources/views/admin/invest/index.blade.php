@@ -56,7 +56,7 @@
                                                     onclick="viewPayment(this)">bkash</button>
                                         @else
                                             <button class="btn btn-warning" style="border: none !important;">Wallet</button>
-                                    @endif
+                                        @endif
                                     <!-- The Modal -->
                                         <div id="myModal" class="modal">
                                             <!-- Modal content -->

@@ -27,7 +27,7 @@ class User extends Authenticatable
         'refer_by',
         'payment_image',
         'transaction_id',
-        'type'
+        'is_admin'
     ];
 
     /**

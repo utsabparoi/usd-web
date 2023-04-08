@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Deposit;
+use App\Models\Admin\DepositPlanModel;
 use Illuminate\Http\Request;
 use App\Traits\FileSaver;
 class DepositsController extends Controller
@@ -16,7 +17,7 @@ class DepositsController extends Controller
      */
     public function index()
     {
-        $data['deposits_info'] = Deposit::latest()->get();
+        $data['deposits_info'] = DepositPlanModel::latest()->get();
         return view('admin.deposits_package.index', $data);
     }
 
@@ -39,29 +40,29 @@ class DepositsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
-            'name' => 'required',
-            'package_price' => 'required',
-            'deposit_amount' => 'required',
-            'monthly_profit' => 'required',
-            'total_payable' => 'required',
-            'distribute_amount' => 'required',
-            'status' => 'required',
+            'file'                => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'name'                => 'required',
+            'package_price'       => 'required',
+            'deposit_amount'      => 'required',
+            'monthly_profit'      => 'required',
+            'total_payable'       => 'required',
+            'distribute_amount'   => 'required',
+            'status'              => 'required',
         ]);
 
-        $deposit = Deposit::updateOrCreate(
+        $deposit = DepositPlanModel::updateOrCreate(
             [
-                'id' => null
+                'id'             => null
             ],
             [
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
-            'total_payable' => $request->total_payable,
-            'distribute_amount' => $request->distribute_amount,
-            'status' => $request->status,
-            'created_at' => now(),
+            'name'               => $request->name,
+            'package_price'      => $request->package_price,
+            'deposit_amount'     => $request->deposit_amount,
+            'monthly_profit'     => $request->monthly_profit,
+            'total_payable'      => $request->total_payable,
+            'distribute_amount'  => $request->distribute_amount,
+            'status'             => $request->status,
+            'created_at'         => now(),
          ]);
         $this->upload_file($request->image, $deposit, 'image', 'upload/deposit/image');
         return redirect()->route("deposits.index")->with('success', 'Deposits Package Added Successfully!');
@@ -86,7 +87,7 @@ class DepositsController extends Controller
      */
     public function edit($id)
     {
-        $data['deposit_edit'] = Deposit::findOrFail($id);
+        $data['deposit_edit'] = DepositPlanModel::findOrFail($id);
         return view('admin.deposits_package.edit',$data);
     }
 
@@ -99,19 +100,19 @@ class DepositsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $deposit = Deposit::updateOrCreate(
+        $deposit = DepositPlanModel::updateOrCreate(
             [
-                'id' => $id
+                'id'            => $id
             ],
             [
-            'name' => $request->name,
-            'package_price' => $request->package_price,
-            'deposit_amount' => $request->deposit_amount,
-            'monthly_profit' => $request->monthly_profit,
-            'total_payable' => $request->total_payable,
+            'name'              => $request->name,
+            'package_price'     => $request->package_price,
+            'deposit_amount'    => $request->deposit_amount,
+            'monthly_profit'    => $request->monthly_profit,
+            'total_payable'     => $request->total_payable,
             'distribute_amount' => $request->distribute_amount,
-            'status' => $request->status,
-            'created_at' => now(),
+            'status'            => $request->status,
+            'created_at'        => now(),
          ]);
         $this->upload_file($request->image, $deposit, 'image', 'upload/deposit/image');
         return redirect()->route("deposits.index")->with('success', 'Deposits Package Updated Successfully!');
@@ -127,7 +128,7 @@ class DepositsController extends Controller
     {
 
         try {
-            $deposit = Deposit::find($id);
+            $deposit = DepositPlanModel::find($id);
             if(file_exists($deposit->image)){
                 unlink($deposit->image);
             }
