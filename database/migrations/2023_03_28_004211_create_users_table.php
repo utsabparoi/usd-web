@@ -22,10 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->foreignId('refer_by')->nullable()->constrained('users', 'id');
             $table->bigInteger('refer_code')->unique()->nullable();
-            $table->bigInteger('register_by')->nullable();
+            $table->bigInteger('register_by')->nullable()->constrained('users', 'id');
             $table->string('payment_image')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->tinyInteger('type')->default(1)->comment('1=admin, 2=app user');
+            $table->tinyInteger('is_admin')->default(1)->comment('1=admin, 2=app user');
             $table->tinyInteger('approval')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();

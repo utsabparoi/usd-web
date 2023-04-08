@@ -204,13 +204,44 @@
                 </li>
             </ul>
         </li> --}}
-        <li class="{{ request()->routeIs('invest*') ? 'active' : '' }}">
-            <a href="{{ route('invest.index') }}">
+        <li class="{{ request()->routeIs('wallets*') ? 'active' : '' }}">
+            <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-dollar"></i>
-                <span class="menu-text">Invest</span>
+                <span class="menu-text">Wallets</span>
+                <b class="arrow fa fa-angle-down"></b>
             </a>
 
             <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="{{ request()->routeIs('wallets*') ? 'active' : '' }}">
+                    <a href="">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        <span class="menu-text">Add</span>
+
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="{{ request()->routeIs('incomes*') ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Income
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="{{ request()->routeIs('invests*') ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Invest
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
         </li>
 
         <li class="{{ request()->routeIs('transaction*') ? 'active' : '' }}">

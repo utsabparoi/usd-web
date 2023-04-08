@@ -5,13 +5,13 @@
 @endpush
 @section('content')
 
-<div class="main-content-inner">
-    <div class="page-content">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="widget-box">
-                    <div class="widget-header header-color">
-                        <h4 class="widget-title">Investor Information</h4>
+    <div class="main-content-inner">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="widget-box">
+                        <div class="widget-header header-color">
+                            <h4 class="widget-title">Investor Information</h4>
 
                         <span class="widget-toolbar">
                             <a class="header-text" href="{{ route('investors.create') }}">
@@ -85,42 +85,42 @@
                                                                 </div>
                                                                 <br>
                                                             </div>
-                                                        </div>
-                                                        <!-- Modal work end-->
-                                                </td>
-                                                <td>
-                                                        <label>
-                                                            <input name="switch-field-1" class="ace ace-switch ace-switch-6" type="checkbox"
-                                                                   {{ status($investor->status) }} />
-                                                            <span class="lbl"></span>
-                                                        </label>
-                                                </td>
-                                            </tr>
-                                         @endforeach
+                                                            <!-- Modal work end-->
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input name="switch-field-1"
+                                                                    class="ace ace-switch ace-switch-6" type="checkbox"
+                                                                    {{ status($investor->status) }} />
+                                                                <span class="lbl"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
 
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.span -->
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.span -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div><!-- /.page-content -->
-</div>
+        </div><!-- /.page-content -->
+    </div>
 
-@push('js')
-<!-- page specific plugin scripts -->
+    @push('js')
+        <!-- page specific plugin scripts -->
 
-<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.dataTables.bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/js/buttons.flash.min.js') }}"></script>
-<script src="{{ asset('assets/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('assets/js/buttons.colVis.min.js') }}"></script>
-<script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('assets/js/buttons.flash.min.js') }}"></script>
+        <script src="{{ asset('assets/js/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('assets/js/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('assets/js/buttons.colVis.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
 
 <script>
     function viewPayment(element) {

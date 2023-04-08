@@ -9,6 +9,7 @@ class UserDeposit extends Model
 {
     use HasFactory;
     protected $table = 'user_deposit_plans';
-    protected $fillable = ['user_id', 'name', 'package_price', 'deposit_amount',
-        'monthly_profit', 'converted_amount', 'distribute_amount'];
+    // protected $fillable = ['user_id', 'name', 'package_price', 'deposit_amount',
+    //     'monthly_profit', 'converted_amount', 'total_payble', 'distribute_amount'];
+    protected $guarded = [];
 }
