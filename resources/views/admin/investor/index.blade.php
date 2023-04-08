@@ -46,8 +46,8 @@
                                                 <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                                 <td> {{ $investor->name }} </td>
                                                 <td> {{ $investor->mobile }} </td>
-                                                <td> 0 </td>
-                                                <td> 0 </td>
+                                                <td> {{ currentBalance($investor->id, '2') }} </td>
+                                                <td> {{ currentBalance($investor->id, '1') }} </td>
                                                 <td>
                                                     @if($investor->payment_image || $investor->transaction_id)
                                                         <button class="btn btn-success" style="border: none !important;"
@@ -85,6 +85,7 @@
                                                                 </div>
                                                                 <br>
                                                             </div>
+                                                        </div>
                                                             <!-- Modal work end-->
                                                         </td>
                                                         <td>

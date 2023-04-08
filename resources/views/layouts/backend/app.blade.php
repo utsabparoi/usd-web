@@ -27,6 +27,7 @@
 </head>
 
 <body class="no-skin">
+@include('sweetalert::alert')
     @include('layouts.backend.partial.navbar')
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">

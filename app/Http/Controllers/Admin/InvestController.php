@@ -7,6 +7,7 @@ use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InvestController extends Controller
 {
@@ -98,6 +99,8 @@ class InvestController extends Controller
         elseif ($invest_approval == 0){
             User::where("id", "=", $id)->update(["approval"=>"1"]);
             onTransaction($id, $amount, 'in', '1');
+            Alert::success('Approved','Investor now approved');
+            refersCommission($id);
         }
         return $invest_approval;
     }
