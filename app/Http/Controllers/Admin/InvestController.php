@@ -100,7 +100,7 @@ class InvestController extends Controller
             User::where("id", "=", $id)->update(["approval"=>"1"]);
             onTransaction($id, $amount, 'in', '1');
             Alert::success('Approved','Investor now approved');
-            refersCommission($id);
+            refersCommission($id, $amount);
         }
         return $invest_approval;
     }

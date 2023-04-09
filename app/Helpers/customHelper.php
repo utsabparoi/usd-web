@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin\DirectBonus;
 use App\Models\User;
 use App\Models\Admin\Wallet;
 use App\Models\Admin\Transaction;
@@ -63,10 +64,23 @@ function currentBalance($userId, $walletTypeId){
     return $balance;
 }
 
+//refer detect
+function refer($userId){
+    $refer = User::where('id', $userId)->first()->refer_by;
+    return $refer;
+}
+
+//bonus percentage % detect
+//function refesPercentage(){
+//    $percentage = DirectBonus::find(1)->first()->percentage;
+//    return $percentage;
+//}
+
 //generation by commission
-function refersCommission($userId){
-    $refer1 = User::where('id', $userId)->pluck('refer_by');
-    $gerenartionByRefer = array($refer1);
-    onTransaction($refer1, '5', 'in', '2');
+function refersCommission($userId, $deposit_amount){
+    $refer1 = refer($userId);
+    $amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
+    //$generationByRefer = array($refer1);
+    onTransaction($refer1, $amount, 'in', '2');
     return $refer1;
 }
