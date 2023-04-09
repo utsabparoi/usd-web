@@ -39,11 +39,11 @@ class RankController extends Controller
      */
     public function store(Request $request)
     {
+        // ddd($request);
         $request->validate([
-            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
             'name' => 'required',
-            'target' => 'required',
-            'reward' => 'required',
+            'target_amount' => 'required',
+            'reward_amount' => 'required',
             'status' => 'required',
         ]);
 
@@ -53,13 +53,12 @@ class RankController extends Controller
             ],
             [
             'name' => $request->name,
-            'target' => $request->target,
-            'reward' => $request->reward,
+            'target_amount' => $request->target_amount,
+            'reward_amount' => $request->reward_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-        $this->upload_file($request->image, $rank, 'image', 'upload/rank/image');
-        //  $this->upload_file($request->image );
+
      return redirect()->route("rank.index")->with('success', 'Rank Added Successfully!');
     }
 
@@ -96,26 +95,23 @@ class RankController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
             'name' => 'required',
-            'target' => 'required',
-            'reward' => 'required',
+            'target_amount' => 'required',
+            'reward_amount' => 'required',
             'status' => 'required',
         ]);
-         
+
         $rank = Rank::updateOrCreate(
             [
                 'id' => $id
             ],
             [
             'name' => $request->name,
-            'target' => $request->target,
-            'reward' => $request->reward,
+            'target_amount' => $request->target_amount,
+            'reward_amount' => $request->reward_amount,
             'status' => $request->status,
             'created_at' => now(),
          ]);
-        $this->upload_file($request->image, $rank, 'image', 'upload/rank/image');
-        //  $this->upload_file($request->image );
      return redirect()->route("rank.index")->with('success', 'Rank Updated Successfully!');
     }
 

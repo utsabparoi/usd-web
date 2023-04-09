@@ -27,11 +27,10 @@
                                             <tr>
                                                 <th >SL</th>
                                                 <th>Rank Name</th>
-                                                <th>Image</th>
-                                                <th>Target</th>
-                                                <th>Reward</th>
+                                                <th>Target Amount</th>
+                                                <th>Reward Amount</th>
                                                 <th>Status</th>
-                                                 <th>Action</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
 
@@ -40,29 +39,27 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><img src="{{ asset($item->image) }}" height="50px">
-                                                </td>
-                                                <td>{{ $item->target }}</td>
-                                                <td>{{ $item->reward }}</td>
+                                                <td>{{ $item->target_amount }}</td>
+                                                <td>{{ $item->reward_amount }}</td>
                                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                 </td>
                                                 <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
+                                                    <div class="btn-group btn-corner action-span ">
                                                         <a class="green" href="{{ route('rank.edit' ,$item->id) }}">
                                                             <button class="btn btn-xs btn-success">
                                                                 <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                             </button>
                                                         </a>
-                                                       
+
                                                          <form id="delete-form" action="{{ route('rank.destroy', $item->id ) }}" method="post">
                                                             @csrf
-                                                            @method('DELETE')  
+                                                            @method('DELETE')
                                                             <a class="red" href="{{ route('rank.destroy', $item->id ) }}">
                                                                 <button class="btn btn-xs btn-danger">
                                                                     <i class="fa fa-trash bigger-130"></i>
                                                                     </button>
                                                             </a>
-                                                        </form>     
+                                                        </form>
                                                     </div>
                                                     <div class="hidden-md hidden-lg">
                                                         <div class="inline pos-rel">

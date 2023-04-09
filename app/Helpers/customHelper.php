@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Admin\Transaction;
 use App\Models\User;
+use App\Models\Admin\Wallet;
+use App\Models\Admin\Transaction;
 use Illuminate\Support\Facades\DB;
 
 //status show
@@ -30,7 +31,16 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
         'created_at'      => date('Y-m-d'),
         'updated_at'      => date('Y-m-d'),
     ]);
-    return $transaction;
+
+    $wallet = Wallet::insertOrUpdate([
+        'user_id'         => $userId,
+        'wallet_type_id'  => $wallet_type_id,
+        'balance'         => $amount,
+        'created_at'      => date('Y-m-d'),
+        'updated_at'      => date('Y-m-d'),
+    ]);
+
+    return compact('transaction','wallet');
 }
 
 //current wallet balance

@@ -19,25 +19,19 @@
                                         <div class="form-group">
                                             <label for="name" class="col-md-3 control-label">Rank Name</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" placeholder="Rank Name" required="required" name="name" type="text" id="name" value="{{ old('percentage') }}">
+                                                <input class="form-control" placeholder="Rank Name" required="required" name="name" type="text" id="name" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label">Image</label>
+                                            <label for="target" class="col-md-3 control-label">Target Amount</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="file"  name="image" id="image">
+                                                <input class="form-control" type="number" placeholder="Target" name="target_amount" id="target" value="{{ old('target_amount') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="target" class="col-md-3 control-label">Target</label>
+                                            <label for="reward" class="col-md-3 control-label">Reward Amount</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Target" name="target" id="target" value="{{ old('percentage') }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reward" class="col-md-3 control-label">Reward</label>
-                                            <div class="col-md-5">
-                                                <input class="form-control" type="number" placeholder="Reward" name="reward" id="reward" value="{{ old('percentage') }}">
+                                                <input class="form-control" type="number" placeholder="Reward" name="reward_amount" id="reward" value="{{ old('reward_amount') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -61,8 +55,5 @@
         </div>
     </div><!-- /.page-content -->
 </div>
-
-
-
 
 @endsection

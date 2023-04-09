@@ -25,13 +25,6 @@
                                                 <input class="form-control " placeholder="Rank Name" value="{{ $rank_edit->name }}" name="name" type="text" id="name">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Image</label>
-                                            <div class="col-md-5">
-                                                <input class="form-control" type="file"  name="image" id="image" value="{{ $rank_edit->image }}">
-                                                <img src="{{ asset($rank_edit->image) }}" height="50">
-                                            </div>
-                                        </div>
 
                                         <div class="form-group">
                                             <label for="target" class="col-md-3 control-label">Target</label>
