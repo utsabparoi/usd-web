@@ -17,7 +17,7 @@ class PositionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('rank_id')->constrained();
-            $table->bigInteger('designation_id')->constrained();
+            $table->foreignId('designation_id')->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

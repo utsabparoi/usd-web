@@ -3,7 +3,6 @@
 use App\Models\User;
 use App\Models\Admin\Wallet;
 use App\Models\Admin\Transaction;
-use Illuminate\Support\Facades\DB;
 
 //status show
 function status($status){
