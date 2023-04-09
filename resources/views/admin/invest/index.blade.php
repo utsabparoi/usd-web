@@ -10,7 +10,7 @@
             display: flex;
             align-items: center;
             font-family: inherit;
-            padding: 0.7em 1.4em 0.7em 1.1em;
+            padding: 0.6em 1.3em 0.6em 1.0em;
             color: white;
             background: #ad5389;
             background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
@@ -38,7 +38,7 @@
             display: flex;
             align-items: center;
             font-family: inherit;
-            padding: 0.7em 1.4em 0.7em 1.1em;
+            padding: 0.6em 1.3em 0.6em 1.0em;
             color: #4c4c4c;
             background: #ad5389;
             background: linear-gradient(0deg, rgb(194, 194, 194) 0%, rgb(236, 236, 236) 100%);
@@ -106,11 +106,12 @@
                                     <td>{{ $investor->name }}</td>
                                     <td>{{ $investor->mobile }}</td>
                                     <td>
-                                        @if($investor->payment_image)
+                                        @if($investor->payment_image || $investor->transaction_id)
                                             <button class="btn btn-success" style="border: none !important; border-radius: 20em !important;"
                                                     id="paymentView"
-                                                    data-id="{{ $investor->id }}"
                                                     data-name="{{ $investor->name }}"
+                                                    data-image="{{ $investor->payment_image }}"
+                                                    data-transaction="{{ $investor->transaction_id }}"
                                                     onclick="viewPayment(this)">bkash</button>
                                         @else
                                             <button class="btn btn-warning" style="border: none !important; border-radius: 20em !important;">Wallet</button>
