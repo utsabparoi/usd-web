@@ -132,6 +132,7 @@ class InvestorController extends Controller
                 'deposit_amount'        =>$deposit_plan->deposit_amount,
                 'monthly_profit'        =>$deposit_plan->monthly_profit,
                 'distribute_amount'     =>$deposit_plan->distribute_amount,
+                'status'                =>1,
             ]);
         } catch (\Throwable $th) {
             throw $th;
