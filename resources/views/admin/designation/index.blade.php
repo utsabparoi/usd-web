@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Wallet Type')
+@section('title', 'Designations List')
 
 @section('content')
 
@@ -9,10 +9,10 @@
                 <div class="col-xs-12 col-sm-6 col-md-12">
                     <div class="widget-box">
                         <div class="widget-header header-color">
-                            <h4 class="widget-title">Wallet Types</h4>
+                            <h4 class="widget-title">Designation List</h4>
 
                             <span class="widget-toolbar">
-                                <a class="header-text" href="{{ route('wallet_types.create') }}">
+                                <a class="header-text" href="{{ route('designations.create') }}">
                                     <i class="ace-icon glyphicon glyphicon-plus"></i>
                                     <strong>Add New</strong>
                                 </a>
@@ -22,44 +22,51 @@
                             <div class="widget-main">
                                 <div class="row">
                                     <div class="col-xs-12">
+
                                         <table id="simple-table" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%" class="text-center">SL</th>
+                                                    <th>SL</th>
                                                     <th>Name</th>
-                                                    <th width="30%" class="text-center">Action</th>
+                                                    <th>Code</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
-                                                @forelse ($wallet_types as $item)
+                                                @forelse($designations as $item)
                                                     <tr>
-                                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                                        <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $item->name }}</td>
+                                                        <td>{{ $item->code }}</td>
+                                                        <td><span
+                                                                class="label label-md label-primary">{{ $item->status == '1' ? 'Active' : 'Inactive' }}</span>
+                                                        </td>
                                                         <td class="text-center">
                                                             <!---------------  EDIT---------------->
                                                             <div class="btn-group btn-corner  action-span ">
 
-                                                                <a href="{{ route('wallet_types.edit', $item->id) }}"
+                                                                <a href="{{ route('designations.edit', $item->id) }}"
                                                                     role="button" class="btn btn-xs btn-success bs-tooltip"
                                                                     title="Edit">
                                                                     <i class="fa fa-edit"></i>
                                                                 </a>
                                                                 <button type="button"
-                                                                    onclick="delete_item(`{{ route('wallet_types.destroy', $item->id) }}`)"
+                                                                    onclick="delete_item(`{{ route('designations.destroy', $item->id) }}`)"
                                                                     class="btn btn-xs btn-danger bs-tooltip" title="Delete">
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                             </div>
+
                                                         </td>
                                                     </tr>
                                                 @empty
-                                                <tr>
-                                                    <td colspan="30" class="text-center text-danger py-3"
-                                                        style="background: #eaf4fa80 !important; font-size: 18px">
-                                                        <strong>No records found!</strong>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td colspan="30" class="text-center text-danger py-3"
+                                                            style="background: #eaf4fa80 !important; font-size: 18px">
+                                                            <strong>No records found!</strong>
+                                                        </td>
+                                                    </tr>
                                                 @endforelse
                                             </tbody>
                                         </table>
@@ -71,11 +78,7 @@
                 </div>
             </div>
 
-
         </div><!-- /.page-content -->
     </div>
 
-    @push('js')
-        <!-- page specific plugin scripts -->
-    @endpush
 @endsection

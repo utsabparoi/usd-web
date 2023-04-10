@@ -47,70 +47,22 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
+                                                            <!---------------  EDIT---------------->
                                                             <div class="btn-group btn-corner  action-span ">
-                                                                <a class="green"
-                                                                    href="{{ route('directbonus.edit', $item->id) }}">
-                                                                    <button class="btn btn-xs btn-success bs-tooltip">
-                                                                        <i class="fa fa-pencil"></i>
-                                                                    </button>
+
+                                                                <a href="{{ route('directbonus.edit', $item->id) }}"
+                                                                    role="button" class="btn btn-xs btn-success bs-tooltip"
+                                                                    title="Edit">
+                                                                    <i class="fa fa-edit"></i>
                                                                 </a>
-                                                                <a class="red"
-                                                                    href="{{ route('directbonus.destroy', $item->id) }}
-                                                            "
-                                                                    onclick="event.preventDefault();
-                                                            document.getElementById('delete-form').submit();
-                                                            ">
-                                                                    <button class="btn btn-xs btn-danger bs-tooltip">
-                                                                        <i class="fa fa-trash"></i>
-                                                                    </button>
-                                                                </a>
-                                                                <form id="delete-form"
-                                                                    action="{{ route('directbonus.destroy', $item->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                </form>
+                                                                <button type="button"
+                                                                    onclick="delete_item(`{{ route('directbonus.destroy', $item->id) }}`)"
+                                                                    class="btn btn-xs btn-danger bs-tooltip" title="Delete">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
                                                             </div>
-                                                            {{-- <div class="hidden-md hidden-lg">
-                                                                <div class="inline pos-rel">
-                                                                    <button
-                                                                        class="btn btn-minier btn-yellow dropdown-toggle"
-                                                                        data-toggle="dropdown" data-position="auto">
-                                                                        <i
-                                                                            class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                                                    </button>
-                                                                    <ul
-                                                                        class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-info"
-                                                                                data-rel="tooltip" title="View">
-                                                                                <span class="blue">
-                                                                                    <i
-                                                                                        class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success"
-                                                                                data-rel="tooltip" title="Edit">
-                                                                                <span class="green">
-                                                                                    <i
-                                                                                        class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error"
-                                                                                data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="fa fa-trash"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div> --}}
+
                                                         </td>
                                                     </tr>
                                                 @endforeach

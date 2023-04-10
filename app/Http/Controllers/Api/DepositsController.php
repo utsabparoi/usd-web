@@ -66,7 +66,7 @@ class DepositsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -136,23 +136,15 @@ class DepositsController extends Controller
     {
         try {
             $deposit = Deposit::find($id);
+
             if(file_exists($deposit->image)){
                 unlink($deposit->image);
             }
             $deposit->delete();
 
-            return response()->json([
-                'message' => 'Deposits Package Deleted Successfully',
-                'status' => 'success',
-                'data' =>$deposit,
-            ]);
+            return redirect()->back()->with('success','Package Deleted Success');
         } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'Deposits Package Deleted Successfully',
-                'status' => 'success',
-                'data' =>$th,
-            ]);
-
+            return redirect()->back()->with('error',$th->getMessage());
         }
 
     }

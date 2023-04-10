@@ -51,25 +51,20 @@
                                                     <td>{{ $item->wallet_id }}$</td>
                                                     <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                     </td>
-                                                    <td>
-                                                        <div class="hidden-sm hidden-xs action-buttons">
-                                                            <a class="green" href="{{ route('transaction.edit', $item->id) }}">
-                                                                <button class="btn btn-xs btn-success">
-                                                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                                </button>
+                                                    <td class="text-center">
+                                                        <!---------------  EDIT---------------->
+                                                        <div class="btn-group btn-corner  action-span ">
+
+                                                            <a href="{{ route('deposits.edit', $item->id) }}"
+                                                                role="button" class="btn btn-xs btn-success bs-tooltip"
+                                                                title="Edit">
+                                                                <i class="fa fa-edit"></i>
                                                             </a>
-                                                            <a class="red" href="{{ route('transaction.destroy', $item->id ) }}
-                                                                " onclick="event.preventDefault();
-                                                                document.getElementById('delete-form').submit();
-                                                                ">
-                                                                <button class="btn btn-xs btn-danger">
-                                                                <i class="fa fa-trash bigger-130"></i>
-                                                                </button>
-                                                            </a>
-                                                            <form id="delete-form" action="{{ route('transaction.destroy', $item->id ) }}" method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
+                                                            <button type="button"
+                                                                onclick="delete_item(`{{ route('deposits.destroy', $item->id) }}`)"
+                                                                class="btn btn-xs btn-danger bs-tooltip" title="Delete">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>

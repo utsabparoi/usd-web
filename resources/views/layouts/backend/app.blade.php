@@ -23,11 +23,21 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <!-- ace settings handler -->
     <script src="{{ asset('assets/js/ace-extra.min.js') }}"></script>
+
+    {{-- sweetalert --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/sweetalert2.min.css') }}">
+
+    {{-- datapicker-css --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.min.css') }}">
     @stack('css')
 </head>
 
 <body class="no-skin">
-@include('sweetalert::alert')
+    <!-- delete form -->
+    <form action="" id="deleteItemForm" method="POST">
+        @csrf @method('DELETE')
+    </form>
+{{-- @include('sweetalert::alert') --}}
     @include('layouts.backend.partial.navbar')
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
@@ -59,7 +69,13 @@
     <script src="{{ asset('assets/js/jquery.flot.pie.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.resize.min.js') }}"></script>
     <script src="{{ asset('assets/js/axios.min.js') }}"></script>
+    {{-- delete script --}}
     <script src="{{ asset('assets/custom_js/confirm_delete_dialog.js') }}"></script>
+
+    {{-- sweetalert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/sweetalert2.min.js') }}"></script>
+
     <!-- ace scripts -->
     <script src="{{ asset('assets/js/ace.min.js') }}"></script>
     <script src="{{ asset('assets/js/ace-elements.min.js') }}"></script>

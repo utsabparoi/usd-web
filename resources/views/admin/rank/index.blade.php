@@ -43,56 +43,20 @@
                                                 <td>{{ $item->reward_amount }}</td>
                                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                 </td>
-                                                <td>
-                                                    <div class="btn-group btn-corner action-span ">
-                                                        <a class="green" href="{{ route('rank.edit' ,$item->id) }}">
-                                                            <button class="btn btn-xs btn-success">
-                                                                <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            </button>
+                                                <td class="text-center">
+                                                    <!---------------  EDIT---------------->
+                                                    <div class="btn-group btn-corner  action-span ">
+
+                                                        <a href="{{ route('rank.edit', $item->id) }}"
+                                                            role="button" class="btn btn-xs btn-success bs-tooltip"
+                                                            title="Edit">
+                                                            <i class="fa fa-edit"></i>
                                                         </a>
-
-                                                         <form id="delete-form" action="{{ route('rank.destroy', $item->id ) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a class="red" href="{{ route('rank.destroy', $item->id ) }}">
-                                                                <button class="btn btn-xs btn-danger">
-                                                                    <i class="fa fa-trash bigger-130"></i>
-                                                                    </button>
-                                                            </a>
-                                                        </form>
-                                                    </div>
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                        <button type="button"
+                                                            onclick="delete_item(`{{ route('rank.destroy', $item->id) }}`)"
+                                                            class="btn btn-xs btn-danger bs-tooltip" title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
