@@ -45,7 +45,7 @@
                                                     <td>{{ $item->user_id }}</td>
                                                     <td>{{ $item->source_type }}$</td>
                                                     <td>{{ $item->source_id }}$</td>
-                                                    <td>{{ $item->amount }}$</td>
+                                                    <td>{{ floatval($item->amount) }}$</td>
                                                     <td>{{ $item->balance_type }}$</td>
                                                     <td>{{ $item->date }}$</td>
                                                     <td>{{ $item->wallet_id }}$</td>

@@ -38,7 +38,7 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $item->generation }}</td>
-                                                        <td>{{ $item->percentage }}%</td>
+                                                        <td>{{ floatval($item->percentage) }}%</td>
                                                         <td>
                                                             <label>
                                                                 <input name="switch-field-1"
