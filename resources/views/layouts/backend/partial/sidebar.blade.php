@@ -141,7 +141,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
                 <span class="menu-text">
-                    Target Bonus
+                    Rank
                 </span>
 
                 <b class="arrow fa fa-angle-down"></b>

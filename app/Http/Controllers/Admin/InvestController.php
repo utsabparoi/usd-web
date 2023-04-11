@@ -104,14 +104,5 @@ class InvestController extends Controller
         }
         return $invest_approval;
     }
-
-
-
-
-
-
-
-
-
-
+    
 }

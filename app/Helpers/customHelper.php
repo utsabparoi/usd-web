@@ -7,21 +7,22 @@ use App\Models\Admin\Transaction;
 use Illuminate\Support\Facades\DB;
 
 //status show
-function status($status){
-    if ($status == 1){
+function status($status)
+{
+    if ($status == 1) {
         $status = 'checked';
-    }
-    else{
+    } else {
         $status = '';
     }
     return $status;
 }
 
 //invest transaction
-function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
+function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
+{
     $user_position = DB::table('positions')->where('status', 1)->where('user_id', $userId)->value('id');
-    $balance = DB::table('wallets')->value('balance');
-
+    $balance = DB::table('wallets')->where('user_id', $userId)->value('balance');
+    $user_wallet = Wallet::where([['user_id', $userId],['wallet_type_id', $wallet_type_id]])->get();
     DB::beginTransaction();
     try {
         $transaction = Transaction::insert([
@@ -37,21 +38,17 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
             'created_at'      => date('Y-m-d'),
             'updated_at'      => date('Y-m-d'),
         ]);
-
-        if ($balanceType == 'in') {
-            $wallet = Wallet::insertOrUpdate([
+        if (!isset($user_wallet)) {
+            if ($balanceType == 'in') {
+                $user_wallet->increment('balance', $amount);
+            } elseif ($balanceType == 'out') {
+                $user_wallet->decrement('balance', $amount);
+            }
+        }else {
+            Wallet::insert([
                 'user_id'         => $userId,
                 'wallet_type_id'  => $wallet_type_id,
-                'balance'         => $balance + $amount,
-                'created_at'      => date('Y-m-d'),
-                'updated_at'      => date('Y-m-d'),
-            ]);
-        }
-        elseif ($balanceType == 'out') {
-            $wallet = Wallet::insertOrUpdate([
-                'user_id'         => $userId,
-                'wallet_type_id'  => $wallet_type_id,
-                'balance'         => $balance - $amount,
+                'balance'         => $amount,
                 'created_at'      => date('Y-m-d'),
                 'updated_at'      => date('Y-m-d'),
             ]);
@@ -65,19 +62,18 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
 }
 
 //current wallet balance
-function currentBalance($userId, $walletTypeId){
+function currentBalance($userId, $walletTypeId)
+{
     $userTransactions = Transaction::where('user_id', $userId)
         ->where('wallet_type_id', $walletTypeId)
         ->get();
     $balance = 0;
-    foreach ($userTransactions as $item){
-        if ($item->balance_type == 'in'){
-            $balance = $balance+$item->amount;
-        }
-        elseif ($item->balance_type == 'out'){
-            $balance = $balance-$item->amount;
-        }
-        else {
+    foreach ($userTransactions as $item) {
+        if ($item->balance_type == 'in') {
+            $balance = $balance + $item->amount;
+        } elseif ($item->balance_type == 'out') {
+            $balance = $balance - $item->amount;
+        } else {
             $balance = 0;
         }
     }
@@ -86,16 +82,17 @@ function currentBalance($userId, $walletTypeId){
 }
 
 //refer detect
-function generations($userId){
+function generations($userId)
+{
     $id = $userId;
-//    $i = 0;
-//    $gen = array();
-//    do {
-//        $gen = array_add($gen, $i, $id);
-//        $refer = User::where('id', $id)->first()->refer_by;
-//        $i++;
-//    }
-//    while (User::where('id', $refer)->first()->refer_by->exist());
+    //    $i = 0;
+    //    $gen = array();
+    //    do {
+    //        $gen = array_add($gen, $i, $id);
+    //        $refer = User::where('id', $id)->first()->refer_by;
+    //        $i++;
+    //    }
+    //    while (User::where('id', $refer)->first()->refer_by->exist());
     $refer = User::where('id', $id)->first()->refer_by;
     return $refer;
 }
@@ -111,9 +108,10 @@ function generations($userId){
 //}
 
 //generation by commission
-function refersCommission($userId, $deposit_amount){
+function refersCommission($userId, $deposit_amount)
+{
     $refer1 = generations($userId);
-    $amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
+    $amount = ((DirectBonus::find(1)->first()->percentage) * $deposit_amount) / 100;
     //$generationByRefer = array($refer1);
     onTransaction($refer1, $amount, 'in', '2');
     return $refer1;

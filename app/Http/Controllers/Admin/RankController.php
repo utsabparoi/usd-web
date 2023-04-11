@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Traits\FileSaver;
 use App\Models\Admin\Rank;
+use App\Models\Admin\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
