@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Traits\FileSaver;
 use App\Models\Admin\Rank;
 use Illuminate\Http\Request;
-use App\Traits\FileSaver;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class RankController extends Controller
 {

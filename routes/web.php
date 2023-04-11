@@ -36,8 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('transaction', TransactionController::class);
     Route::resource('investors', InvestorController::class);
     Route::resource('invest', InvestController::class);
-    // Route::resource('invests', InvestController::class);
-    // Route::resource('incomes', IncomeController::class);
     Route::resource('wallets', WalletController::class);
     Route::resource('designations', DesignationController::class);
     Route::resource('wallet_types', WalletTypeController::class);

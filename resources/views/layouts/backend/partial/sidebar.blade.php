@@ -171,7 +171,7 @@
             </ul>
         </li>
 
-        <li class="{{ request()->routeIs('positions*') ? 'active' : '' }}">
+        {{-- <li class="{{ request()->routeIs('positions*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
                 <span class="menu-text">
@@ -203,7 +203,7 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
+        </li> --}}
         {{-- <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
