@@ -22,40 +22,46 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
     $user_position = DB::table('positions')->where('status', 1)->where('user_id', $userId)->value('id');
     $balance = DB::table('wallets')->value('balance');
 
-    $transaction = Transaction::insert([
-        'user_id'         => $userId,
-        'source_type'     => 1,
-        'source_id'       => 1,
-        'amount'          => $amount,
-        'balance_type'    => $balanceType,
-        'wallet_type_id'  => $wallet_type_id,
-        'position_id'     => $user_position,
-        'date'            => now(),
-        'is_approved'     => 1,
-        'created_at'      => date('Y-m-d'),
-        'updated_at'      => date('Y-m-d'),
-    ]);
-
-    if ($balanceType == 'in') {
-        $wallet = Wallet::insertOrUpdate([
+    DB::beginTransaction();
+    try {
+        $transaction = Transaction::insert([
             'user_id'         => $userId,
+            'source_type'     => 1,
+            'source_id'       => 1,
+            'amount'          => $amount,
+            'balance_type'    => $balanceType,
             'wallet_type_id'  => $wallet_type_id,
-            'balance'         => $balance + $amount,
+            'position_id'     => 1,
+            'date'            => now(),
+            'is_approved'     => 1,
             'created_at'      => date('Y-m-d'),
             'updated_at'      => date('Y-m-d'),
         ]);
-    }
-    elseif ($balanceType == 'out') {
-        $wallet = Wallet::insertOrUpdate([
-            'user_id'         => $userId,
-            'wallet_type_id'  => $wallet_type_id,
-            'balance'         => $balance - $amount,
-            'created_at'      => date('Y-m-d'),
-            'updated_at'      => date('Y-m-d'),
-        ]);
-    }
 
-    return compact('transaction','wallet');
+        if ($balanceType == 'in') {
+            $wallet = Wallet::insertOrUpdate([
+                'user_id'         => $userId,
+                'wallet_type_id'  => $wallet_type_id,
+                'balance'         => $balance + $amount,
+                'created_at'      => date('Y-m-d'),
+                'updated_at'      => date('Y-m-d'),
+            ]);
+        }
+        elseif ($balanceType == 'out') {
+            $wallet = Wallet::insertOrUpdate([
+                'user_id'         => $userId,
+                'wallet_type_id'  => $wallet_type_id,
+                'balance'         => $balance - $amount,
+                'created_at'      => date('Y-m-d'),
+                'updated_at'      => date('Y-m-d'),
+            ]);
+        }
+        DB::commit();
+    } catch (\Exception $e) {
+        DB::rollback();
+        throw $e;
+    }
+    return compact('transaction');
 }
 
 //current wallet balance
@@ -80,20 +86,33 @@ function currentBalance($userId, $walletTypeId){
 }
 
 //refer detect
-function refer($userId){
-    $refer = User::where('id', $userId)->first()->refer_by;
+function generations($userId){
+    $id = $userId;
+//    $i = 0;
+//    $gen = array();
+//    do {
+//        $gen = array_add($gen, $i, $id);
+//        $refer = User::where('id', $id)->first()->refer_by;
+//        $i++;
+//    }
+//    while (User::where('id', $refer)->first()->refer_by->exist());
+    $refer = User::where('id', $id)->first()->refer_by;
     return $refer;
 }
 
 //bonus percentage % detect
-//function refesPercentage(){
-//    $percentage = DirectBonus::find(1)->first()->percentage;
-//    return $percentage;
+//function refesAmountOfPercentage($deposit_amount){
+//    $refer1Amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
+//    $refer2Amount = ((DirectBonus::find(2)->first()->percentage)*$deposit_amount)/100;
+//    $refer3Amount = ((DirectBonus::find(3)->first()->percentage)*$deposit_amount)/100;
+//    $refer4Amount = ((DirectBonus::find(4)->first()->percentage)*$deposit_amount)/100;
+//    $refer5Amount = ((DirectBonus::find(5)->first()->percentage)*$deposit_amount)/100;
+//    return $refer1Amount;
 //}
 
 //generation by commission
 function refersCommission($userId, $deposit_amount){
-    $refer1 = refer($userId);
+    $refer1 = generations($userId);
     $amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
     //$generationByRefer = array($refer1);
     onTransaction($refer1, $amount, 'in', '2');
