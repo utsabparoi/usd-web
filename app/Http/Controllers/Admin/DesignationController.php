@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Designation;
 use Illuminate\Http\Request;
 
 class DesignationController extends Controller
@@ -14,7 +15,8 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        //
+        $data['designations'] = Designation::paginate(20);
+        return view('admin.designation.index', $data);
     }
 
     /**
@@ -24,7 +26,7 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.designation.create');
     }
 
     /**
@@ -35,7 +37,8 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->storeOrUpdate($request);
+        return redirect()->route('designations.index')->with('success', 'Designation Created Successfully');
     }
 
     /**
@@ -57,7 +60,8 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['designation'] = Designation::find($id);
+        return view('admin.designation.edit', $data);
     }
 
     /**
@@ -69,7 +73,8 @@ class DesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->storeOrUpdate($request, $id);
+        return redirect()->route('designations.index')->with('success', 'Designation Updated Success');
     }
 
     /**
@@ -80,6 +85,23 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $designation = Designation::find($id);
+        $designation->delete();
+        return redirect()->route('designations.index')->withMessage('Designation Successfully Deleted!');
+    }
+
+    public function storeOrUpdate($request, $id = null)
+    {
+        try {
+            $designation = Designation::updateOrCreate([
+                'id'            =>$id,
+            ],[
+                'name'          =>$request->name,
+                'code'          =>$request->code,
+                'status'        =>$request->status ? 1: 0,
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

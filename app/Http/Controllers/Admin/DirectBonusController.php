@@ -118,7 +118,8 @@ class DirectBonusController extends Controller
      */
     public function destroy($id)
     {
-        DirectBonus::destroy($id);
+        $data = DirectBonus::find($id);
+        $data->delete();
         return redirect()->route("directbonus.index")->with('success', 'Direct Bonus Deleted Successfully!');
     }
 }

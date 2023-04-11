@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\DirectBonusController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\DesignationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::resource('invests', InvestController::class);
     // Route::resource('incomes', IncomeController::class);
     Route::resource('wallets', WalletController::class);
+    Route::resource('designations', DesignationController::class);
     Route::resource('wallet_types', WalletTypeController::class);
     Route::resource('configuration', ConfigurationController::class);
 });

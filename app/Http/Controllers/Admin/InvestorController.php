@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\DepositPlanModel;
 use App\Traits\FileSaver;
 use App\Models\Admin\Deposit;
+use App\Models\Admin\Designation;
 use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -67,7 +68,8 @@ class InvestorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['designation'] = Designation::find($id);
+        return view('admin.designation.edit');
     }
 
     /**

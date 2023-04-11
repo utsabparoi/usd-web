@@ -104,6 +104,39 @@
                 </li>
             </ul>
         </li>
+        <li class="{{ request()->routeIs('designations*') ? 'active' : '' }}">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-trophy"></i>
+                <span class="menu-text">
+                    Designation
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="{{ Route('designations.index') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="{{ Route('designations.create') }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Add
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
         <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-trophy"></i>
@@ -239,7 +272,7 @@
             <a href="{{ route('wallets.index') }}">
                 <i class="menu-icon fa fa-dollar"></i>
                 <span class="menu-text">Wallet</span>
-                
+
             </a>
         </li>
 

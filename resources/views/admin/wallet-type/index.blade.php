@@ -37,29 +37,19 @@
                                                         <td class="text-center">{{ $loop->iteration }}</td>
                                                         <td>{{ $item->name }}</td>
                                                         <td class="text-center">
+                                                            <!---------------  EDIT---------------->
                                                             <div class="btn-group btn-corner  action-span ">
-                                                                <a class="green"
-                                                                    href="{{ route('wallet_types.edit', $item->id) }}">
-                                                                    <button class="btn btn-xs btn-success bs-tooltip">
-                                                                        <i class="fa fa-pencil"></i>
-                                                                    </button>
+
+                                                                <a href="{{ route('wallet_types.edit', $item->id) }}"
+                                                                    role="button" class="btn btn-xs btn-success bs-tooltip"
+                                                                    title="Edit">
+                                                                    <i class="fa fa-edit"></i>
                                                                 </a>
-                                                                <a class="red"
-                                                                    href="{{ route('wallet_types.destroy', $item->id) }}
-                                                            "
-                                                                    onclick="event.preventDefault();
-                                                            document.getElementById('delete-form').submit();
-                                                            ">
-                                                                    <button class="btn btn-xs btn-danger bs-tooltip">
-                                                                        <i class="fa fa-trash"></i>
-                                                                    </button>
-                                                                </a>
-                                                                <form id="delete-form"
-                                                                    action="{{ route('wallet_types.destroy', $item->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                </form>
+                                                                <button type="button"
+                                                                    onclick="delete_item(`{{ route('wallet_types.destroy', $item->id) }}`)"
+                                                                    class="btn btn-xs btn-danger bs-tooltip" title="Delete">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
