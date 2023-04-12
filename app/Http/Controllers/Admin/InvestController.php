@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DirectBonus;
 use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -99,19 +100,11 @@ class InvestController extends Controller
         elseif ($invest_approval == 0){
             User::where("id", "=", $id)->update(["approval"=>"1"]);
             onTransaction($id, $amount, 'in', '1');
+            if ($id != User::find($id)->refer_by){
+                refersCommission($id, $amount);
+            }
             Alert::success('Approved','Investor now approved');
-            refersCommission($id, $amount);
         }
-        return $invest_approval;
+        return $id;
     }
-
-
-
-
-
-
-
-
-
-
 }

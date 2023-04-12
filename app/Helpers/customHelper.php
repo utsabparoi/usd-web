@@ -40,7 +40,6 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
         throw $e;
     }
 
-
 //    $wallet = Wallet::insertOrUpdate([
 //        'user_id'         => $userId,
 //        'wallet_type_id'  => $wallet_type_id,
@@ -73,36 +72,33 @@ function currentBalance($userId, $walletTypeId){
     return $balance;
 }
 
-//refer detect
+//refer detect by generation
 function generations($userId){
-    $id = $userId;
-//    $i = 0;
-//    $gen = array();
-//    do {
-//        $gen = array_add($gen, $i, $id);
-//        $refer = User::where('id', $id)->first()->refer_by;
-//        $i++;
-//    }
-//    while (User::where('id', $refer)->first()->refer_by->exist());
-    $refer = User::where('id', $id)->first()->refer_by;
-    return $refer;
+    $generationCount = DirectBonus::count();
+    $refer = User::where('id', $userId)->first()->refer_by;
+    $generation[] = $refer;
+    $i = 0;
+    do {
+        $refer = User::where('id', $refer)->first()->refer_by;
+        if ($refer == end($generation)){
+            break;
+        }
+        $generation[] = $refer;
+        $i++;
+    }
+    while ($i < $generationCount);
+    return $generation;
 }
-
-//bonus percentage % detect
-//function refesAmountOfPercentage($deposit_amount){
-//    $refer1Amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
-//    $refer2Amount = ((DirectBonus::find(2)->first()->percentage)*$deposit_amount)/100;
-//    $refer3Amount = ((DirectBonus::find(3)->first()->percentage)*$deposit_amount)/100;
-//    $refer4Amount = ((DirectBonus::find(4)->first()->percentage)*$deposit_amount)/100;
-//    $refer5Amount = ((DirectBonus::find(5)->first()->percentage)*$deposit_amount)/100;
-//    return $refer1Amount;
-//}
 
 //generation by commission
 function refersCommission($userId, $deposit_amount){
-    $refer1 = generations($userId);
-    $amount = ((DirectBonus::find(1)->first()->percentage)*$deposit_amount)/100;
-    //$generationByRefer = array($refer1);
-    onTransaction($refer1, $amount, 'in', '2');
-    return $refer1;
+    $refer = generations($userId);
+    $generationCount = DirectBonus::count();
+    for ($i = 1; $i < $generationCount; $i++){
+        $amounts[] = ((DirectBonus::find($i)->percentage)*$deposit_amount)/100;
+    }
+    for ($i = 0; $i<$generationCount; $i++){
+        onTransaction($refer[$i], $amounts[$i], 'in', '2');
+    }
+    return $refer;
 }

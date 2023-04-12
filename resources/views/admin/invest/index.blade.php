@@ -100,11 +100,11 @@
                             <tbody>
                             @foreach($investors as $investor)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $investor->refer_by }}</td>
+                                    <td> {{ $loop->iteration }} </td>
+                                    <td> {{ $investor->refer_by }} </td>
                                     <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
-                                    <td>{{ $investor->name }}</td>
-                                    <td>{{ $investor->mobile }}</td>
+                                    <td> {{ $investor->name }} </td>
+                                    <td> {{ $investor->mobile }} </td>
                                     <td>
                                         @if($investor->payment_image || $investor->transaction_id)
                                             <button class="btn btn-success" style="border: none !important; border-radius: 20em !important;"
@@ -148,12 +148,18 @@
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
                                             <button data-id="{{$investor->id}}"
-                                            @if($investor->approval == 1) onclick="disableButton(this)" @else
-                                            onclick="approvalChange(this)" @endif
+                                            @if($investor->approval == 1) onclick="disableButton(this)"
+                                            @else
+                                                @if(!isset($nextNotApproval))
+                                                    onclick="approvalChange(this)"
+                                                @else
+                                                    onclick="disableButton(this)"
+                                                @endif
+                                            @endif
                                             id="approval"
                                             type="checkbox" {{ status($investor->approval) }}
                                             class="@if($investor->approval == 1) button-88-active @else button-88-inactive @endif"
-                                                    role="button"> @if($investor->approval == 1) Approved @else Not Approved @endif</button>
+                                                    role="button"> @if($investor->approval == 1) Approved @else @if(!isset($nextNotApproval)) Not Approved @php $nextNotApproval = 1;  @endphp @else <span style="opacity: 50%; cursor: not-allowed;">Not Approved</span> @endif @endif </button>
                                         </div>
                                     </td>
                                 </tr>
