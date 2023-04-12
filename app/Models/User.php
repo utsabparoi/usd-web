@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Admin\UserDeposit;
+use App\Models\Admin\Wallet;
+use App\Models\Admin\WalletType;
 use App\Traits\AutoCreatedUpdated;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,5 +53,9 @@ class User extends Authenticatable
 
     public function useDepositPlan(){
         return $this->belongsTo(UserDeposit::class, 'user_id');
+    }
+
+    public function wallet(){
+        return $this->hasMany(Wallet::class);
     }
 }
