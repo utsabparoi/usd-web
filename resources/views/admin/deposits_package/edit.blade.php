@@ -57,6 +57,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="installments" class="col-md-3 control-label">Total Installments</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="number" name="installments" id="installments" value="{{ $deposit_edit->total_installment }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="image" class="col-md-3 control-label">Image</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" type="file"  name="image" id="image" value="{{ $deposit_edit->image }}">
@@ -88,7 +94,7 @@
         {{-- <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
-                
+
             </div><!-- /.col -->
         </div><!-- /.row --> --}}
     </div><!-- /.page-content -->

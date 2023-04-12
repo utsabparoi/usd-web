@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\DepositPlanModel;
+use App\Models\admin\UserDepositInstallmentModel;
 use App\Traits\FileSaver;
 use App\Models\Admin\Deposit;
 use App\Models\Admin\Designation;
 use App\Models\Admin\UserDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class InvestorController extends Controller
@@ -134,8 +136,24 @@ class InvestorController extends Controller
                 'deposit_amount'        =>$deposit_plan->deposit_amount,
                 'monthly_profit'        =>$deposit_plan->monthly_profit,
                 'distribute_amount'     =>$deposit_plan->distribute_amount,
+                'total_installment'     =>$deposit_plan->total_installment,
                 'status'                =>1,
             ]);
+            for ($i = 0; $i < $user_deposit_plan->total_installment; $i++){
+                UserDepositInstallmentModel::updateOrCreate(
+                    [
+                        'id'                    =>null,
+                    ],
+                    [
+                        'user_deposit_plan_id'  =>$user_deposit_plan->id,
+                        'deposit_plan_id'       =>$deposit_plan->id,
+                        'month'                 =>date('M'),
+                        'is_paid'               =>0,
+                        'amount'                =>$user_deposit_plan->monthly_profit,
+                        'status'                =>$request->status ? 1: 0,
+                    ]);
+            }
+
         } catch (\Throwable $th) {
             throw $th;
         }
