@@ -55,13 +55,13 @@
                                                         <!---------------  EDIT---------------->
                                                         <div class="btn-group btn-corner  action-span ">
 
-                                                            <a href="{{ route('deposits.edit', $item->id) }}"
+                                                            <a href="{{ route('transaction.edit', $item->id) }}"
                                                                 role="button" class="btn btn-xs btn-success bs-tooltip"
                                                                 title="Edit">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
                                                             <button type="button"
-                                                                onclick="delete_item(`{{ route('deposits.destroy', $item->id) }}`)"
+                                                                onclick="delete_item(`{{ route('transaction.destroy', $item->id) }}`)"
                                                                 class="btn btn-xs btn-danger bs-tooltip" title="Delete">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>

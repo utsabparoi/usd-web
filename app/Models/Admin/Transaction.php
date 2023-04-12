@@ -9,4 +9,7 @@ class Transaction extends Model
 {
     use AutoCreatedUpdated;
     protected $table = 'transactions';
+
+    protected $guarded = [];
+
 }

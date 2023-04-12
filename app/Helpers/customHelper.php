@@ -1,24 +1,28 @@
 <?php
 
-use App\Models\Admin\DirectBonus;
 use App\Models\User;
 use App\Models\Admin\Wallet;
+use App\Models\Admin\DirectBonus;
 use App\Models\Admin\Transaction;
 use Illuminate\Support\Facades\DB;
 
 //status show
-function status($status){
-    if ($status == 1){
+function status($status)
+{
+    if ($status == 1) {
         $status = 'checked';
-    }
-    else{
+    } else {
         $status = '';
     }
     return $status;
 }
 
 //invest transaction
-function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
+function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
+{
+    $user_position = DB::table('positions')->where('status', 1)->where('user_id', $userId)->value('id');
+    $balance = DB::table('wallets')->where('user_id', $userId)->value('balance');
+    $user_wallet = Wallet::where([['user_id', $userId],['wallet_type_id', $wallet_type_id]])->get();
     DB::beginTransaction();
     try {
         $transaction = Transaction::insert([
@@ -34,6 +38,21 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
             'created_at'      => date('Y-m-d'),
             'updated_at'      => date('Y-m-d'),
         ]);
+        if (!isset($user_wallet)) {
+            if ($balanceType == 'in') {
+                $user_wallet->increment('balance', $amount);
+            } elseif ($balanceType == 'out') {
+                $user_wallet->decrement('balance', $amount);
+            }
+        }else {
+            Wallet::insert([
+                'user_id'         => $userId,
+                'wallet_type_id'  => $wallet_type_id,
+                'balance'         => $amount,
+                'created_at'      => date('Y-m-d'),
+                'updated_at'      => date('Y-m-d'),
+            ]);
+        }
         DB::commit();
     } catch (\Exception $e) {
         DB::rollback();
@@ -52,19 +71,18 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id){
 }
 
 //current wallet balance
-function currentBalance($userId, $walletTypeId){
+function currentBalance($userId, $walletTypeId)
+{
     $userTransactions = Transaction::where('user_id', $userId)
         ->where('wallet_type_id', $walletTypeId)
         ->get();
     $balance = 0;
-    foreach ($userTransactions as $item){
-        if ($item->balance_type == 'in'){
-            $balance = $balance+$item->amount;
-        }
-        elseif ($item->balance_type == 'out'){
-            $balance = $balance-$item->amount;
-        }
-        else {
+    foreach ($userTransactions as $item) {
+        if ($item->balance_type == 'in') {
+            $balance = $balance + $item->amount;
+        } elseif ($item->balance_type == 'out') {
+            $balance = $balance - $item->amount;
+        } else {
             $balance = 0;
         }
     }
