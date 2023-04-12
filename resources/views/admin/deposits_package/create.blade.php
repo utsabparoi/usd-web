@@ -54,6 +54,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="installments" class="col-md-3 control-label">Total Installments</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="number" placeholder="Ex. 12" name="installments" id="installments" value="{{ old('installments') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="image" class="col-md-3 control-label">Image</label>
                                             <div class="col-md-5">
                                                 <input class="form-control" type="file" placeholder="Image" name="image" id="image" value="{{ old('image') }}">

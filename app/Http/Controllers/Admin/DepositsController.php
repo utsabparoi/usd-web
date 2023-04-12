@@ -47,6 +47,7 @@ class DepositsController extends Controller
             'monthly_profit'      => 'required',
             'total_payable'       => 'required',
             'distribute_amount'   => 'required',
+            'installments'        => 'required',
             'status'              => 'required',
         ]);
 
@@ -61,6 +62,7 @@ class DepositsController extends Controller
             'monthly_profit'     => $request->monthly_profit,
             'total_payable'      => $request->total_payable,
             'distribute_amount'  => $request->distribute_amount,
+            'total_installment'  => $request->installments,
             'status'             => $request->status,
             'created_at'         => now(),
          ]);
@@ -111,6 +113,7 @@ class DepositsController extends Controller
             'monthly_profit'    => $request->monthly_profit,
             'total_payable'     => $request->total_payable,
             'distribute_amount' => $request->distribute_amount,
+            'total_installment' => $request->installments,
             'status'            => $request->status,
             'created_at'        => now(),
          ]);
