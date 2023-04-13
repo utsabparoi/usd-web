@@ -45,7 +45,7 @@
                                             <div class="form-group">
                                                 <label for="designation" class="col-md-3 control-label">Designation</label>
                                                 <div class="col-md-5">
-                                                    <select class="form-control" name="designation_id" required>
+                                                    <select class="form-control" name="designation_id">
                                                         <option value="">-Select a Deignation-</option>
                                                         @foreach ($designations as $designation)
                                                             <option value="{{ $designation->id }}">{{ $designation->name }}</option>

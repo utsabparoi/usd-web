@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\DepositPlanModel;
-use App\Models\admin\UserDepositInstallmentModel;
+use App\Models\Admin\UserDepositInstallmentModel;
 use App\Traits\FileSaver;
 use App\Models\Admin\Deposit;
 use App\Models\Admin\Designation;

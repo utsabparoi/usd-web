@@ -24,7 +24,7 @@
                                                     <th width="10%" class="text-center">SL</th>
                                                     <th>User Name</th>
                                                     <th>Balance</th>
-                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center">Details</th>
                                                 </tr>
                                             </thead>
 
@@ -38,13 +38,9 @@
                                                                 @foreach ($item->wallet as $index)
                                                                     @if ($index->wallet_type_id == 1)
                                                                         <li>{{ $invests }} = {{ $index->balance }}</li>
-                                                                    @else
-                                                                        <li>{{ $invests }} = 0</li>
                                                                     @endif
                                                                     @if ($index->wallet_type_id == 2)
                                                                         <li>{{ $incomes }} = {{ $index->balance }}</li>
-                                                                    @else
-                                                                        <li>{{ $incomes }} = 0</li>
                                                                     @endif
                                                                 @endforeach
 

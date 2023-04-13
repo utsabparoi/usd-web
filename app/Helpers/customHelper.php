@@ -21,8 +21,9 @@ function status($status)
 function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
 {
     $user_position = DB::table('positions')->where('status', 1)->where('user_id', $userId)->value('id');
-    $balance = DB::table('wallets')->where('user_id', $userId)->value('balance');
-    $user_wallet = Wallet::where([['user_id', $userId],['wallet_type_id', $wallet_type_id]])->get();
+    // $balance = DB::table('wallets')->where('user_id', $userId)->get();
+    $user_wallet = Wallet::where('user_id', $userId)->get();
+    // $wallet_type = Transaction::where([['user_id', $userId],['wallet_type_id', $wallet_type_id]])->get();
     DB::beginTransaction();
     try {
         $transaction = Transaction::insert([
@@ -38,23 +39,42 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
             'created_at'      => date('Y-m-d'),
             'updated_at'      => date('Y-m-d'),
         ]);
-        if (!isset($user_wallet)) {
-            // if ($balanceType == 'in') {
-            //     $user_wallet->increment('balance', $amount);
-            // } elseif ($balanceType == 'out') {
-            //     $user_wallet->decrement('balance', $amount);
-            // }
-            $balance = currentBalance($userId, $wallet_type_id);
-            DB::table('wallets')->value('balance', $balance)->update();
+        // if ($user_wallet->isNotEmpty()) {
+        //     // if ($balanceType == 'in') {
+        //     //     $user_wallet->increment('balance', $amount);
+        //     // } elseif ($balanceType == 'out') {
+        //     //     $user_wallet->decrement('balance', $amount);
+        //     // }
+        //     $balance = currentBalance($userId, $wallet_type_id);
+        //     DB::table('wallets')->value('balance', $balance)->update();
+        // }elseif($user_wallet->isEmpty()) {
+        //     Wallet::insertOrUpdate([
+        //         'user_id'         => $userId,
+        //         'wallet_type_id'  => $wallet_type_id,
+        //         'balance'         => $amount,
+        //         'created_at'      => date('Y-m-d'),
+        //         'updated_at'      => date('Y-m-d'),
+        //     ]);
+        // }
+        // Wallet::updateOrCreate([
+        //     'user_id'         => $userId,
+        //     'wallet_type_id'  => $wallet_type_id,
+        //     'balance'         => currentBalance($userId, $wallet_type_id),
+        //     'created_at'      => date('Y-m-d'),
+        //     'updated_at'      => date('Y-m-d'),
+        // ]);
+        if ($user_wallet->isEmpty()) {
+            $id = NULL;
         }else {
-            Wallet::insert([
-                'user_id'         => $userId,
-                'wallet_type_id'  => $wallet_type_id,
-                'balance'         => $amount,
-                'created_at'      => date('Y-m-d'),
-                'updated_at'      => date('Y-m-d'),
-            ]);
+            $id = $userId;
         }
+        Wallet::updateOrCreate([
+            'id' => $id,
+        ],[
+            'user_id'         => $userId,
+            'wallet_type_id'  => $wallet_type_id,
+            'balance'         => currentBalance($userId, $wallet_type_id),
+        ]);
         DB::commit();
     } catch (\Exception $e) {
         DB::rollback();

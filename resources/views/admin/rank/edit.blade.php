@@ -39,6 +39,19 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="designation" class="col-md-3 control-label">Designation</label>
+                                            <div class="col-md-5">
+                                                <select class="form-control" name="designation_id" required>
+                                                    <option value="">-Select a Deignation-</option>
+                                                    @foreach ($designations as $designation)
+                                                        <option value="@if ($designation->id == $rank_edit->designation_id) {{ $designation->id }} @endif">
+                                                            {{ $designation->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="status" class="col-md-3 control-label">Status</label>
                                             <div class="col-md-5">
                                                 <select class="form-control" id="status" name="status">

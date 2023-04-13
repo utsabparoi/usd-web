@@ -16,7 +16,7 @@ class DirectBonusController extends Controller
     public function index()
     {
         try {
-            $data['directbonus_info'] = DirectBonus::latest()->get();
+            $data['directbonus_info'] = DirectBonus::where('status',1)->get();
             return view('admin.direct_bonus.index',$data);
         } catch (\Throwable $th) {
             return redirect()->back()->with('errors', $th);
