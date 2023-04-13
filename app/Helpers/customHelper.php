@@ -112,11 +112,13 @@ function generations($userId){
 function refersCommission($userId, $deposit_amount){
     $refer = generations($userId);
     $generationCount = DirectBonus::count();
+    $i = 0;
     for ($i = 1; $i < $generationCount; $i++){
         $amounts[] = ((DirectBonus::find($i)->percentage)*$deposit_amount)/100;
     }
-    for ($i = 0; $i<$generationCount; $i++){
-        onTransaction($refer[$i], $amounts[$i], 'in', '2');
+    $j = 0;
+    for ($j = 0; $j<$generationCount; $j++){
+        onTransaction($refer[$j], $amounts[$j], 'in', '2');
     }
     return $refer;
 }
