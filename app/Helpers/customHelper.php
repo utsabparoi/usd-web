@@ -39,11 +39,13 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
             'updated_at'      => date('Y-m-d'),
         ]);
         if (!isset($user_wallet)) {
-            if ($balanceType == 'in') {
-                $user_wallet->increment('balance', $amount);
-            } elseif ($balanceType == 'out') {
-                $user_wallet->decrement('balance', $amount);
-            }
+            // if ($balanceType == 'in') {
+            //     $user_wallet->increment('balance', $amount);
+            // } elseif ($balanceType == 'out') {
+            //     $user_wallet->decrement('balance', $amount);
+            // }
+            $balance = currentBalance($userId, $wallet_type_id);
+            DB::table('wallets')->value('balance', $balance)->update();
         }else {
             Wallet::insert([
                 'user_id'         => $userId,
@@ -58,14 +60,6 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
         DB::rollback();
         throw $e;
     }
-
-//    $wallet = Wallet::insertOrUpdate([
-//        'user_id'         => $userId,
-//        'wallet_type_id'  => $wallet_type_id,
-//        'balance'         => $amount,
-//        'created_at'      => date('Y-m-d'),
-//        'updated_at'      => date('Y-m-d'),
-//    ]);
 
     return compact('transaction');
 }

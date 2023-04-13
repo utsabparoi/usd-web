@@ -1,6 +1,9 @@
 @extends('layouts.backend.app')
 @section('title', 'Wallet List')
-
+@php
+    $invest_wallet = DB::table('wallet_types')->where('id', 1)->value('name');
+    $income_wallet = DB::table('wallet_types')->where('id', 2)->value('name');
+@endphp
 @section('content')
 
     <div class="main-content-inner">
@@ -20,19 +23,33 @@
                                                 <tr>
                                                     <th width="10%" class="text-center">SL</th>
                                                     <th>User Name</th>
-                                                    <th>Wallet Type</th>
                                                     <th>Balance</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                @forelse ($wallets as $item)
+                                                @forelse ($user_wallets as $item)
                                                     <tr>
                                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->user->name }}</td>
-                                                        <td>{{ $item->walletType->name }}</td>
-                                                        <td>{{ $item->balance }}</td>
+                                                        <td>{{ $item->name }}</td>
+                                                        <td>
+                                                            <ul style="list-style-type: none;margin-left:0">
+                                                                @foreach ($item->wallet as $index)
+                                                                    @if ($index->wallet_type_id == 1)
+                                                                        <li>{{ $invests }} = {{ $index->balance }}</li>
+                                                                    @else
+                                                                        <li>{{ $invests }} = 0</li>
+                                                                    @endif
+                                                                    @if ($index->wallet_type_id == 2)
+                                                                        <li>{{ $incomes }} = {{ $index->balance }}</li>
+                                                                    @else
+                                                                        <li>{{ $incomes }} = 0</li>
+                                                                    @endif
+                                                                @endforeach
+
+                                                            </ul>
+                                                        </td>
                                                         <td class="text-center">
                                                             <button
                                                                 style="width: 70px; height: 25px; background-color: #00BE67; color: white; border: none; border-radius: 5px;"
@@ -55,15 +72,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-7 span-1 ">
-                                                                                <h3>{{ $item->user->name }}</h3>
-                                                                                {{-- </p>
-                                                                                <div class="price_single">
-                                                                                    <span class="reducedfrom "><del>{{ $item->retail_price }}tk</del>{{ $item->cost_price }}tk</span>
-
-                                                                                    <div class="clearfix"></div>
-                                                                                </div>
-                                                                                <h4 class="quick">Quick Overview:</h4>
-                                                                                <p class="quick_desc">{{ $item->description }}</p> --}}
+                                                                                <h3>{{ $item->name }}</h3>
                                                                             </div>
                                                                             <div class="clearfix"> </div>
                                                                         </div>
