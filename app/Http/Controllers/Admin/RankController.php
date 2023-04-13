@@ -8,6 +8,7 @@ use App\Models\Admin\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Designation;
 
 class RankController extends Controller
 {
@@ -30,7 +31,8 @@ class RankController extends Controller
      */
     public function create()
     {
-        return view('admin.rank.create');
+        $data['designations'] = Designation::where('status', 1)->get();
+        return view('admin.rank.create', $data);
     }
 
     /**
