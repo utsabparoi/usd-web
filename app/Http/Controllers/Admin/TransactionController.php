@@ -17,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data['transactions'] = Transaction::latest()->get();
+        $data['transactions'] = Transaction::with('user','walletType')->latest()->get();
         return view('admin.transaction.index', $data);
     }
 

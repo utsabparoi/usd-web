@@ -28,10 +28,10 @@
                                         <thead>
                                             <tr>
                                                 <th> SL </th>
-                                                <th> Refer By </th>
-                                                <th> Invest Package </th>
                                                 <th> Name </th>
                                                 <th> Phone </th>
+                                                <th> Refer By </th>
+                                                <th> Invest Package </th>
                                                 <th> Income Balance($) </th>
                                                 <th> Invest Balance ($)</th>
                                                 <th> Payment By </th>
@@ -42,12 +42,12 @@
                                          @foreach($investors as $investor)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
-                                                <td> {{ $investor->refer_by }} </td>
-                                                <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                                 <td> {{ $investor->name }} </td>
                                                 <td> {{ $investor->mobile }} </td>
-                                                <td> {{ currentBalance($investor->id, '2') }} </td>
-                                                <td> {{ currentBalance($investor->id, '1') }} </td>
+                                                <td> {{ $investor->where('refer_by', $investor->refer_by)->value('name')}} </td>
+                                                <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
+                                                <td> ${{ currentBalance($investor->id, '2') }} </td>
+                                                <td> ${{ currentBalance($investor->id, '1') }} </td>
                                                 <td>
                                                     @if($investor->payment_image || $investor->transaction_id)
                                                         <button class="btn btn-success" style="border: none !important;"

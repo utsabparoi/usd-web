@@ -44,3 +44,4 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('rank', RankController::class);
 Route::post('/referCheck', [InvestorController::class, 'referCheck']);
 Route::post('/investApprovalChange', [InvestController::class, "InvestApprovalChange"]);
+
