@@ -22,7 +22,7 @@ class TransactionTable extends Migration
             $table->decimal('amount', 16, 6);
             $table->string('balance_type')->comment('in/out');
             $table->foreignId('wallet_type_id')->constrained();
-            $table->foreignId('position_id')->constrained();
+            $table->foreignId('position_id')->nullable()->constrained();
             $table->string('date');
             $table->tinyInteger('is_approved');
             $table->string('approved_at')->nullable();
