@@ -24,6 +24,16 @@ class AuthController extends Controller
     public function register(Request $request, $id=null)
     {
         try {
+            $validator = Validator::make($request->all(),[
+                'name'     => 'required|string|max:255',
+                'email'    => 'required|string|email|max:255|unique:users',
+                'mobile'   => 'required|string|min:11|unique:users',
+                'password' => 'required|string|min:8',
+                ]);
+            if($validator->fails()){
+                return response()->json($validator->errors());
+            }
+
             $deposit_plan = DepositPlanModel::find($request->deposit_plan);
             $investors = User::updateOrCreate([
                 'id'                   =>$id,
@@ -95,20 +105,31 @@ class AuthController extends Controller
             $deposit_plans,
         ]);
     }
+
+
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password','mobile')))
-        {
-            return response()
-                ->json(['message' => 'Unauthorized'], 401);
+        if (isset($request->email)){
+            if (Auth::attempt($request->only('email', 'password','mobile') + ['is_admin' => 2]))
+            {
+                $user = User::where('is_admin', 2)->where('email', $request['email'])->firstOrFail();
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return response()
+                    ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            }
+        }
+        elseif (isset($request->mobile)){
+            if (Auth::attempt($request->only('email', 'password','mobile') + ['is_admin' => 2]))
+            {
+                $user = User::where('is_admin', 2)->where('mobile', $request['mobile'])->firstOrFail();
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return response()
+                    ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            }
         }
 
-        $user = User::where('email', $request['email'])->orwhere('mobile', $request['mobile'])->firstOrFail();
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()
-            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json(['message' => 'Unauthorized'], 401);
     }
 
     public function logout()
@@ -119,5 +140,4 @@ class AuthController extends Controller
             'message' => 'You have successfully logged out and the token was successfully deleted'
         ];
     }
-
 }
