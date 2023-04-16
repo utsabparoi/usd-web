@@ -27,9 +27,14 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //
 //});
-//Route::post('/register', [AuthController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group( function () {
+
+});
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/investors', [AuthController::class, 'investors']);
+Route::get('/deposit_plan', [AuthController::class, 'deposit_plans']);
 //Route::post('login', [AuthController::class, 'login']);
-//
 //Route::apiResource('/rank', RankController::class);
 //Route::apiResource('/directbonus', DirectBonusController::class);
 //Route::apiResource('/deposits', DepositsController::class);

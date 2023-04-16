@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Admin\WalletType;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -12,14 +13,14 @@ class UserInstallment extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'monthly:installment';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Give monthly investor profit';
 
     /**
      * Create a new command instance.
@@ -38,6 +39,9 @@ class UserInstallment extends Command
      */
     public function handle()
     {
-
+        WalletType::insert([
+            'name' => 'test',
+        ]);
+        $this->info('test success');
     }
 }
