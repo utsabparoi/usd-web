@@ -31,25 +31,25 @@
                                                 <th>Source Type</th>
                                                 <th>Source Id</th>
                                                 <th>Amount</th>
-                                                <th>Balance Type</th>
-                                                <th>Date</th>
+                                                <th class="text-center">Balance Type</th>
+                                                <th>Date & Time</th>
                                                 <th>Wallet Type</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($transactions as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->user_id }}</td>
-                                                    <td>{{ $item->source_type }}$</td>
-                                                    <td>{{ $item->source_id }}$</td>
-                                                    <td>{{ floatval($item->amount) }}$</td>
-                                                    <td>{{ $item->balance_type }}$</td>
-                                                    <td>{{ $item->date }}$</td>
-                                                    <td>{{ $item->wallet_id }}$</td>
-                                                    <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
+                                                    <td>{{ $item->user->name }}</td>
+                                                    <td>{{ $item->source_type }}</td>
+                                                    <td>{{ $item->source_id }}</td>
+                                                    <td>${{ floatval($item->amount) }}</td>
+                                                    <td class="text-center">{{ $item->balance_type }}</td>
+                                                    <td>{{ $item->date }}</td>
+                                                    <td>{{ $item->walletType->name }}</td>
+                                                    <td class="text-center"><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                     </td>
                                                     <td class="text-center">
                                                         <!---------------  EDIT---------------->

@@ -89,11 +89,11 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>ReferID </th>
-                                <th>Invest Package</th>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Payment By</th>
+                                <th>Refer by(ID) </th>
+                                <th>Invest Package</th>
+                                <th>Payment by</th>
                                 <th>Approval</th>
                             </tr>
                             </thead>
@@ -101,10 +101,10 @@
                             @foreach($investors as $investor)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td> {{ $investor->refer_by }} </td>
-                                    <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                     <td> {{ $investor->name }} </td>
                                     <td> {{ $investor->mobile }} </td>
+                                    <td> {{ $investor->where('id', $investor->refer_by)->value('name') }} ({{$investor->refer_by}}) </td>
+                                    <td> {{ \App\Models\Admin\UserDeposit::where('user_id', $investor->id)->first()->name }} </td>
                                     <td>
                                         @if($investor->payment_image || $investor->transaction_id)
                                             <button class="btn btn-success" style="border: none !important; border-radius: 20em !important;"

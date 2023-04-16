@@ -29,6 +29,7 @@
                                                 <th>Rank Name</th>
                                                 <th>Target Amount</th>
                                                 <th>Reward Amount</th>
+                                                <th>Designation</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -41,6 +42,7 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->target_amount }}</td>
                                                 <td>{{ $item->reward_amount }}</td>
+                                                <td>{{ $item->designation->name }}</td>
                                                 <td><span class="label label-md label-primary">{{ $item->status == '1'? 'Active' : 'Inactive' }}</span>
                                                 </td>
                                                 <td class="text-center">

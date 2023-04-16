@@ -20,7 +20,7 @@ class RankController extends Controller
      */
     public function index()
     {
-        $data['rank_info'] = Rank::latest()->get();
+        $data['rank_info'] = Rank::with('designation')->latest()->get();
         return view('admin.rank.index',$data);
     }
 
@@ -48,7 +48,6 @@ class RankController extends Controller
             'name' => 'required',
             'target_amount' => 'required',
             'reward_amount' => 'required',
-            'status' => 'required',
         ]);
 
         $rank = Rank::updateOrCreate(
@@ -59,6 +58,7 @@ class RankController extends Controller
             'name' => $request->name,
             'target_amount' => $request->target_amount,
             'reward_amount' => $request->reward_amount,
+            'designation_id' => $request->designation_id,
             'status' => $request->status,
             'created_at' => now(),
          ]);
@@ -86,6 +86,8 @@ class RankController extends Controller
     public function edit($id)
     {
         $data['rank_edit'] = Rank::findOrFail($id);
+        $data['designations'] = Designation::where('status', 1)->get();
+
         return view('admin.rank.edit',$data);
     }
 
@@ -102,7 +104,6 @@ class RankController extends Controller
             'name' => 'required',
             'target_amount' => 'required',
             'reward_amount' => 'required',
-            'status' => 'required',
         ]);
 
         $rank = Rank::updateOrCreate(
@@ -113,6 +114,7 @@ class RankController extends Controller
             'name' => $request->name,
             'target_amount' => $request->target_amount,
             'reward_amount' => $request->reward_amount,
+            'designation_id' => $request->designation_id,
             'status' => $request->status,
             'created_at' => now(),
          ]);

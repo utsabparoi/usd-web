@@ -21,10 +21,12 @@ function status($status)
 function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
 {
     $user_position = DB::table('positions')->where('status', 1)->where('user_id', $userId)->value('id');
-    $balance = DB::table('wallets')->where('user_id', $userId)->value('balance');
-    $user_wallet = Wallet::where([['user_id', $userId],['wallet_type_id', $wallet_type_id]])->get();
+
+    $user_wallet = Wallet::where('user_id', $userId)->get();
+
     DB::beginTransaction();
     try {
+        // DB::transaction(function(){})
         $transaction = Transaction::insert([
             'user_id'         => $userId,
             'source_type'     => 1,
@@ -32,29 +34,20 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
             'amount'          => $amount,
             'balance_type'    => $balanceType,
             'wallet_type_id'  => $wallet_type_id,
-            'position_id'     => 1,
+            'position_id'     => $user_position,
             'date'            => now(),
             'is_approved'     => 1,
             'created_at'      => date('Y-m-d'),
             'updated_at'      => date('Y-m-d'),
         ]);
-        if (!isset($user_wallet)) {
-            // if ($balanceType == 'in') {
-            //     $user_wallet->increment('balance', $amount);
-            // } elseif ($balanceType == 'out') {
-            //     $user_wallet->decrement('balance', $amount);
-            // }
-            $balance = currentBalance($userId, $wallet_type_id);
-            DB::table('wallets')->value('balance', $balance)->update();
-        }else {
-            Wallet::insert([
-                'user_id'         => $userId,
-                'wallet_type_id'  => $wallet_type_id,
-                'balance'         => $amount,
-                'created_at'      => date('Y-m-d'),
-                'updated_at'      => date('Y-m-d'),
-            ]);
-        }
+
+        Wallet::updateOrCreate([
+            'user_id'         => $userId,
+            'wallet_type_id'  => $wallet_type_id,
+        ],[
+            'balance'         => currentBalance($userId, $wallet_type_id),
+            // 'balance'           => DB::raw("balance + {$amount}")
+        ]);
         DB::commit();
     } catch (\Exception $e) {
         DB::rollback();
@@ -80,6 +73,7 @@ function currentBalance($userId, $walletTypeId)
             $balance = 0;
         }
     }
+    //return Transaction::where('user_id', $userId)->where('wallet_type_id', $walletTypeId)->where('balance_type', 'in')
 
     return $balance;
 }
