@@ -25,10 +25,11 @@ class AuthController extends Controller
     {
         try {
             $validator = Validator::make($request->all(),[
-                'name'     => 'required|string|max:255',
-                'email'    => 'required|string|email|max:255|unique:users',
-                'mobile'   => 'required|string|min:11|unique:users',
-                'password' => 'required|string|min:8',
+                'name'         => 'required',
+                'email'        => 'required|unique:users',
+                'mobile'       => 'required|unique:users',
+                'password'     => 'required',
+                'deposit_plan' => 'required',
                 ]);
             if($validator->fails()){
                 return response()->json($validator->errors());
@@ -43,13 +44,9 @@ class AuthController extends Controller
                 'mobile'               =>$request->mobile,
                 'password'             =>Hash::make($request->password),
                 'refer_by'             =>$request->refer_by,
-                'transaction_id'       =>$request->transaction_id,
                 'is_admin'             =>2,
                 'status'               =>$request->status ? 1: 0,
             ]);
-            if (isset($request->payment_image)){
-                $this->upload_file($request->payment_image, $investors, 'payment_image', 'user/payment_image');
-            }
             if (!isset($request->refer_by)){
                 User::where('id', $investors->id)->update(['refer_by' => $investors->id]);
             }
@@ -86,7 +83,7 @@ class AuthController extends Controller
             $token = $investors->createToken('auth_token')->plainTextToken;
 
             return response()
-                ->json(['investor' => $investors, 'user_deposit_plan' => $deposit_plan, 'access_token' => $token, 'token_type' => 'Bearer', ]);
+                ->json(['status'=> true,'data'=> ['investor' => $investors, 'user_deposit_plan' => $deposit_plan, 'access_token' => $token, 'token_type' => 'Bearer', 'status'=> 'Not Approved', 'message' => 'Registration Success', ]]);
 
         } catch (\Throwable $th) {
             throw $th;
