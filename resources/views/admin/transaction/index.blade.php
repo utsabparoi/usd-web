@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="widget-box">
                     <div class="widget-header header-color">
-                        <h4 class="widget-title">Transaction Infos</h4>
+                        <h4 class="widget-title">All Transactions</h4>
 
                         {{-- <span class="widget-toolbar">
                             <a class="header-text" href="{{ route('deposits.create') }}">

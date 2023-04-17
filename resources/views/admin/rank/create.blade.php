@@ -36,7 +36,7 @@
                                             <div class="form-group">
                                                 <label for="reward" class="col-md-3 control-label">Reward Amount</label>
                                                 <div class="col-md-5">
-                                                    <input class="form-control" type="number" placeholder="Reward"
+                                                    <input class="form-control" type="float" placeholder="Reward"
                                                         name="reward_amount" id="reward"
                                                         value="{{ old('reward_amount') }}">
                                                 </div>
