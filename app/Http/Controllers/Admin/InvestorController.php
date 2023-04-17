@@ -13,6 +13,7 @@ use App\Models\Admin\UserDeposit;
 use App\Models\Admin\Wallet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -140,20 +141,20 @@ class InvestorController extends Controller
                 'total_installment'     => $deposit_plan->total_installment,
                 'status'                => 1,
             ]);
-            for ($i = 0; $i < $user_deposit_plan->total_installment; $i++) {
+            $date = Carbon::now();
+            for ($i = 0; $i < $user_deposit_plan->total_installment; $i++){
                 UserDepositInstallmentModel::updateOrCreate(
                     [
                         'id'                    => null,
                     ],
                     [
-                        'user_deposit_plan_id'  => $user_deposit_plan->id,
-                        'deposit_plan_id'       => $deposit_plan->id,
-                        'month'                 => date('M'),
-                        'is_paid'               => 0,
-                        'amount'                => $user_deposit_plan->monthly_profit,
-                        'status'                => $request->status ? 1 : 0,
-                    ]
-                );
+                        'user_deposit_plan_id'  =>$user_deposit_plan->id,
+                        'deposit_plan_id'       =>$deposit_plan->id,
+                        'month'                 =>$date->addMonth()->format('M, Y'),
+                        'is_paid'               =>0,
+                        'amount'                =>$user_deposit_plan->monthly_profit,
+                        'status'                =>$request->status ? 1: 0,
+                    ]);
             }
 
         } catch (\Throwable $th) {

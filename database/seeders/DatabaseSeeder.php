@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ConfigurationSeeder::class,
             WalletTypeSeeder::class,
             DirectBonusSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

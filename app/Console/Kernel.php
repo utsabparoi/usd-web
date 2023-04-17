@@ -13,10 +13,12 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    protected $commands = [\App\Console\Commands\UserInstallment::class];
+
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-//        $schedule->command('GiveUserInstallment')->dailyAt('13:36');
+        $schedule->command('monthly:installment')->dailyAt('13:28');
     }
 
     /**
