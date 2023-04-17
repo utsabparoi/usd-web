@@ -86,7 +86,7 @@ class AuthController extends Controller
             $token = $investors->createToken('auth_token')->plainTextToken;
 
             return response()
-                ->json(['data' => $investors,'access_token' => $token, 'token_type' => 'Bearer', ]);
+                ->json(['investor' => $investors, 'user_deposit_plan' => $deposit_plan, 'access_token' => $token, 'token_type' => 'Bearer', ]);
 
         } catch (\Throwable $th) {
             throw $th;
