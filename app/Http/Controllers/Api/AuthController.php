@@ -109,6 +109,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'email'    => 'required_without:mobile',
+            'mobile'   => 'required_without:email',
+            'password' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
         if (isset($request->email)){
             if (Auth::attempt($request->only('email', 'password','mobile') + ['is_admin' => 2]))
             {
