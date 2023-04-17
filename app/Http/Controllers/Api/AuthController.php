@@ -92,6 +92,7 @@ class AuthController extends Controller
             throw $th;
         }
     }
+
     public function investors(){
         $investors = User::all();
         return response()->json([
@@ -105,7 +106,6 @@ class AuthController extends Controller
             $deposit_plans,
         ]);
     }
-
 
     public function login(Request $request)
     {

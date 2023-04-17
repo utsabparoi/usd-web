@@ -20,17 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:sanctum')->group( function () {
-
+    Route::get('/investors', [AuthController::class, 'investors']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
-Route::get('/investors', [AuthController::class, 'investors']);
 Route::get('/deposit_plan', [AuthController::class, 'deposit_plans']);
 
 //Route::apiResource('/rank', RankController::class);
