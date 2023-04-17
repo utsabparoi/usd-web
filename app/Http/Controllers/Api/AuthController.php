@@ -93,12 +93,6 @@ class AuthController extends Controller
         }
     }
 
-    public function investors(){
-        $investors = User::all();
-        return response()->json([
-            $investors,
-        ]);
-    }
 
     public function deposit_plans(){
         $deposit_plans = DepositPlanModel::all();

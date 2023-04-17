@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepositsController;
 use App\Http\Controllers\Api\DirectBonusController;
+use App\Http\Controllers\Api\Investor;
 use App\Http\Controllers\Api\RankController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:sanctum')->group( function () {
-    Route::get('/investors', [AuthController::class, 'investors']);
+    Route::apiResource('/investor', Investor::class);
 });
-
-
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
