@@ -27,15 +27,15 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="target" class="col-md-3 control-label">Target</label>
+                                            <label for="target" class="col-md-3 control-label">Target Amount</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" value="{{ $rank_edit->target }}" name="target" type="number" id="target">
+                                                <input class="form-control" value="{{ $rank_edit->target_amount }}" name="target_amount" type="number" id="target_amount">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="reward" class="col-md-3 control-label">Reward</label>
+                                            <label for="reward" class="col-md-3 control-label">Reward Amount</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" value="{{ $rank_edit->reward }}" name="reward" type="number" id="reward">
+                                                <input class="form-control" value="{{ $rank_edit->reward_amount }}" name="reward_amount" type="number" id="reward_amount">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -44,7 +44,7 @@
                                                 <select class="form-control" name="designation_id" required>
                                                     <option value="">-Select a Deignation-</option>
                                                     @foreach ($designations as $designation)
-                                                        <option value="@if ($designation->id == $rank_edit->designation_id) {{ $designation->id }} @endif">
+                                                        <option value="{{$designation->id}}"@if ($designation->id == $rank_edit->designation_id) selected @endif>
                                                             {{ $designation->name }}
                                                         </option>
                                                     @endforeach

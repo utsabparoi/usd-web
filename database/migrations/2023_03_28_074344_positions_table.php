@@ -16,8 +16,7 @@ class PositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('rank_id')->constrained();
-            // $table->foreignId('designation_id')->constrained();
+            $table->foreignId('rank_id')->nullable()->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
