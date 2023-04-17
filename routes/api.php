@@ -29,11 +29,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/investors', [AuthController::class, 'investors']);
 Route::get('/deposit_plan', [AuthController::class, 'deposit_plans']);
-Route::get('/logout', [AuthController::class, 'logout']);
 
-//Route::post('login', [AuthController::class, 'login']);
 //Route::apiResource('/rank', RankController::class);
 //Route::apiResource('/directbonus', DirectBonusController::class);
 //Route::apiResource('/deposits', DepositsController::class);
