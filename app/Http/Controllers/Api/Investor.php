@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\FileSaver;
 use Illuminate\Http\Request;
 
 class Investor extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *
@@ -73,7 +75,19 @@ class Investor extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $investors = User::updateOrCreate(
+            [
+                'id'                   =>$id,
+            ],
+            [
+                'transaction_id'       =>$request->transaction_id,
+            ]);
+        if (isset($request->payment_image)){
+            $this->upload_file($request->payment_image, $investors, 'payment_image', 'user/payment_image');
+        }
+        return response()->json([
+            $investors,
+        ]);
     }
 
     /**
