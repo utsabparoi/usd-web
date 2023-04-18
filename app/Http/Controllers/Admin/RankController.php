@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Traits\FileSaver;
 use App\Models\Admin\Rank;
 use Illuminate\Http\Request;
+use App\Models\Admin\Position;
 use App\Models\Admin\Designation;
+use App\Models\Admin\Transaction;
 use App\Http\Controllers\Controller;
 
 class RankController extends Controller
@@ -18,6 +20,7 @@ class RankController extends Controller
      */
     public function index()
     {
+        $existingRank = Position::where([['id', 7],['rank_id', Rank::where('name', '$userRank')->value('id')]])->value('rank_id');
         $data['rank_info'] = Rank::with('designation')->get();
         return view('admin.rank.index',$data);
     }
