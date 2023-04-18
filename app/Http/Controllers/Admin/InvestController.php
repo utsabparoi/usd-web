@@ -103,6 +103,7 @@ class InvestController extends Controller
             if ($id != User::find($id)->refer_by){
                 refersCommission($id, $amount);
             }
+            // userPosition($id); 
             Alert::success('Approved','Investor now approved');
         }
         return $id;

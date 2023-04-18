@@ -24,7 +24,9 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
 {
     $user_position = Position::where('status', 1)->where('user_id', $userId)->value('id');
 
-    $user_wallet = Wallet::where('user_id', $userId)->get();
+    /*==> update previous status 0 at time to change the postion of a particular user <==*/
+    DB::update('update positions set status = ? where user_id = ?',[0,$userId]);
+
 
     DB::beginTransaction();
     try {
@@ -56,7 +58,10 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
         DB::rollback();
         throw $e;
     }
-    // userPosition($userId);
+
+    /*==> call user position function and change position according to target ammount <==*/
+    userPosition($userId);
+
     return $transaction;
 }
 
@@ -119,36 +124,32 @@ function refersCommission($userId, $deposit_amount)
 //user position insert/update
 function userPosition($userId)
 {
-    $incomeAmount = Rank::orderBy('target_amount')->pluck('target_amount')->toArray();
-    $totalIncome = Transaction::where([['user_id',$userId],['balance_type','in'],['wallet_type_id',2]])->sum('amount');
-    if ($totalIncome < $incomeAmount[0]) {
-        $userRank = null;
-    } else {
-        for ($i = 0; $i <= sizeof($incomeAmount);) {
-            $startRange = $incomeAmount[$i];
-            // $endRange = $incomeAmount[++$i];
-            if (isset($incomeAmount[++$i])) {
-                if (($startRange <= $totalIncome) && ($incomeAmount[$i] > $totalIncome)) {
-                    $userRank = Rank::where('target_amount', $incomeAmount[--$i])->value('name');
-                }
-            } else {
-                $userRank = Rank::where('target_amount', $incomeAmount[--$i])->value('name');
-            }
-        }
+    // $incomeAmount = Rank::orderBy('target_amount')->pluck('target_amount')->toArray();
+    $totalIncome = Transaction::where([['user_id', $userId], ['balance_type', 'in'], ['wallet_type_id', 2]])->sum('amount');
+
+    $currentRank = null;
+
+    $userRank = Rank::query()->where('target_amount', '<=', $totalIncome)->get(['id', 'target_amount'])->toArray();
+    sort($userRank);
+    if (count($userRank) > 0) {
+        $currentRank = collect($userRank)->last();
     }
-    // $existingRank = Position::where([['id', $userId],['rank_id', Rank::where('name', '$userRank')->value('id')]])->value('rank_id');
-    // if ($existingRank->isNotEmpty()) {
-    //     Position::where([['id', $userId],['rank_id', $existingRank]])->update('status', 0);
-    // }
 
     Position::updateOrCreate(
         [
-            'id'    => null,
+            'user_id'   => $userId,
+            'rank_id'   => $currentRank != null ? ($currentRank['id'] ?? null) : null,
         ],
         [
-            'user_id'   => $userId,
-            'rank_id'   => $userRank,
             'status'    => 1,
         ]
     );
+    
+    rewardAmount();
+}
+
+
+function rewardAmount()
+{
+
 }
