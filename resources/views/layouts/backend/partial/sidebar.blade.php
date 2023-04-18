@@ -16,38 +16,6 @@
             <b class="arrow"></b>
         </li>
 
-        <li class="{{ request()->routeIs('deposits*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-archive"></i>
-                <span class="menu-text">
-                    Deposit Packages
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ route('deposits.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <a href="{{ route('deposits.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
         <li class="{{ request()->routeIs('investors*') ? 'active' : '' }}">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-user-alt"></i>
@@ -77,199 +45,7 @@
                 </li>
             </ul>
         </li>
-        <li class="{{ request()->routeIs('directbonus*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fas fa-gift"></i>
-                <span class="menu-text">
-                    Direct Bouns
-                </span>
 
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('directbonus.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <a href="{{ Route('directbonus.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="{{ request()->routeIs('designations*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-trophy"></i>
-                <span class="menu-text">
-                    Designation
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('designations.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ Route('designations.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-        <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-trophy"></i>
-                <span class="menu-text">
-                    Rank
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('rank.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ Route('rank.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
-
-        {{-- <li class="{{ request()->routeIs('positions*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-trophy"></i>
-                <span class="menu-text">
-                    Positions
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ Route('positions.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ Route('positions.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li> --}}
-        {{-- <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-trophy"></i>
-                <span class="menu-text">
-                    Designation
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-
-                <li class="">
-                    <a href="{{ route('rank.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{ route('rank.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Add
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li> --}}
-        <li class="{{ request()->routeIs('wallet_types*') ? 'active' : '' }}">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-dollar"></i>
-                <span class="menu-text">Wallet Types</span>
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="{{ Route('wallet_types.index') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        List
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="{{ request()->routeIs('wallet_types.create') ? 'active' : '' }}">
-                    <a href="{{ route('wallet_types.create') }}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        <span class="menu-text">Add</span>
-
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
 
         <li class="{{ request()->routeIs('wallets*') ? 'active' : '' }}">
             <a href="{{ route('wallets.index') }}">
@@ -304,6 +80,181 @@
             </a>
             <b class="arrow"></b>
         </li>
+
+        <li class="{{ request()->routeIs('deposits*','directbonus*','designations*','rank*','wallet_types*') ? 'open active' : ''}}">
+            <a href="" class="dropdown-toggle">
+                <i class="menu-icon fa fa-gear fa-spin red bigger-130"></i>
+                <span class="menu-text">All Settings</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="{{ request()->routeIs('deposits*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-archive"></i>
+                        <span class="menu-text">
+                    Deposit Packages
+                </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+
+                        <li class="">
+                            <a href="{{ route('deposits.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                List
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('deposits.create') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Add
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="{{ request()->routeIs('directbonus*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fas fa-gift"></i>
+                        <span class="menu-text">
+                    Direct Bouns
+                </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+
+                        <li class="">
+                            <a href="{{ Route('directbonus.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                List
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="{{ Route('directbonus.create') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Add
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="{{ request()->routeIs('designations*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-trophy"></i>
+                        <span class="menu-text">
+                    Designation
+                </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+
+                        <li class="">
+                            <a href="{{ Route('designations.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                List
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="{{ Route('designations.create') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Add
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="{{ request()->routeIs('rank*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-trophy"></i>
+                        <span class="menu-text">
+                    Rank
+                </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+
+                        <li class="">
+                            <a href="{{ Route('rank.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                List
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="{{ Route('rank.create') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Add
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="{{ request()->routeIs('wallet_types*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-dollar"></i>
+                        <span class="menu-text">Wallet Types</span>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="{{ Route('wallet_types.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                List
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="{{ request()->routeIs('wallet_types.create') ? 'active' : '' }}">
+                            <a href="{{ route('wallet_types.create') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="menu-text">Add</span>
+
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

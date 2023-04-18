@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Traits\FileSaver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Investor extends Controller
 {
@@ -85,9 +86,37 @@ class Investor extends Controller
         if (isset($request->payment_image)){
             $this->upload_file($request->payment_image, $investors, 'payment_image', 'user/payment_image');
         }
+
         return response()->json([
             $investors,
         ]);
+    }
+
+    public function investorUpdate(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'transaction_id'  => 'required_without:payment_image',
+            'payment_image'   => 'required_without:transaction_id',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+        $investors = User::updateOrCreate(
+            [
+                'id'                   =>$request->id,
+            ],
+            [
+                'transaction_id'       =>$request->transaction_id,
+            ]);
+        if (isset($request->payment_image)){
+            $this->upload_file($request->payment_image, $investors, 'payment_image', 'user/payment_image');
+        }
+
+        $token = $investors->createToken('auth_token')->plainTextToken;
+
+        return response()
+            ->json(['status'=> true,'data'=> ['investor' => $investors, 'access_token' => $token, 'token_type' => 'Bearer', 'message' => $investors->name.'s'.' Payments Transaction-ID & Payment-Image Update Successful', ]]);
     }
 
     /**

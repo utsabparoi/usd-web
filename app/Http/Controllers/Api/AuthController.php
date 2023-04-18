@@ -113,23 +113,28 @@ class AuthController extends Controller
             if (Auth::attempt($request->only('email', 'password','mobile') + ['is_admin' => 2]))
             {
                 $user = User::where('is_admin', 2)->where('email', $request['email'])->firstOrFail();
+                $userDepositPlan = UserDeposit::where('user_id', $user->id)->firstOrFail();
                 $token = $user->createToken('auth_token')->plainTextToken;
                 return response()
-                    ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+                    ->json(['status'=> true, 'data' => ['investor'=>$user, 'user deposit plan'=>$userDepositPlan, 'access_token' => $token, 'token_type' => 'Bearer', 'message' => 'Hi '.$user->name.', welcome to Red-USD',  ]]);
             }
         }
         elseif (isset($request->mobile)){
             if (Auth::attempt($request->only('email', 'password','mobile') + ['is_admin' => 2]))
             {
                 $user = User::where('is_admin', 2)->where('mobile', $request['mobile'])->firstOrFail();
+                $userDepositPlan = UserDeposit::where('user_id', $user->id)->firstOrFail();
                 $token = $user->createToken('auth_token')->plainTextToken;
                 return response()
-                    ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+                    ->json(['status'=> true, 'data' => ['investor'=>$user, 'user deposit plan'=>$userDepositPlan, 'access_token' => $token, 'token_type' => 'Bearer','message' => 'Hi '.$user->name.', welcome to Red-USD',  ]]);
             }
         }
 
-        return response()
-            ->json(['message' => 'Unauthorized'], 401);
+        return response()->json([
+            'message' => 'Unauthorized'
+        ],
+            401
+        );
     }
 
     public function logout()
