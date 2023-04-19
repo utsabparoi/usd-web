@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group( function () {
     Route::apiResource('investor', Investor::class);
     Route::post('/investor_update', [Investor::class, 'investorUpdate']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/deposit_plan', [AuthController::class, 'deposit_plans']);
 
 

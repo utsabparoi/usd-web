@@ -43,12 +43,12 @@
                                                 <span id="invalidReferMsg" style="color: red;"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name" class="col-md-3 control-label">Refer Code</label>
-                                            <div class="col-md-5">
-                                                <input class="form-control " placeholder="code" name="refer_code" type="text" id="refer_code">
-                                            </div>
-                                        </div>
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="name" class="col-md-3 control-label">Refer Code</label>--}}
+{{--                                            <div class="col-md-5">--}}
+{{--                                                <input class="form-control " placeholder="code" name="refer_code" type="text" id="refer_code">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         <div class="form-group">
                                             <label for="invest_package" class="col-md-3 control-label">Invest Package</label>
                                             <div class="col-md-5">
