@@ -20,7 +20,6 @@ class RankController extends Controller
      */
     public function index()
     {
-        $existingRank = Position::where([['id', 7],['rank_id', Rank::where('name', '$userRank')->value('id')]])->value('rank_id');
         $data['rank_info'] = Rank::with('designation')->get();
         return view('admin.rank.index',$data);
     }
