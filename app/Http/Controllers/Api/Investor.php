@@ -20,7 +20,9 @@ class Investor extends Controller
     {
         $investors = User::all();
         return response()->json([
-            $investors,
+            'status'=> true,
+            'data'=>[$investors],
+            'message'=>'All Investors Information',
         ]);
     }
 
@@ -88,18 +90,26 @@ class Investor extends Controller
         }
 
         return response()->json([
-            $investors,
+            'status'=> true,
+            'data'=>[$investors],
+            'message'=>'Investor Update Successful',
         ]);
     }
 
     public function investorUpdate(Request $request){
 
         $validator = Validator::make($request->all(),[
+            'id'              => 'required',
             'transaction_id'  => 'required_without:payment_image',
             'payment_image'   => 'required_without:transaction_id',
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors());
+            return response()->json([
+                'status'=> true,
+                'data'=>[],
+                $validator->errors(),
+                'message'=>'Update Error'
+            ]);
         }
 
         $investors = User::updateOrCreate(
@@ -116,7 +126,7 @@ class Investor extends Controller
         $token = $investors->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['status'=> true,'data'=> ['investor' => $investors, 'access_token' => $token, 'token_type' => 'Bearer', 'message' => $investors->name.'s'.' Payments Transaction-ID & Payment-Image Update Successful', ]]);
+            ->json(['status'=> true,'data'=> ['investor' => $investors ], 'access_token' => $token, 'token_type' => 'Bearer', 'message' => $investors->name.'s'.' Payments Transaction-ID & Payment-Image Successfully Updated']);
     }
 
     /**
