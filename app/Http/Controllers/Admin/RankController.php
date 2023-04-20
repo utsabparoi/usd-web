@@ -20,6 +20,24 @@ class RankController extends Controller
      */
     public function index()
     {
+        // $userPositionId = Position::where([['user_id', 7],['status', 1]])->first();
+        // if (isset($userPositionId->rank_id)) {
+        //     $userRewardAmount = Rank::where('id', $userPositionId->rank_id)->value('reward_amount');
+        //     $transaction = Transaction::firstOrCreate([
+        //         'user_id' => 7,
+        //         'position_id' => $userPositionId->id,
+        //     ], [
+        //         'source_type'     => 1,
+        //         'source_id'       => 1,
+        //         'amount'          => $userRewardAmount,
+        //         'balance_type'    => 'in',
+        //         'wallet_type_id'  => 2,
+        //         'date'            => now(),
+        //         'is_approved'     => 1,
+        //     ]);
+        // }
+        // ddd($transaction);
+        // return $transaction;
         $data['rank_info'] = Rank::with('designation')->get();
         return view('admin.rank.index',$data);
     }
