@@ -24,10 +24,6 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
 {
     $user_position = Position::where('status', 1)->where('user_id', $userId)->value('id');
 
-    /*==> update previous status 0 at time to change the postion of a particular user <==*/
-    DB::update('update positions set status = ? where user_id = ?',[0,$userId]);
-
-
     DB::beginTransaction();
     try {
         // DB::transaction(function(){});
@@ -59,8 +55,13 @@ function onTransaction($userId, $amount, $balanceType, $wallet_type_id)
         throw $e;
     }
 
+    /*==> update previous status 0 at time to change the postion of a particular user <==*/
+    DB::update('update positions set status = ? where user_id = ?', [0, $userId]);
+
     /*==> call user position function and change position according to target ammount <==*/
     userPosition($userId);
+
+    distributeRewardAmount($userId);
 
     return $transaction;
 }
@@ -81,7 +82,6 @@ function currentBalance($userId, $walletTypeId)
             $balance = 0;
         }
     }
-    //return Transaction::where('user_id', $userId)->where('wallet_type_id', $walletTypeId)->where('balance_type', 'in')
 
     return $balance;
 }
@@ -121,7 +121,7 @@ function refersCommission($userId, $deposit_amount)
 }
 
 
-//user position insert/update
+/*==> user position create/update <==*/
 function userPosition($userId)
 {
     // $incomeAmount = Rank::orderBy('target_amount')->pluck('target_amount')->toArray();
@@ -135,7 +135,7 @@ function userPosition($userId)
         $currentRank = collect($userRank)->last();
     }
 
-    Position::updateOrCreate(
+    $position = Position::updateOrCreate(
         [
             'user_id'   => $userId,
             'rank_id'   => $currentRank != null ? ($currentRank['id'] ?? null) : null,
@@ -144,12 +144,33 @@ function userPosition($userId)
             'status'    => 1,
         ]
     );
-    
-    rewardAmount();
+
+    // distributeRewardAmount($position->user_id);
+
 }
 
-
-function rewardAmount()
+/*==> call transection function when a user achived a target <==*/
+function distributeRewardAmount($userId)
 {
+    /*==> Get User Position <==*/
+    $userPosition = Position::where([['user_id', $userId],['status', 1]])->first();
 
+    /*==> User Previous and Next Postion Matching for Tracking Purpose <==*/
+    if (isset($userPosition->rank_id)) {
+        $userRewardAmount = Rank::where('id', $userPosition->rank_id)->value('reward_amount');
+
+        Transaction::firstOrCreate([
+            'user_id' => $userId,
+            'position_id' => $userPosition->id,
+        ], [
+            'source_type'     => 1,
+            'source_id'       => 1,
+            'amount'          => $userRewardAmount,
+            'balance_type'    => 'in',
+            'wallet_type_id'  => 2,
+            'date'            => now(),
+            'is_approved'     => 1,
+        ]);
+
+    }
 }

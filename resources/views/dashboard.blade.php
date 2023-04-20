@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="main-content-inner">
+    <div class="main-content-inner" style="overflow-x: hidden">
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li>
