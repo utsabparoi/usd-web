@@ -55,7 +55,7 @@
                                                 <select class="form-control" name="deposit_plan" required>
                                                     <option value="">-Select-</option>
                                                     @foreach($deposit_plans as $deposit_plan)
-                                                    <option value="{{ $deposit_plan->id }}">{{ $deposit_plan->name }} - (${{  round($deposit_plan->package_price) }})</option>
+                                                    <option value="{{ $deposit_plan->id }}">{{ $deposit_plan->name }} - (${{  floatval($deposit_plan->package_price) }})</option>
                                                     @endforeach
                                                 </select>
                                             </div>
